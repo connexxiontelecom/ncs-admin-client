@@ -1,4 +1,4 @@
-# oneui-vue-edition
+# ncs-admin-client
 
 ## Project setup
 ```
