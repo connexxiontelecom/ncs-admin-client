@@ -126,10 +126,37 @@ export default {
     simplebar
   },
   data () {
-    return {
-      // Get main navigation
-      navigation: menuList.ncs
+
+    const user_details = this.$jwt.decode(localStorage.getItem('username')).data
+
+    if(parseInt(user_details.user_type) === 1){
+      return {
+        // Get main navigation
+        navigation: menuList.ncshq
+      }
     }
+
+    if(parseInt(user_details.user_type) === 2){
+      return {
+        // Get main navigation
+        navigation: menuList.ncszone
+      }
+    }
+
+    if(parseInt(user_details.user_type) === 3){
+      return {
+        // Get main navigation
+        navigation: menuList.ncsstate
+      }
+    }
+
+    if(parseInt(user_details.user_type) === 4){
+      return {
+        // Get main navigation
+        navigation: menuList.ncs
+      }
+    }
+
   }
 }
 </script>
