@@ -145,7 +145,7 @@ export default {
 
     return {
       // Get main navigation
-      navigation: nav
+      navigation: nav  
     }
   }
 }

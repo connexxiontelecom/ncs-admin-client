@@ -18,7 +18,7 @@ module.exports = {
     // Get version from package.json and make it available to our app
     config.plugin('define').tap(args => {
       args[0]['process.env']['PACKAGE_VERSION'] = JSON.stringify(require('./package.json').version) || 0
-      args[0]['process.env']['BASE_URL'] = JSON.stringify("http://localhost:8080")
+      args[0]['process.env']['BASE_URL'] = JSON.stringify('http://localhost:8080/')
       return args
     })
 

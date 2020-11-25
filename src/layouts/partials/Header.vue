@@ -232,6 +232,7 @@ export default {
     classes: String
   },
   data () {
+    const user_details = this.$jwt.decode(localStorage.getItem('username')).data
     return {
       baseSearchTerm: '',
       user: this.$store.getters["auth/currentUser"] ,

@@ -980,6 +980,7 @@ export default {
     {
       name: 'Document Management',
       icon: 'fa fa-users',
+
     },
     {
       name: 'Judgements',

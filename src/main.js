@@ -4,6 +4,7 @@
 
 // Vue, Vue Router, App and Vuex store
 import Vue from 'vue'
+
 // import router from './router'
 // You can use the following starter router instead of the default one as a clean starting point
 import router from './router/starter'
@@ -16,9 +17,6 @@ import store from './store'
 
 // Bootstrap Vue
 import BootstrapVue from 'bootstrap-vue'
-
-
-
 // Custom components
 import BaseLayoutModifier from '@/components/BaseLayoutModifier'
 import BaseBlock from '@/components/BaseBlock'
@@ -64,7 +62,6 @@ Vue.mixin({
 
 // Disable tip shown in dev console when in development mode
 Vue.config.productionTip = false
-
 
 // Craft new application
 new Vue({
