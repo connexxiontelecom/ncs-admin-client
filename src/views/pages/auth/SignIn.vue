@@ -91,7 +91,7 @@ export default {
   methods: {
     async onSubmit () {
 
-      let baseurl = process.env.BASE_URL;
+      // let baseurl = process.env.BASE_URL;
       this.$v.form.$touch()
       if (this.$v.form.$anyError) {
         return
