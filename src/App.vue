@@ -16,10 +16,24 @@
 @import './src/assets/scss/oneui/themes/flat';
 @import './src/assets/scss/oneui/themes/modern';
 @import './src/assets/scss/oneui/themes/smooth';
+
 </style>
 
 <script>
+// import {baseMixin } from "@/store/baseMixin";
+
 export default {
-  name: 'App'
+  name: 'App',
+  created() {
+    this.$http.interceptors.response.use(undefined, function (err) {
+      return new Promise(function () {
+        if (err.status === 401 && err.config && !err.config.__isRetryRequest) {
+          this.$store.dispatch('auth/logout')
+        }
+        throw err
+      })
+    })
+  }
 }
+
 </script>

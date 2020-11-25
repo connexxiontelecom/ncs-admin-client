@@ -63,7 +63,8 @@
 import { validationMixin } from 'vuelidate'
 import { required, minLength } from 'vuelidate/lib/validators'
 
-import axios from 'axios'
+// import axios from "@/axios";
+
 
 export default {
   mixins: [validationMixin],
@@ -89,6 +90,8 @@ export default {
   },
   methods: {
     async onSubmit () {
+
+      let baseurl = process.env.BASE_URL;
       this.$v.form.$touch()
       if (this.$v.form.$anyError) {
         return
@@ -97,18 +100,17 @@ export default {
       let formData = new FormData()
       formData.append('username', this.form.username)
       formData.append('password', this.form.password)
-      await axios.post('http://localhost:8080/login', formData, {})
-      .then(response => {
-        console.log(response)
-        this.toast('Login Success', 'You logged in successfully', 'success')
-      })
-      .catch(error => {
-        if (error.response.status === 401) {
-          this.toast('Login Error', 'Invalid username or password', 'warning')
-        }
-      })
-      // localStorage.setItem('username', this.form.username)
-      // this.$router.push('/')
+      await this.$store.dispatch('auth/login', { formData })
+        .then(response => {
+          let userData = this.$jwt.decode(response.data.token).data
+          this.$store.commit('auth/INIT_SESSION', userData)
+          this.$router.push('/')
+        })
+        .catch(error => {
+          if (error.response.status === 401) {
+            this.toast('Login Error', 'Invalid username or password', 'warning')
+          }
+        })
     },
     toast (title, content, variant = null, append = false, toaster = 'b-toaster-top-right', autoHideDelay = 5000) {
       this.$bvToast.toast(content, {
