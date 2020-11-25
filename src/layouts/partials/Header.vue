@@ -111,7 +111,7 @@
             <template #button-content>
               <div class="d-flex align-items-center">
                 <img class="rounded-circle" src="img/avatars/avatar10.jpg" alt="Header Avatar" style="width: 21px;">
-                <span class="d-none d-sm-inline-block ml-2">{{ user.user_first_name }}</span>
+                <span class="d-none d-sm-inline-block ml-2">{{ user.user_username }}</span>
                 <i class="fa fa-fw fa-angle-down d-none d-sm-inline-block ml-1 mt-1"></i>
               </div>
             </template>
@@ -235,7 +235,7 @@ export default {
     const user_details = this.$jwt.decode(localStorage.getItem('username')).data
     return {
       baseSearchTerm: '',
-      user: user_details,
+      user: this.$store.getters["auth/currentUser"] ,
       notifications: [
         {
           href: 'javascript:void(0)',
@@ -288,8 +288,10 @@ export default {
       }
     },
     logout () {
-      localStorage.removeItem('username');
-      this.$router.push('/auth/signin').catch(() => {})
+      this.$store.dispatch('auth/logout')
+        .then(() => {
+          this.$router.push('/auth/signin').catch(() => {})
+        })
     }
   },
   mounted () {

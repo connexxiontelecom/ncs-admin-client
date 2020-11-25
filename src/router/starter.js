@@ -76,7 +76,7 @@ const router = new Router({
 
 router.beforeEach((to, from, next) => {
   if (to.meta.authRequired) {
-    if (!localStorage.getItem('username')) {
+    if (!localStorage.getItem('accessToken')) {
       router.push({ path: '/auth/signin' })
     }
   }

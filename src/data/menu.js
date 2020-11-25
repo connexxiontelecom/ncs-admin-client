@@ -966,7 +966,6 @@ export default {
       icon: 'fa fa-cogs'
     }
   ],
-
   'ncszone': [
     {
       name: 'Home',
@@ -981,7 +980,8 @@ export default {
     {
       name: 'Document Management',
       icon: 'fa fa-users',
-        },
+
+    },
     {
       name: 'Judgements',
       icon: 'fa fa-users',
@@ -1002,7 +1002,6 @@ export default {
     },
 
   ],
-
   'ncsstate': [
     {
       name: 'Home',
@@ -1038,7 +1037,6 @@ export default {
     },
 
   ],
-
   'ncshq': [
     {
       name: 'Home',
