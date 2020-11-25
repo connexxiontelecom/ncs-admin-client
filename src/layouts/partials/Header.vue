@@ -111,15 +111,15 @@
             <template #button-content>
               <div class="d-flex align-items-center">
                 <img class="rounded-circle" src="img/avatars/avatar10.jpg" alt="Header Avatar" style="width: 21px;">
-                <span class="d-none d-sm-inline-block ml-2">{{ user }}</span>
+                <span class="d-none d-sm-inline-block ml-2">{{ user.user_username }}</span>
                 <i class="fa fa-fw fa-angle-down d-none d-sm-inline-block ml-1 mt-1"></i>
               </div>
             </template>
             <li @click="$refs.oneDropdownDefaultUser.hide(true)">
               <div class="p-3 text-center bg-primary-dark rounded-top">
                 <img class="img-avatar img-avatar48 img-avatar-thumb" src="img/avatars/avatar10.jpg" alt="Avatar">
-                <p class="mt-2 mb-0 text-white font-w500">{{ user }}</p>
-                <p class="mb-0 text-white-50 font-size-sm">Admin</p>
+                <p class="mt-2 mb-0 text-white font-w500">{{ user.user_first_name }}</p>
+                <p class="mb-0 text-white-50 font-size-sm">{{ user.user_last_name }}</p>
               </div>
               <div class="p-2">
                 <a class="dropdown-item d-flex align-items-center justify-content-between" href="javascript:void(0)">
@@ -234,7 +234,7 @@ export default {
   data () {
     return {
       baseSearchTerm: '',
-      user: localStorage.getItem('username'),
+      user: this.$store.getters["auth/currentUser"] ,
       notifications: [
         {
           href: 'javascript:void(0)',
@@ -287,8 +287,10 @@ export default {
       }
     },
     logout () {
-      localStorage.removeItem('username');
-      this.$router.push('/auth/signin').catch(() => {})
+      this.$store.dispatch('auth/logout')
+        .then(() => {
+          this.$router.push('/auth/signin').catch(() => {})
+        })
     }
   },
   mounted () {

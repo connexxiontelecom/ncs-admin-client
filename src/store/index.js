@@ -8,16 +8,20 @@ import Vuex from 'vuex'
 import state from "@/store/state";
 import getters from "@/store/getters";
 import mutations from "@/store/mutations";
-// import actions from "@/store/actions";
+
+// store modules
 
 // Register Vuex
 Vue.use(Vuex)
+import moduleAuth from "./auth/moduleAuth";
 
 // Vuex Store
 export default new Vuex.Store({
-  getters,
-  mutations,
   state,
+  mutations,
+  getters,
   // actions,
-  modules: {}
+  modules: {
+    auth: moduleAuth
+  }
 })

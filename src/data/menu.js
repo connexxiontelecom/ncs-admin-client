@@ -965,5 +965,106 @@ export default {
       to: '',
       icon: 'fa fa-cogs'
     }
-  ]
+  ],
+  'ncszone': [
+    {
+      name: 'Home',
+      icon: 'fa fa-home',
+      to: '/',
+
+    },
+    {
+      name: 'General Management',
+      heading: true
+    },
+    {
+      name: 'Document Management',
+      icon: 'fa fa-users',
+    },
+    {
+      name: 'Judgements',
+      icon: 'fa fa-users',
+    },
+    {
+      name: 'Calendar',
+      icon: 'fa fa-users',
+    },
+
+    {
+      name: 'Messaging',
+      icon: 'fa fa-users',
+    },
+
+    {
+      name: 'Reports',
+      icon: 'fa fa-users',
+    },
+
+  ],
+  'ncsstate': [
+    {
+      name: 'Home',
+      icon: 'fa fa-home',
+      to: '/',
+
+    },
+    {
+      name: 'General Management',
+      heading: true
+    },
+    {
+      name: 'Judgements',
+      icon: 'fa fa-users',
+    },
+    {
+      name: 'Document Management',
+      icon: 'fa fa-users',
+    },
+    {
+      name: 'Calendar',
+      icon: 'fa fa-users',
+    },
+
+    {
+      name: 'Messaging',
+      icon: 'fa fa-users',
+    },
+
+    {
+      name: 'Reports',
+      icon: 'fa fa-users',
+    },
+
+  ],
+  'ncshq': [
+    {
+      name: 'Home',
+      icon: 'fa fa-home',
+      to: '/',
+
+    },
+    {
+      name: 'General Management',
+      heading: true
+    },
+    {
+      name: 'Document Management',
+      icon: 'fa fa-users',
+    },
+    {
+      name: 'Calendar',
+      icon: 'fa fa-users',
+    },
+
+    {
+      name: 'Messaging',
+      icon: 'fa fa-users',
+    },
+
+    {
+      name: 'Reports',
+      icon: 'fa fa-users',
+    },
+
+  ],
 }

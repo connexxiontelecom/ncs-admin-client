@@ -126,9 +126,26 @@ export default {
     simplebar
   },
   data () {
+    const user = this.$store.getters["auth/currentUser"]
+    let nav
+    switch (parseInt(user.user_type)) {
+      case 1:
+        nav = menuList.ncshq
+        break
+      case 2:
+        nav = menuList.ncszone
+        break
+      case 3:
+        nav = menuList.ncsstate
+        break
+      default:
+        nav = menuList.ncs
+        break
+    }
+
     return {
       // Get main navigation
-      navigation: menuList.ncs
+      navigation: nav
     }
   }
 }
