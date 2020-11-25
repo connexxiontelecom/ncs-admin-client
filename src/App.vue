@@ -16,10 +16,14 @@
 @import './src/assets/scss/oneui/themes/flat';
 @import './src/assets/scss/oneui/themes/modern';
 @import './src/assets/scss/oneui/themes/smooth';
+
 </style>
 
 <script>
+// import {baseMixin } from "@/store/baseMixin";
+
 export default {
-  name: 'App'
+  name: 'App',
 }
+
 </script>

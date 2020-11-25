@@ -65,6 +65,7 @@ import { required, minLength } from 'vuelidate/lib/validators'
 
 import axios from 'axios'
 
+
 export default {
   mixins: [validationMixin],
   data () {
@@ -89,6 +90,8 @@ export default {
   },
   methods: {
     async onSubmit () {
+
+      let baseurl = process.env.BASE_URL;
       this.$v.form.$touch()
       if (this.$v.form.$anyError) {
         return
@@ -97,18 +100,22 @@ export default {
       let formData = new FormData()
       formData.append('username', this.form.username)
       formData.append('password', this.form.password)
-      await axios.post('http://localhost:8080/login', formData, {})
+      await axios.post(baseurl+'login', formData, {})
       .then(response => {
         console.log(response)
+        // eslint-disable-next-line no-undef
+        //console.log(baseurl);
         this.toast('Login Success', 'You logged in successfully', 'success')
+        localStorage.setItem('username', response.data.token)
+        this.$router.push('/')
       })
       .catch(error => {
         if (error.response.status === 401) {
           this.toast('Login Error', 'Invalid username or password', 'warning')
         }
       })
-      // localStorage.setItem('username', this.form.username)
-      // this.$router.push('/')
+
+
     },
     toast (title, content, variant = null, append = false, toaster = 'b-toaster-top-right', autoHideDelay = 5000) {
       this.$bvToast.toast(content, {
