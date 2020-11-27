@@ -70,9 +70,9 @@ new Vue({
   store,
   router,
   beforeCreate() {
-    if(localStorage.getItem('accessToken')) {
+    if (localStorage.getItem('accessToken')) {
       let userData = this.$jwt.decode(localStorage.getItem('accessToken')).data
-      Vue.prototype.$http.defaults.headers.common['Authorization'] = localStorage.getItem('accessToken')
+      this.$store.commit('auth/SET_BEARER', localStorage.getItem('accessToken'))
       this.$store.commit('auth/INIT_SESSION', userData)
     }
   },
