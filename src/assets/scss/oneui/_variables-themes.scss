@@ -50,6 +50,7 @@ $theme-city-light:                         lighten($theme-city-primary, 15%) !de
 $theme-city-lighter:                       lighten($theme-city-primary, 28%) !default;
 $theme-city-dark:                          #4b4b4b !default;
 $theme-city-darker:                        #2b2b2b !default;
+$theme-city-green-darker:                  #002516 !default;
 
 $theme-city-body-bg:                       #f2f2f2 !default;
 $theme-city-body-bg-dark:                  darken($theme-city-body-bg, 4.5%) !default;
@@ -76,9 +77,9 @@ $theme-city-input-focus-color:             $theme-city-body-color-dark !default;
 $theme-city-input-focus-border-color:      lighten($theme-city-primary, 25%) !default;
 
 $theme-city-header-bg:                     $white !default;
-$theme-city-header-dark-bg:                $theme-city-darker !default;
+$theme-city-header-dark-bg:                $theme-city-green-darker !default;
 $theme-city-sidebar-bg:                    $white !default;
-$theme-city-sidebar-dark-bg:               $theme-city-darker !default;
+$theme-city-sidebar-dark-bg:               $theme-city-green-darker !default;
 $theme-city-side-overlay-bg:               $white !default;
 
 $theme-city-btn-alt-primary-bg:            lighten($theme-city-lighter, 5%);

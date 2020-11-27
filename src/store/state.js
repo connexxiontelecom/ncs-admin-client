@@ -28,7 +28,7 @@ const state = {
     sideOverlayHoverable: false,
     pageOverlay: true,
     headerFixed: true,
-    headerDark: true,
+    headerDark: false,
     headerSearch: false,
     headerLoader: false,
     pageLoader: false,
