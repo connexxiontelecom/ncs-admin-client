@@ -51,10 +51,13 @@ const router = new Router({
           component: () => import('@/views/starter/Dashboard.vue'),
           meta: {
             authRequired: true,
-            // splash: true
           }
+        },
+        {
+          path: 'inmates/enrollment',
+          name: 'Enrollment',
+          component: () => import('@/views/inmates/Enrollment')
         }
-
       ]
     },
     {
