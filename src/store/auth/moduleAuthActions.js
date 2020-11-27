@@ -3,11 +3,13 @@ import axios from "@/axios";
 export default {
   login ({ commit }, payload) {
     return new Promise((resolve, reject) => {
-      axios({url: 'login', data: payload.formData, method: 'POST'})
+      let formData = new FormData()
+      formData.append('username', payload.form.username)
+      formData.append('password', payload.form.password)
+      axios({url: 'login', data: formData, method: 'POST'})
         .then(response => {
           const token = response.data.token
           localStorage.setItem('accessToken', token)
-          // console.log(this.$jwt.hasToken())
           commit('SET_BEARER', token)
           commit('AUTH_SUCCESS', token)
           resolve(response)

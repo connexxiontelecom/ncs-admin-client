@@ -50,13 +50,15 @@ Vue.use(VueJWT)
 
 Vue.mixin({
   methods: {
-    formMapper: (formInputs) => {
-      let formData = new FormData()
-      Object.keys(formInputs).map(function(key) {
-        formData.append(key, formInputs[formInputs])
-      });
-      return formData
-    }
+    launchToast (title, content, variant = null, append = false, toaster = 'b-toaster-top-right', autoHideDelay = 5000) {
+      this.$bvToast.toast(content, {
+        title: title,
+        toaster: toaster,
+        variant: variant,
+        autoHideDelay: autoHideDelay,
+        appendToast: append
+      })
+    },
   }
 })
 
