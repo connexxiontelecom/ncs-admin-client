@@ -846,7 +846,7 @@ export default {
         },
         {
           name: 'Manage Inmates',
-          to: ''
+          to: '/inmates/manage_inmates'
         }
       ]
     },

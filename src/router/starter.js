@@ -51,12 +51,21 @@ const router = new Router({
           component: () => import('@/views/starter/Dashboard.vue'),
           meta: {
             authRequired: true,
-          }
+          },
+
         },
         {
           path: 'inmates/enrollment',
           name: 'Enrollment',
-          component: () => import('@/views/inmates/Enrollment')
+          component: () => import('@/views/inmates/Enrollment'),
+          meta: {
+            accessRequired: 4,
+          }
+        },
+        {
+          path: 'inmates/manage_inmates',
+          name: 'Manage Inmates',
+          component: () => import('@/views/inmates/ManageInmates')
         }
       ]
     },
@@ -92,7 +101,7 @@ router.afterEach((to, from) => {
     store.commit('pageLoader', {mode: 'on'})
     setTimeout(() => {
       store.commit('pageLoader', {mode: 'off'})
-    }, 1000);
+    }, 3000);
   }
 })
 export default router
