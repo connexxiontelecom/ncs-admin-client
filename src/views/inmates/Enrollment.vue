@@ -124,7 +124,7 @@
           <b-row>
             <b-col lg="3">
               <b-form-group label="Religion" label-for="religion">
-                <b-form-select id="religion" name="religionSelected" v-model="$v.enrollmentForm.religionSelected.$model" :state="!$v.enrollmentForm.religionSelected.$error && null" :options="enrollmentForm.religionOptions"></b-form-select>
+                <b-form-select id="religion" name="religionSelected" @change="religionChange($event)" v-model="$v.enrollmentForm.religionSelected.$model" :state="!$v.enrollmentForm.religionSelected.$error && null" :options="enrollmentForm.religionOptions"></b-form-select>
                 <b-form-invalid-feedback>
                   A religion is required
                 </b-form-invalid-feedback>
@@ -132,7 +132,7 @@
             </b-col>
             <b-col lg="3">
               <b-form-group label="Specify Religion" label-for="specify-religion">
-                <b-form-input id="specify-religion" type="text" name="specifyReligion" v-model="$v.enrollmentForm.specifyReligion.$model" disabled></b-form-input>
+                <b-form-input id="specify-religion" type="text" name="specifyReligion" v-model="$v.enrollmentForm.specifyReligion.$model" :disabled="specifyReligionDisabled"></b-form-input>
               </b-form-group>
             </b-col>
             <b-col lg="3">
@@ -340,13 +340,11 @@
   </div>
 </template>
 
-<style lang="scss">
-</style>
+<style lang="scss"></style>
 
 <script>
 import { validationMixin } from 'vuelidate'
 import { required, minLength } from 'vuelidate/lib/validators'
-// import axios from "@/axios";
 
 export default {
   mixins: [ validationMixin ],
@@ -542,6 +540,7 @@ export default {
         ailments: null,
         disabilities: null,
       },
+      specifyReligionDisabled: true,
     }
   },
   validations: {
@@ -591,6 +590,10 @@ export default {
         return
       }
 
+      if (!this.specifyReligionDisabled && this.$v.enrollmentForm.specifyReligion.$model) {
+        this.$v.enrollmentForm.religionSelected.$model = this.$v.enrollmentForm.specifyReligion.$model
+      }
+
       await this.$store.dispatch('inmate/enrollInmate', { enrollmentForm: this.enrollmentForm })
       .then(response => {
         this.launchToast('Enrollment Success', response.data.message, 'success')
@@ -598,7 +601,10 @@ export default {
       .catch(error => {
         this.launchToast('Enrollment Failure', error.response.data.message, 'warning')
       })
-    }
+    },
+    religionChange(event) {
+      this.specifyReligionDisabled = event !== 'other';
+    },
   }
 }
 </script>
