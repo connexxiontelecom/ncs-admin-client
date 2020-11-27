@@ -4,7 +4,7 @@
 
 import Vue from 'vue'
 import Vuex from 'vuex'
-import VueJWT from 'vuejs-jwt'
+// import VueJWT from 'vuejs-jwt'
 
 import state from "@/store/state";
 import getters from "@/store/getters";
