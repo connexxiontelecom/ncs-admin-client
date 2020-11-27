@@ -4,7 +4,7 @@
 
 import Vue from 'vue'
 import Vuex from 'vuex'
-import VueJWT from 'vuejs-jwt'
+// import VueJWT from 'vuejs-jwt'
 
 import state from "@/store/state";
 import getters from "@/store/getters";
@@ -16,6 +16,7 @@ import mutations from "@/store/mutations";
 Vue.use(Vuex)
 
 import moduleAuth from "./auth/moduleAuth";
+import moduleInmate from "./inmate/moduleInmate";
 
 // Vuex Store
 export default new Vuex.Store({
@@ -24,6 +25,7 @@ export default new Vuex.Store({
   getters,
   // actions,
   modules: {
-    auth: moduleAuth
+    auth: moduleAuth,
+    inmate: moduleInmate
   }
 })

@@ -819,19 +819,11 @@ export default {
     {
       name: 'Home',
       icon: 'fa fa-home',
-      to: '/',
+      to: '',
       sub: [
         {
           name: 'Custodial Dashboard',
           to: '/',
-        },
-        {
-          name: 'State Dashboard',
-          to: '',
-        },
-        {
-          name: 'Zonal Dashboard',
-          to: '',
         },
         {
           name: 'Activities',
@@ -846,10 +838,11 @@ export default {
     {
       name: 'Inmates',
       icon: 'fa fa-users',
+      to: '/inmates',
       sub: [
         {
           name: 'Enrollment',
-          to: ''
+          to: '/inmates/enrollment'
         },
         {
           name: 'Manage Inmates',
