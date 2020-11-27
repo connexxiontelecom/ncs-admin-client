@@ -17,11 +17,13 @@
       <div class="content-header bg-white-5">
         <!-- Logo -->
         <router-link to="/" class="font-w600 text-dual">
-          <span class="smini-visible">
-            <i class="fa fa-circle-notch text-primary"></i>
-          </span>
+<!--          <span >-->
+<!--            <i class="fa fa-circle-notch text-primary"></i>-->
+<!--          </span>-->
+          <span class="smini-visible"><img src="img/logos/logo.png" width="25" alt=""></span>
+
           <span class="smini-hide font-size-h5 tracking-wider">
-            NCS <span class="font-w400">Admin</span>
+            <span><img src="img/logos/logo.png" width="40" class="mr-2 mb-2" alt=""></span>  NCS <span class="font-w400">Admin</span>
           </span>
         </router-link>
         <!-- END Logo -->
