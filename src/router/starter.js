@@ -29,7 +29,7 @@ const router = new Router({
       component: () => import('@/layouts/variations/BackendStarter.vue'),
       children: [
         {
-          path: '/',
+          path: 'dashboard',
           name: 'Home',
           component: () => import('@/views/starter/Dashboard.vue'),
           meta: {
@@ -39,6 +39,7 @@ const router = new Router({
         },
       ]
     },
+    // zones routes
     {
       path: '/zones',
       component: () => import('@/layouts/variations/BackendStarter'),
@@ -61,6 +62,7 @@ const router = new Router({
         },
       ]
     },
+    // inmates routes
     {
       path: '/inmates',
       component: () => import('@/layouts/variations/BackendStarter'),
@@ -83,6 +85,7 @@ const router = new Router({
         }
       ]
     },
+    // auth routes
     {
       path: '/auth',
       component: () => import('@/layouts/variations/Simple.vue'),
