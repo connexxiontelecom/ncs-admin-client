@@ -846,7 +846,7 @@ export default {
         },
         {
           name: 'Manage Inmates',
-          to: ''
+          to: '/inmates/manage_inmates'
         }
       ]
     },
@@ -1009,37 +1009,6 @@ export default {
     {
       name: 'Judgements',
       icon: 'fa fa-users',
-    },
-    {
-      name: 'Document Management',
-      icon: 'fa fa-users',
-    },
-    {
-      name: 'Calendar',
-      icon: 'fa fa-users',
-    },
-
-    {
-      name: 'Messaging',
-      icon: 'fa fa-users',
-    },
-
-    {
-      name: 'Reports',
-      icon: 'fa fa-users',
-    },
-
-  ],
-  'ncshq': [
-    {
-      name: 'Home',
-      icon: 'fa fa-home',
-      to: '/',
-
-    },
-    {
-      name: 'General Management',
-      heading: true
     },
     {
       name: 'Document Management',

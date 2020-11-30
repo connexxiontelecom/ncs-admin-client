@@ -97,7 +97,7 @@ export default {
         .then(response => {
           let userData = this.$jwt.decode(response.data.token).data
           this.$store.commit('auth/INIT_SESSION', userData)
-          this.$router.push('/')
+          this.$router.push('/dashboard')
         })
         .catch(error => {
           if (error.response.status === 401) {

@@ -3,7 +3,7 @@
     <!-- Page Loader -->
     <div id="page-loader" v-if="$store.state.settings.pageLoader" :class="{'show': $store.state.settings.pageLoader}">
       <div class="app-logo">
-        <img src="../../public/img/logos/logo.png" alt="">
+        <img src="../../public/img/logos/ncs-rnd.png" alt="" width="500">
       </div>
       <div class="loading">
         <div class="effect-1 effects"></div>

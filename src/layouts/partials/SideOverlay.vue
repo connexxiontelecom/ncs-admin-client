@@ -6,13 +6,13 @@
       <div class="content-header border-bottom">
         <!-- User Avatar -->
         <a class="img-link mr-1" href="javascript:void(0)">
-          <img class="img-avatar img-avatar32" src="img/avatars/avatar10.jpg" alt="Avatar">
+          <img class="img-avatar img-avatar32" src="img/logos/logo-1.png" alt="Avatar">
         </a>
         <!-- END User Avatar -->
 
         <!-- User Info -->
-        <div class="ml-2">
-          <a class="text-dark font-w600 font-size-sm" href="javascript:void(0)">Adam McCoy</a>
+        <div class="ml-2" v-if="parseInt(user.user_type) === 1">
+          <a class="text-dark font-w600 font-size-sm" href="javascript:void(0)">NCS HQ Command</a>
         </div>
         <!-- END User Info -->
 
@@ -32,19 +32,60 @@
             <template #title>
               <i class="fa fa-fw fa-coffee text-gray mr-1"></i> Overview
             </template>
-
+            <!-- Stats -->
+            <div class="block-content">
+              <b-row class="items-push pull-t">
+                <b-col cols="4">
+                  <div class="font-size-sm font-w600 text-uppercase">Zones</div>
+                  <a class="font-size-lg" href="javascript:void(0)">4</a>
+                </b-col>
+                <b-col cols="4">
+                  <div class="font-size-sm font-w600 text-uppercase">States</div>
+                  <a class="font-size-lg" href="javascript:void(0)">15</a>
+                </b-col>
+                <b-col cols="4">
+                  <div class="font-size-sm font-w600 text-uppercase">Centers</div>
+                  <a class="font-size-lg" href="javascript:void(0)">42</a>
+                </b-col>
+              </b-row>
+            </div>
+            <!-- END Stats -->
             <!-- Activity -->
-            <base-block title="Recent Activity" header-bg btn-option-content>
+            <base-block title="Zonal Commands" header-bg btn-option-content>
               <ul class="nav-items mb-0">
-                <li v-for="(appEvent, index) in activity" :key="`event-${index}`">
-                  <a class="text-dark media py-2" :href="`${appEvent.href}`">
+<!--                <li v-for="(appEvent, index) in activity" :key="`event-${index}`">-->
+<!--                  <a class="text-dark media py-2" :href="`${appEvent.href}`">-->
+<!--                    <div class="mr-3 ml-2">-->
+<!--                      <i :class="`${appEvent.icon} text-${appEvent.color}`"></i>-->
+<!--                    </div>-->
+<!--                    <div class="media-body">-->
+<!--                      <div class="font-size-sm font-w600">{{ appEvent.title }}</div>-->
+<!--                      <div :class="`text-${appEvent.color}`">{{ appEvent.subtitle }}</div>-->
+<!--                      <small class="font-size-sm text-muted">{{ appEvent.time }}</small>-->
+<!--                    </div>-->
+<!--                  </a>-->
+<!--                </li>-->
+                <li>
+                  <a href="javascript:void(0)" class="text-dark media py-1">
                     <div class="mr-3 ml-2">
-                      <i :class="`${appEvent.icon} text-${appEvent.color}`"></i>
+                      <i class="fa fa-layer-group text-danger"></i>
                     </div>
                     <div class="media-body">
-                      <div class="font-size-sm font-w600">{{ appEvent.title }}</div>
-                      <div :class="`text-${appEvent.color}`">{{ appEvent.subtitle }}</div>
-                      <small class="font-size-sm text-muted">{{ appEvent.time }}</small>
+                      <div class="font-size-sm font-w600">Cmdr Benjamin Masari</div>
+                      <div class="text-danger">North Central</div>
+                      <small class="font-size-sm text-muted">3 active states</small>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)" class="text-dark media py-1">
+                    <div class="mr-3 ml-2">
+                      <i class="fa fa-layer-group text-danger"></i>
+                    </div>
+                    <div class="media-body">
+                      <div class="font-size-sm font-w600">Cmdr Issac Oki</div>
+                      <div class="text-danger">North East</div>
+                      <small class="font-size-sm text-muted">6 active states</small>
                     </div>
                   </a>
                 </li>
@@ -53,20 +94,62 @@
             <!-- END Activity -->
 
             <!-- Online Friends -->
-            <base-block title="Online Friends" header-bg btn-option-content>
+            <base-block title="State Commands" header-bg btn-option-content>
               <ul class="nav-items mb-0">
-                <li v-for="(user, index) in userList" :key="`userlist-${index}`">
-                  <a class="media py-2" :href="`${user.href}`">
-                    <div class="mr-3 ml-2 overlay-container overlay-bottom">
-                      <img class="img-avatar img-avatar48" :src="`img/avatars/${user.avatar}.jpg`" alt="Avatar">
-                      <span :class="`overlay-item item item-tiny item-circle border border-2x border-white bg-${user.statusColor}`"></span>
+                <li>
+                  <a href="javascript:void(0)" class="text-dark media py-1">
+                    <div class="mr-3 ml-2">
+                      <i class="fa fa-globe text-info"></i>
                     </div>
                     <div class="media-body">
-                      <div class="font-w600">{{ user.name }}</div>
-                      <div class="font-size-sm text-muted">{{ user.profession }}</div>
+                      <div class="font-size-sm font-w600">Cmdr Emmanuel Asai</div>
+                      <div class="text-info">Ekiti State</div>
+                      <small class="font-size-sm text-muted">1 active center</small>
                     </div>
                   </a>
                 </li>
+<!--                <li v-for="(user, index) in userList" :key="`userlist-${index}`">-->
+<!--                  <a class="media py-2" :href="`${user.href}`">-->
+<!--                    <div class="mr-3 ml-2 overlay-container overlay-bottom">-->
+<!--                      <img class="img-avatar img-avatar48" :src="`img/avatars/${user.avatar}.jpg`" alt="Avatar">-->
+<!--                      <span :class="`overlay-item item item-tiny item-circle border border-2x border-white bg-${user.statusColor}`"></span>-->
+<!--                    </div>-->
+<!--                    <div class="media-body">-->
+<!--                      <div class="font-w600">{{ user.name }}</div>-->
+<!--                      <div class="font-size-sm text-muted">{{ user.profession }}</div>-->
+<!--                    </div>-->
+<!--                  </a>-->
+<!--                </li>-->
+              </ul>
+            </base-block>
+            <!-- END Online Friends -->
+
+            <!-- Online Friends -->
+            <base-block title="State Commands" header-bg btn-option-content>
+              <ul class="nav-items mb-0">
+                <li>
+                  <a class="media py-1" href="javascript:void(0)">
+                    <div class="mr-3 ml-2 overlay-container overlay-bottom">
+                      <i class="fa fa-university"></i>
+                    </div>
+                    <div class="media-body">
+                      <div class="font-w600">Medium Correctional Center</div>
+                      <div class="font-size-sm text-muted">Cmdr Timothy Isaiah</div>
+                    </div>
+                  </a>
+                </li>
+<!--                <li v-for="(user, index) in userList" :key="`userlist-${index}`">-->
+<!--                  <a class="media py-2" :href="`${user.href}`">-->
+<!--                    <div class="mr-3 ml-2 overlay-container overlay-bottom">-->
+<!--                      <img class="img-avatar img-avatar48" :src="`img/avatars/${user.avatar}.jpg`" alt="Avatar">-->
+<!--                      <span :class="`overlay-item item item-tiny item-circle border border-2x border-white bg-${user.statusColor}`"></span>-->
+<!--                    </div>-->
+<!--                    <div class="media-body">-->
+<!--                      <div class="font-w600">{{ user.name }}</div>-->
+<!--                      <div class="font-size-sm text-muted">{{ user.profession }}</div>-->
+<!--                    </div>-->
+<!--                  </a>-->
+<!--                </li>-->
               </ul>
             </base-block>
             <!-- END Online Friends -->
@@ -113,87 +196,55 @@
           </b-tab>
           <b-tab class="fade-left pull-x">
             <template #title>
-              <i class="fa fa-fw fa-chart-line text-gray mr-1"></i> Sales
+              <i class="fa fa-fw fa-users text-gray mr-1"></i> Users
             </template>
             <base-block class="mb-0" content-class="p-0">
-              <!-- Stats -->
-              <div class="block-content">
-                <b-row class="items-push pull-t">
-                  <b-col cols="6">
-                    <div class="font-size-sm font-w600 text-uppercase">Sales</div>
-                    <a class="font-size-lg" href="javascript:void(0)">22.030</a>
-                  </b-col>
-                  <b-col cols="6">
-                    <div class="font-size-sm font-w600 text-uppercase">Balance</div>
-                    <a class="font-size-lg" href="javascript:void(0)">$4.589,00</a>
-                  </b-col>
-                </b-row>
-              </div>
-              <!-- END Stats -->
-
               <!-- Today -->
               <div class="block-content block-content-full block-content-sm bg-body-light">
                 <b-row>
                   <b-col cols="6">
-                    <span class="font-size-sm font-w600 text-uppercase">Today</span>
+                    <span class="font-size-sm font-w600 text-uppercase">Active Users</span>
                   </b-col>
                   <b-col cols="6" class="text-right">
-                    <span class="ext-muted">$996</span>
+                    <span class="ext-muted">12</span>
                   </b-col>
                 </b-row>
               </div>
               <div class="block-content">
                 <ul class="nav-items push">
-                  <li v-for="(sale, index) in salesToday" :key="`sale-today-${index}`">
-                    <a class="text-dark media py-2" :href="`${sale.href}`">
+                  <li>
+                    <a href="javascript:void(0)" class="text-dark media py-1">
                       <div class="mr-3 ml-2">
-                        <i :class="`${sale.icon}`"></i>
+                        <i class="fa fa-fw fa-circle text-success"></i>
                       </div>
                       <div class="media-body">
-                        <div class="font-w600">{{ sale.title }}</div>
-                        <small class="text-muted">{{ sale.time }}</small>
+                        <div class="font-w600">Cmdr Nabil Salau</div>
+                        <small class="text-muted">2hr ago</small>
                       </div>
                     </a>
                   </li>
+<!--                  <li v-for="(sale, index) in salesToday" :key="`sale-today-${index}`">-->
+<!--                    <a class="text-dark media py-2" :href="`${sale.href}`">-->
+<!--                      <div class="mr-3 ml-2">-->
+<!--                        <i :class="`${sale.icon}`"></i>-->
+<!--                      </div>-->
+<!--                      <div class="media-body">-->
+<!--                        <div class="font-w600">{{ sale.title }}</div>-->
+<!--                        <small class="text-muted">{{ sale.time }}</small>-->
+<!--                      </div>-->
+<!--                    </a>-->
+<!--                  </li>-->
                 </ul>
+
               </div>
+              <!-- More -->
+              <div class="text-center">
+                <b-button size="sm" variant="light" href="javascript:void(0)">
+                  <i class="fa fa-arrow-down mr-1"></i> Load More..
+                </b-button>
+              </div>
+              <!-- END More -->
               <!-- END Today -->
-
-              <!-- Yesterday -->
-              <div class="block-content block-content-full block-content-sm bg-body-light">
-                <div class="row">
-                  <div class="col-6">
-                    <span class="font-size-sm font-w600 text-uppercase">Yesterday</span>
-                  </div>
-                  <div class="col-6 text-right">
-                    <span class="text-muted">$765</span>
-                  </div>
-                </div>
-              </div>
-              <div class="block-content">
-                <ul class="nav-items push">
-                  <li v-for="(sale, index) in salesYesterday" :key="`sale-yesterday-${index}`">
-                    <a class="text-dark media py-2" :href="`${sale.href}`">
-                      <div class="mr-3 ml-2">
-                        <i :class="`${sale.icon}`"></i>
-                      </div>
-                      <div class="media-body">
-                        <div class="font-w600">{{ sale.title }}</div>
-                        <small class="text-muted">{{ sale.time }}</small>
-                      </div>
-                    </a>
-                  </li>
-                </ul>
-
-                <!-- More -->
-                <div class="text-center">
-                  <b-button size="sm" variant="light" href="javascript:void(0)">
-                    <i class="fa fa-arrow-down mr-1"></i> Load More..
-                  </b-button>
-                </div>
-                <!-- END More -->
-              </div>
-              <!-- END Yesterday -->
             </base-block>
           </b-tab>
         </b-tabs>
@@ -219,6 +270,7 @@ export default {
   },
   data () {
     return {
+      user: this.$store.getters["auth/currentUser"],
       settings: {
         status: true,
         updated: true,

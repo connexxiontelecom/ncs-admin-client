@@ -1,6 +1,7 @@
 import axios from "@/axios";
 
 export default {
+  // eslint-disable-next-line no-unused-vars
   enrollInmate ({ commit }, payload) {
     return new Promise((resolve, reject) => {
       let formData = new FormData()
@@ -42,7 +43,6 @@ export default {
       formData.append('inmate_weight', payload.enrollmentForm.weight)
       formData.append('inmate_cs_id', '1')
       formData.append('inmate_country_residence', payload.enrollmentForm.countrySelected)
-      commit('STORE_INMATE', payload.enrollmentForm)
       axios({url: 'inmate/new_inmate', data: formData, method: 'POST'})
         .then(response => {
           resolve(response)

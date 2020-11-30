@@ -7,18 +7,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import store from '../store'
 
-// Main layouts
-// import LayoutBackend from '@/layouts/variations/BackendStarter.vue'
-// import LayoutSimple from '@/layouts/variations/Simple.vue'
-
 // Register Vue Router
 Vue.use(Router)
-
-// Frontend Page Example
-// const Landing = () => import("@/views/starter/Landing.vue")
-
-// Backend Page Example
-// const Dashboard = () => import("@/views/starter/Dashboard.vue")
 
 // Router Configuration
 const router = new Router({
@@ -29,37 +19,73 @@ const router = new Router({
     return { x: 0, y: 0 }
   },
   routes: [
-    // {
-    //   path: '/',
-    //   redirect: '/landing',
-    //   component: LayoutSimple,
-    //   children: [
-    //     {
-    //       path: '/landing',
-    //       name: 'Landing',
-    //       component: Landing
-    //     }
-    //   ]
-    // },
     {
-      path: '',
+      path: '/',
       component: () => import('@/layouts/variations/BackendStarter.vue'),
       children: [
         {
-          path: '/',
-          name: 'Dashboard',
+          path: 'dashboard',
+          name: 'Home',
+          alias: '/',
           component: () => import('@/views/starter/Dashboard.vue'),
           meta: {
+            title: 'Home | NCS Admin',
+            authRequired: true,
+          },
+        },
+      ]
+    },
+    // zones routes
+    {
+      path: '/zones',
+      component: () => import('@/layouts/variations/BackendStarter'),
+      children: [
+        {
+          path: 'new_zonal_command',
+          name: 'New Zonal Command',
+          component: () => import('@/views/zones/NewZone'),
+          meta: {
+            title: 'New Zonal Command | NCS Admin',
             authRequired: true,
           }
         },
         {
-          path: 'inmates/enrollment',
+          path: 'manage_zonal_commands',
+          name: "Manage Zonal Commands",
+          component: () => import('@/views/zones/ManageZones'),
+          meta: {
+            title: 'Manage Zonal Commands | NCS Admin',
+            authRequired: true,
+          }
+        },
+      ]
+    },
+    // inmates routes
+    {
+      path: '/inmates',
+      component: () => import('@/layouts/variations/BackendStarter'),
+      children: [
+        {
+          path: 'enrollment',
           name: 'Enrollment',
-          component: () => import('@/views/inmates/Enrollment')
+          component: () => import('@/views/inmates/Enrollment'),
+          meta: {
+            title: 'Enrollment | NCS Admin',
+            authRequired: true,
+          }
+        },
+        {
+          path: 'manage_inmates',
+          name: 'Manage Inmates',
+          component: () => import('@/views/inmates/ManageInmates'),
+          meta: {
+            title: 'Manage Inmates | NCS Admin',
+            authRequired: true,
+          }
         }
       ]
     },
+    // auth routes
     {
       path: '/auth',
       component: () => import('@/layouts/variations/Simple.vue'),
@@ -69,6 +95,7 @@ const router = new Router({
           name: 'Sign In',
           component: () => import('@/views/pages/auth/SignIn.vue'),
           meta: {
+            title: 'Sign In | NCS Admin',
             splash: true
           }
         }
@@ -78,9 +105,12 @@ const router = new Router({
 })
 
 router.beforeEach((to, from, next) => {
+  if(to.meta.title) {
+    document.title = to.meta.title
+  }
   if (to.meta.authRequired) {
     if (!localStorage.getItem('accessToken')) {
-      router.push({ path: '/auth/signin' })
+      router.push({ path: '/auth/signin' }).catch(() => {})
     }
   }
   return next()
@@ -93,6 +123,18 @@ router.afterEach((to, from) => {
     setTimeout(() => {
       store.commit('pageLoader', {mode: 'off'})
     }, 1000);
+  }
+  // prevent routing back to app after logging out
+  if (!localStorage.getItem('accessToken')) {
+    router.push({ path: '/auth/signin' }).catch(() => {})
+  }
+  // don't route to sign in page if user hasn't logged out
+  if (to.name === 'Sign In') {
+    if(localStorage.getItem('accessToken')) {
+      router.push(from.fullPath)
+    } else {
+      router.push({ path: '/auth/signin' }).catch(() => {})
+    }
   }
 })
 export default router

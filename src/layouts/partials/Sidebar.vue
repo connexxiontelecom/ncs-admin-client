@@ -17,11 +17,13 @@
       <div class="content-header bg-white-5">
         <!-- Logo -->
         <router-link to="/" class="font-w600 text-dual">
-          <span class="smini-visible">
-            <i class="fa fa-circle-notch text-primary"></i>
-          </span>
+<!--          <span >-->
+<!--            <i class="fa fa-circle-notch text-primary"></i>-->
+<!--          </span>-->
+          <span class="smini-visible"><img src="img/logos/logo.png" width="25" alt=""></span>
+
           <span class="smini-hide font-size-h5 tracking-wider">
-            NCS <span class="font-w400">Admin</span>
+            <span><img src="img/logos/logo.png" width="40" class="mr-2 mb-2" alt=""></span>  NCS <span class="font-w400">Admin</span>
           </span>
         </router-link>
         <!-- END Logo -->
@@ -29,61 +31,61 @@
         <!-- Extra -->
         <div>
           <!-- Options -->
-          <b-dropdown size="sm" variant="dual" class="d-inline-block ml-2" menu-class="font-size-sm smini-hide border-0" right no-caret ref="oneDropdownOptions">
-            <template #button-content>
-              <i class="si si-drop"></i>
-            </template>
-            <li @click="$refs.oneDropdownOptions.hide(true)">
-              <!-- Color Themes -->
-              <a class="dropdown-item font-w500 d-flex align-items-center justify-content-between" @click.prevent="$store.commit('setColorTheme', { theme: '' })" href="#">
-                <span>Default</span>
-                <i class="fa fa-circle text-default"></i>
-              </a>
-              <a class="dropdown-item font-w500 d-flex align-items-center justify-content-between" @click.prevent="$store.commit('setColorTheme', { theme: 'amethyst' })" href="#">
-                <span>Amethyst</span>
-                <i class="fa fa-circle text-amethyst"></i>
-              </a>
-              <a class="dropdown-item font-w500 d-flex align-items-center justify-content-between" @click.prevent="$store.commit('setColorTheme', { theme: 'city' })" href="#">
-                <span>City</span>
-                <i class="fa fa-circle text-city"></i>
-              </a>
-              <a class="dropdown-item font-w500 d-flex align-items-center justify-content-between" @click.prevent="$store.commit('setColorTheme', { theme: 'flat' })" href="#">
-                <span>Flat</span>
-                <i class="fa fa-circle text-flat"></i>
-              </a>
-              <a class="dropdown-item font-w500 d-flex align-items-center justify-content-between" @click.prevent="$store.commit('setColorTheme', { theme: 'modern' })" href="#">
-                <span>Modern</span>
-                <i class="fa fa-circle text-modern"></i>
-              </a>
-              <a class="dropdown-item font-w500 d-flex align-items-center justify-content-between" @click.prevent="$store.commit('setColorTheme', { theme: 'smooth' })" href="#">
-                <span>Smooth</span>
-                <i class="fa fa-circle text-smooth"></i>
-              </a>
-              <!-- END Color Themes -->
+<!--          <b-dropdown size="sm" variant="dual" class="d-inline-block ml-2" menu-class="font-size-sm smini-hide border-0" right no-caret ref="oneDropdownOptions">-->
+<!--            <template #button-content>-->
+<!--              <i class="si si-drop"></i>-->
+<!--            </template>-->
+<!--            <li @click="$refs.oneDropdownOptions.hide(true)">-->
+<!--              &lt;!&ndash; Color Themes &ndash;&gt;-->
+<!--              <a class="dropdown-item font-w500 d-flex align-items-center justify-content-between" @click.prevent="$store.commit('setColorTheme', { theme: '' })" href="#">-->
+<!--                <span>Default</span>-->
+<!--                <i class="fa fa-circle text-default"></i>-->
+<!--              </a>-->
+<!--              <a class="dropdown-item font-w500 d-flex align-items-center justify-content-between" @click.prevent="$store.commit('setColorTheme', { theme: 'amethyst' })" href="#">-->
+<!--                <span>Amethyst</span>-->
+<!--                <i class="fa fa-circle text-amethyst"></i>-->
+<!--              </a>-->
+<!--              <a class="dropdown-item font-w500 d-flex align-items-center justify-content-between" @click.prevent="$store.commit('setColorTheme', { theme: 'city' })" href="#">-->
+<!--                <span>City</span>-->
+<!--                <i class="fa fa-circle text-city"></i>-->
+<!--              </a>-->
+<!--              <a class="dropdown-item font-w500 d-flex align-items-center justify-content-between" @click.prevent="$store.commit('setColorTheme', { theme: 'flat' })" href="#">-->
+<!--                <span>Flat</span>-->
+<!--                <i class="fa fa-circle text-flat"></i>-->
+<!--              </a>-->
+<!--              <a class="dropdown-item font-w500 d-flex align-items-center justify-content-between" @click.prevent="$store.commit('setColorTheme', { theme: 'modern' })" href="#">-->
+<!--                <span>Modern</span>-->
+<!--                <i class="fa fa-circle text-modern"></i>-->
+<!--              </a>-->
+<!--              <a class="dropdown-item font-w500 d-flex align-items-center justify-content-between" @click.prevent="$store.commit('setColorTheme', { theme: 'smooth' })" href="#">-->
+<!--                <span>Smooth</span>-->
+<!--                <i class="fa fa-circle text-smooth"></i>-->
+<!--              </a>-->
+<!--              &lt;!&ndash; END Color Themes &ndash;&gt;-->
 
-              <div role="separator" class="dropdown-divider"></div>
+<!--              <div role="separator" class="dropdown-divider"></div>-->
 
-              <!-- Sidebar Styles -->
-              <base-layout-modifier tag="a" action="sidebarStyleLight" class="dropdown-item font-w500">
-                Sidebar Light
-              </base-layout-modifier>
-              <base-layout-modifier tag="a" action="sidebarStyleDark" class="dropdown-item font-w500">
-                Sidebar Dark
-              </base-layout-modifier>
-              <!-- Sidebar Styles -->
+<!--              &lt;!&ndash; Sidebar Styles &ndash;&gt;-->
+<!--              <base-layout-modifier tag="a" action="sidebarStyleLight" class="dropdown-item font-w500">-->
+<!--                Sidebar Light-->
+<!--              </base-layout-modifier>-->
+<!--              <base-layout-modifier tag="a" action="sidebarStyleDark" class="dropdown-item font-w500">-->
+<!--                Sidebar Dark-->
+<!--              </base-layout-modifier>-->
+<!--              &lt;!&ndash; Sidebar Styles &ndash;&gt;-->
 
-              <div role="separator" class="dropdown-divider"></div>
+<!--              <div role="separator" class="dropdown-divider"></div>-->
 
-              <!-- Header Styles -->
-              <base-layout-modifier tag="a" action="headerStyleLight" class="dropdown-item font-w500">
-                Header Light
-              </base-layout-modifier>
-              <base-layout-modifier tag="a" action="headerStyleDark" class="dropdown-item font-w500">
-                Header Dark
-              </base-layout-modifier>
-              <!-- Header Styles -->
-            </li>
-          </b-dropdown>
+<!--              &lt;!&ndash; Header Styles &ndash;&gt;-->
+<!--              <base-layout-modifier tag="a" action="headerStyleLight" class="dropdown-item font-w500">-->
+<!--                Header Light-->
+<!--              </base-layout-modifier>-->
+<!--              <base-layout-modifier tag="a" action="headerStyleDark" class="dropdown-item font-w500">-->
+<!--                Header Dark-->
+<!--              </base-layout-modifier>-->
+<!--              &lt;!&ndash; Header Styles &ndash;&gt;-->
+<!--            </li>-->
+<!--          </b-dropdown>-->
           <!-- Options -->
 
           <!-- Close Sidebar, Visible only on mobile screens -->
@@ -115,6 +117,7 @@
 import simplebar from 'simplebar-vue'
 
 // Get navigation data
+import hqMenu from "@/data/hqMenu";
 import menuList from '@/data/menu'
 
 export default {
@@ -130,7 +133,7 @@ export default {
     let nav
     switch (parseInt(user.user_type)) {
       case 1:
-        nav = menuList.ncshq
+        nav = hqMenu.main
         break
       case 2:
         nav = menuList.ncszone
@@ -145,7 +148,7 @@ export default {
 
     return {
       // Get main navigation
-      navigation: nav  
+      navigation: nav
     }
   }
 }
