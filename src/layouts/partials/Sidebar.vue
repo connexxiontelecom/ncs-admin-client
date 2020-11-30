@@ -117,6 +117,7 @@
 import simplebar from 'simplebar-vue'
 
 // Get navigation data
+import hqMenu from "@/data/hqMenu";
 import menuList from '@/data/menu'
 
 export default {
@@ -132,7 +133,7 @@ export default {
     let nav
     switch (parseInt(user.user_type)) {
       case 1:
-        nav = menuList.ncshq
+        nav = hqMenu.main
         break
       case 2:
         nav = menuList.ncszone
