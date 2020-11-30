@@ -302,7 +302,7 @@ export default {
     logout () {
       this.$store.dispatch('auth/logout')
         .then(() => {
-          this.$router.push('/auth/signin').catch(() => {})
+          this.$router.push('/auth/signin')
         })
     }
   },
