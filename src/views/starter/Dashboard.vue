@@ -10,7 +10,7 @@
               NCS Admin Dashboard
             </h1>
             <h2 class="h6 font-w500 text-muted mb-0">
-              Welcome <a class="font-w600" href="javascript:void(0)">{{ user.user_first_name +" " +" "+ user.user_last_name }}</a>, this is an overview of the Nigerian Correctional Admin system.
+              Welcome <a class="font-w600" href="javascript:void(0)">{{ user.user_first_name +" " +" "+ user.user_last_name }}</a>, this is an overview of the Nigerian Correctional Service Admin system.
             </h2>
           </div>
           <div class="mt-3 mt-sm-0 ml-sm-3">
@@ -30,13 +30,13 @@
       <!-- Stats -->
       <b-row>
         <b-col cols="6" md="3" lg="6" xl="3">
-          <base-block tag="a" rounded link-pop content-class="d-flex py-4" href="javascript:void(0)" v-b-tooltip.hover.nofade.top="'Manage Inmates'">
+          <base-block tag="a" rounded link-pop content-class="d-flex py-4" href="javascript:void(0)" v-b-tooltip.hover.top="'Manage Zones'">
             <div class="flex-grow-1">
               <div class="font-size-sm font-w600 text-uppercase text-muted">
-                Total Inmates In Your state
+                Zonal Commands
               </div>
               <div class="font-size-h3">
-                10,580
+                4 <span class="font-size-sm text-muted">Active Zones</span>
               </div>
             </div>
             <div class="d-flex ml-2">
@@ -45,32 +45,47 @@
           </base-block>
         </b-col>
         <b-col cols="6" md="3" lg="6" xl="3">
-          <base-block tag="a" rounded link-pop content-class="d-flex py-4" href="javascript:void(0)" v-b-tooltip.hover.nofade.top="'Manage Inmates'">
+          <base-block tag="a" rounded link-pop content-class="d-flex py-4" href="javascript:void(0)" v-b-tooltip.hover.top="'Manage States'">
             <div class="flex-grow-1">
               <div class="font-size-sm font-w600 text-uppercase text-muted">
-               Correctional Centres
+               State Commands
               </div>
               <div class="font-size-h3">
-                4
+                15 <span class="font-size-sm text-muted">Active States</span>
               </div>
             </div>
             <div class="d-flex ml-2">
-              <div class="flex-grow-1 px-1 bg-success-light rounded-lg"></div>
+              <div class="flex-grow-1 px-1 bg-warning-light rounded-lg"></div>
             </div>
           </base-block>
         </b-col>
         <b-col cols="6" md="3" lg="6" xl="3">
-          <base-block tag="a" rounded link-pop content-class="d-flex py-4" href="javascript:void(0)" v-b-tooltip.hover.nofade.top="'Manage Cells'">
+          <base-block tag="a" rounded link-pop content-class="d-flex py-4" href="javascript:void(0)" v-b-tooltip.hover.top="'Manage Custodial Centers'">
             <div class="flex-grow-1">
               <div class="font-size-sm font-w600 text-uppercase text-muted">
-                Capacity
+                Custodial Centers
+              </div>
+              <div class="font-size-h3">
+                42 <span class="font-size-sm text-muted">Active custodial centers</span>
+              </div>
+            </div>
+            <div class="d-flex ml-2">
+              <div class="flex-grow-1 px-1 bg-danger-light rounded-lg"></div>
+            </div>
+          </base-block>
+        </b-col>
+        <b-col cols="6" md="3" lg="6" xl="3">
+          <base-block tag="a" rounded link-pop content-class="d-flex py-4" href="javascript:void(0)" v-b-tooltip.hover.top="'Manage Cells'">
+            <div class="flex-grow-1">
+              <div class="font-size-sm font-w600 text-uppercase text-muted">
+                Cell Capacity
               </div>
               <div class="font-size-h3">
                 68% <span class="font-size-sm text-muted">Occupied</span>
               </div>
             </div>
             <div class="d-flex ml-2">
-              <div class="flex-grow-1 px-1 bg-danger-light rounded-lg"></div>
+              <div class="flex-grow-1 px-1 bg-info-light rounded-lg"></div>
             </div>
           </base-block>
         </b-col>

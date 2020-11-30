@@ -11,6 +11,27 @@
     </base-page-heading>
     <!-- END Hero -->
 
+    <!-- Vertically Centered Block Modal -->
+    <b-modal ref="modal" id="modal-block-vcenter" body-class="p-0" centered hide-footer hide-header no-close-on-backdrop no-close-on-esc>
+      <div class="block block-rounded block-themed block-transparent mb-0">
+        <div class="block-header bg-primary-dark">
+          <h3 class="block-title">Access Restricted</h3>
+        </div>
+        <div class="block-content font-size-sm">
+          <p>
+            You do not have the proper clearance level to access the inmate enrollment service.
+          </p>
+          <p>
+            Please, note that all unauthorized access attempts are logged for audit trail purposes.
+          </p>
+        </div>
+        <div class="block-content block-content-full text-right border-top">
+          <b-button variant="primary" @click="redirect">Ok</b-button>
+        </div>
+      </div>
+    </b-modal>
+    <!-- END Vertically Centered Block Modal -->
+
     <!-- Page Content -->
     <div class="content">
       <base-block rounded title="Inmate Enrollment Form" ref="enrollmentBlock" btn-option-fullscreen>
@@ -348,6 +369,12 @@ import { validationMixin } from 'vuelidate'
 import { required, minLength } from 'vuelidate/lib/validators'
 
 export default {
+  mounted() {
+    let user = this.$store.getters["auth/currentUser"]
+    if (user.user_type !== 4) {
+      this.$bvModal.show('modal-block-vcenter')
+    }
+  },
   mixins: [ validationMixin ],
   components: {},
   data () {
@@ -607,8 +634,8 @@ export default {
     religionChange(event) {
       this.specifyReligionDisabled = event !== 'other';
     },
-    test(event) {
-      console.log(event.path)
+    redirect() {
+      this.$router.push('/')
     }
   }
 }

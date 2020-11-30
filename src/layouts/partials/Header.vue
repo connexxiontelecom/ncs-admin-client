@@ -13,13 +13,13 @@
           <!-- END Toggle Sidebar -->
 
           <!-- Toggle Mini Sidebar -->
-          <base-layout-modifier action="sidebarMiniToggle" size="sm" variant="dual" class="mr-2 d-none d-lg-inline-block">
+          <base-layout-modifier action="sidebarMiniToggle" size="sm" variant="dual" class="mr-2 d-none d-lg-inline-block" v-b-tooltip.hover.bottom="'Toggle Sidebar'">
             <i class="fa fa-fw fa-ellipsis-v"></i>
           </base-layout-modifier>
           <!-- END Toggle Mini Sidebar -->
 
           <!-- Apps Modal Toggle Button -->
-          <b-button variant="dual" size="sm" class="mr-2" v-b-modal.one-modal-apps>
+          <b-button variant="dual" size="sm" class="mr-2" v-b-modal.one-modal-apps v-b-tooltip.hover.bottom="'Quick Access'">
             <i class="fa fa-fw fa-cubes"></i>
           </b-button>
           <!-- END Apps Modal Toggle Button -->
@@ -28,7 +28,7 @@
           <b-modal id="one-modal-apps" size="sm" body-class="p-0" hide-footer hide-header>
             <div class="block block-rounded block-themed block-transparent mb-0">
               <div class="block-header bg-primary-dark">
-                <h3 class="block-title">Apps</h3>
+                <h3 class="block-title">Quick Access</h3>
                 <div class="block-options">
                   <button type="button" class="btn-block-option" @click="$bvModal.hide('one-modal-apps')">
                     <i class="si si-close"></i>
@@ -36,48 +36,60 @@
                 </div>
               </div>
               <div class="block-content block-content-full">
-                <div class="row gutters-tiny">
+                <div class="row">
                   <div class="col-6">
-                    <!-- CRM -->
-                    <base-block tag="a" href="javascript:void(0)" class="bg-body" content-class="text-center" rounded themed hideHeader>
-                      <i class="si si-speedometer fa-2x text-primary"></i>
-                      <p class="font-w600 font-size-sm mt-2 mb-3">
-                        CRM
-                      </p>
-                    </base-block>
-                    <!-- END CRM -->
+                    <!-- Reports -->
+                    <router-link to="/" v-slot="{ href, navigate }" >
+                      <base-block class="bg-body mb-0" content-class="text-center" rounded themed hideHeader tag="a" :href="href" @click="navigate">
+                        <i class="si si-docs fa-2x text-primary"></i>
+                        <p class="font-w600 font-size-sm mt-2 mb-3">
+                          Reports
+                        </p>
+                      </base-block>
+                    </router-link>
+                    <!-- END Reports -->
                   </div>
                   <div class="col-6">
-                    <!-- Products -->
-                    <base-block tag="a" href="javascript:void(0)" class="bg-body" content-class="text-center" rounded themed hideHeader>
-                      <i class="si si-rocket fa-2x text-primary"></i>
-                      <p class="font-w600 font-size-sm mt-2 mb-3">
-                        Products
-                      </p>
-                    </base-block>
-                    <!-- END Products -->
-                  </div>
-                  <div class="col-6">
-                    <!-- Sales -->
-                    <base-block tag="a" href="javascript:void(0)" class="bg-body mb-0" content-class="text-center" rounded themed hideHeader>
-                      <i class="si si-plane fa-2x text-primary"></i>
-                      <p class="font-w600 font-size-sm mt-2 mb-3">
-                        Sales
-                      </p>
-                    </base-block>
-                    <!-- END Sales -->
-                  </div>
-                  <div class="col-6">
-                    <!-- Payments -->
-                    <base-block tag="a" href="javascript:void(0)" class="bg-body mb-0" content-class="text-center" rounded themed hideHeader>
-                      <i class="si si-wallet fa-2x text-primary"></i>
-                      <p class="font-w600 font-size-sm mt-2 mb-3">
-                        Payments
-                      </p>
-                    </base-block>
-                    <!-- END Payments -->
+                    <!-- Users -->
+                    <router-link to="/" v-slot="{ href, navigate }" >
+                      <base-block class="bg-body mb-0" content-class="text-center" rounded themed hideHeader tag="a" :href="href" @click="navigate">
+                        <i class="si si-users fa-2x text-primary"></i>
+                        <p class="font-w600 font-size-sm mt-2 mb-3">
+                          Users
+                        </p>
+                      </base-block>
+                    </router-link>
+                    <!-- END Users -->
                   </div>
                 </div>
+                <br>
+                <div class="row">
+                  <div class="col-6">
+                    <!-- Users -->
+                    <router-link to="/" v-slot="{ href, navigate }" >
+                      <base-block class="bg-body mb-0" content-class="text-center" rounded themed hideHeader tag="a" :href="href" @click="navigate">
+                        <i class="si si-bubbles fa-2x text-primary"></i>
+                        <p class="font-w600 font-size-sm mt-2 mb-3">
+                          Messaging
+                        </p>
+                      </base-block>
+                    </router-link>
+                    <!-- END Users -->
+                  </div>
+                  <div class="col-6">
+                    <!-- Users -->
+                    <router-link to="/" v-slot="{ href, navigate }" >
+                      <base-block class="bg-body mb-0" content-class="text-center" rounded themed hideHeader tag="a" :href="href" @click="navigate">
+                        <i class="si si-settings fa-2x text-primary"></i>
+                        <p class="font-w600 font-size-sm mt-2 mb-3">
+                          Settings
+                        </p>
+                      </base-block>
+                    </router-link>
+                    <!-- END Users -->
+                  </div>
+                </div>
+
               </div>
             </div>
           </b-modal>

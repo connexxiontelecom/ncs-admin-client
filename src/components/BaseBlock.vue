@@ -14,7 +14,7 @@
         </h3>
         <div class="block-options" v-if="$slots.options || btnOptionFullscreen || btnOptionPinned || btnOptionContent || btnOptionClose" :class="classContainerOptions">
           <slot name="options"></slot>
-          <button type="button" class="btn-block-option" @click="fullscreenToggle" v-if="btnOptionFullscreen">
+          <button type="button" class="btn-block-option" @click="fullscreenToggle" v-if="btnOptionFullscreen" v-b-tooltip.hover.nofade.lefttop="'Fullscreen Mode'">
             <i :class="{'si si-size-fullscreen': !optionFullscreen, 'si si-size-actual': optionFullscreen}"></i>
           </button>
           <button type="button" class="btn-block-option" @click="pinnedToggle" v-if="btnOptionPinned">

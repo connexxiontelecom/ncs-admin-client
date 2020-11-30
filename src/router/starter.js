@@ -14,11 +14,6 @@ import store from '../store'
 // Register Vue Router
 Vue.use(Router)
 
-// Frontend Page Example
-// const Landing = () => import("@/views/starter/Landing.vue")
-
-// Backend Page Example
-// const Dashboard = () => import("@/views/starter/Dashboard.vue")
 
 // Router Configuration
 const router = new Router({
@@ -29,18 +24,6 @@ const router = new Router({
     return { x: 0, y: 0 }
   },
   routes: [
-    // {
-    //   path: '/',
-    //   redirect: '/landing',
-    //   component: LayoutSimple,
-    //   children: [
-    //     {
-    //       path: '/landing',
-    //       name: 'Landing',
-    //       component: Landing
-    //     }
-    //   ]
-    // },
     {
       path: '',
       component: () => import('@/layouts/variations/BackendStarter.vue'),
@@ -50,6 +33,7 @@ const router = new Router({
           name: 'Dashboard',
           component: () => import('@/views/starter/Dashboard.vue'),
           meta: {
+            title: 'Home | NCS Admin',
             authRequired: true,
           },
 
@@ -59,13 +43,17 @@ const router = new Router({
           name: 'Enrollment',
           component: () => import('@/views/inmates/Enrollment'),
           meta: {
+            title: 'Enrollment | NCS Admin',
             accessRequired: 4,
           }
         },
         {
           path: 'inmates/manage_inmates',
           name: 'Manage Inmates',
-          component: () => import('@/views/inmates/ManageInmates')
+          component: () => import('@/views/inmates/ManageInmates'),
+          meta: {
+            title: 'Manage Inmates | NCS Admin',
+          }
         }
       ]
     },
@@ -78,6 +66,7 @@ const router = new Router({
           name: 'Sign In',
           component: () => import('@/views/pages/auth/SignIn.vue'),
           meta: {
+            title: 'Sign In | NCS Admin',
             splash: true
           }
         }
@@ -87,6 +76,9 @@ const router = new Router({
 })
 
 router.beforeEach((to, from, next) => {
+  if(to.meta.title) {
+    document.title = to.meta.title
+  }
   if (to.meta.authRequired) {
     if (!localStorage.getItem('accessToken')) {
       router.push({ path: '/auth/signin' })
