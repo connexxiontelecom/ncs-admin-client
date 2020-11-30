@@ -9,7 +9,7 @@
               Powered by <a class="font-w600" href="https://connexxiontelecom.com" target="_blank">Connexxion Telecom</a>
             </b-col>
             <b-col sm="6" order-sm="1" class="py-1 text-center text-sm-left">
-              <a class="font-w600" href="https://1.envato.market/5Noyb" target="_blank">{{ $store.getters.appName + ' ' + $store.getters.appVersion }}</a> &copy; {{ $store.getters.appCopyright }}
+              <a class="font-w600" href="https://interior.gov.ng/nigeria-correctional-service/" target="_blank">{{ $store.getters.appName + ' ' + $store.getters.appVersion }}</a> &copy; {{ $store.getters.appCopyright }}
             </b-col>
           </b-row>
         </div>
