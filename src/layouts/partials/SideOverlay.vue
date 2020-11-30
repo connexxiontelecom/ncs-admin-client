@@ -12,7 +12,7 @@
 
         <!-- User Info -->
         <div class="ml-2">
-          <a class="text-dark font-w600 font-size-sm" href="javascript:void(0)">Adam McCoy</a>
+          <a class="text-dark font-w600 font-size-sm" href="javascript:void(0)">{{ user.user_first_name +" " +" "+ user.user_last_name }}</a>
         </div>
         <!-- END User Info -->
 
@@ -219,6 +219,7 @@ export default {
   },
   data () {
     return {
+      user: this.$store.getters["auth/currentUser"],
       settings: {
         status: true,
         updated: true,

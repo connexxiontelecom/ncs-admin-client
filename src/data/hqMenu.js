@@ -1,19 +1,14 @@
 export default {
   'main': [
     {
-      name: 'Home',
+      name: 'NCS Admin Dashboard',
       icon: 'fa fa-home',
       to: '/',
-      sub: [
-        {
-          name: 'NCS Admin Dashboard',
-          to: '/',
-        },
-        {
-          name: 'Activities',
-          to: ''
-        }
-      ]
+    },
+    {
+      name: 'Activities',
+      icon: 'fa fa-list-alt',
+      to: ''
     },
     {
       name: 'General Management',
@@ -22,15 +17,15 @@ export default {
     {
       name: 'Zones',
       icon: 'fa fa-layer-group',
-      to: '',
+      subActivePaths: '/zones',
       sub: [
         {
           name: 'New Zonal Command',
-          to: '',
+          to: '/zones/new_zonal_command',
         },
         {
           name: 'Manage Zonal Commands',
-          to: ''
+          to: '/zones/manage_zonal_commands'
         }
       ]
     },
@@ -88,7 +83,7 @@ export default {
       icon: 'fa fa-inbox',
     },
     {
-      name: 'Document Management',
+      name: 'Documents',
       icon: 'fa fa-folder-open',
     },
     {
