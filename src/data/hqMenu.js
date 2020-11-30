@@ -3,7 +3,7 @@ export default {
     {
       name: 'NCS Admin Dashboard',
       icon: 'fa fa-home',
-      to: '/',
+      to: '/dashboard',
     },
     {
       name: 'Activities',

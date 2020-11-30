@@ -81,7 +81,7 @@
                 Users
               </div>
               <div class="font-size-h3">
-                3 <span class="font-size-sm text-muted">online</span>
+                3 <span class="font-size-sm text-muted">active</span>
               </div>
             </div>
             <div class="d-flex ml-2">

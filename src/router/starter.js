@@ -7,13 +7,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import store from '../store'
 
-// Main layouts
-// import LayoutBackend from '@/layouts/variations/BackendStarter.vue'
-// import LayoutSimple from '@/layouts/variations/Simple.vue'
-
 // Register Vue Router
 Vue.use(Router)
-
 
 // Router Configuration
 const router = new Router({
@@ -29,8 +24,9 @@ const router = new Router({
       component: () => import('@/layouts/variations/BackendStarter.vue'),
       children: [
         {
-          path: '/',
+          path: 'dashboard',
           name: 'Home',
+          alias: '/',
           component: () => import('@/views/starter/Dashboard.vue'),
           meta: {
             title: 'Home | NCS Admin',
@@ -39,6 +35,7 @@ const router = new Router({
         },
       ]
     },
+    // zones routes
     {
       path: '/zones',
       component: () => import('@/layouts/variations/BackendStarter'),
@@ -49,6 +46,7 @@ const router = new Router({
           component: () => import('@/views/zones/NewZone'),
           meta: {
             title: 'New Zonal Command | NCS Admin',
+            authRequired: true,
           }
         },
         {
@@ -57,10 +55,12 @@ const router = new Router({
           component: () => import('@/views/zones/ManageZones'),
           meta: {
             title: 'Manage Zonal Commands | NCS Admin',
+            authRequired: true,
           }
         },
       ]
     },
+    // inmates routes
     {
       path: '/inmates',
       component: () => import('@/layouts/variations/BackendStarter'),
@@ -71,6 +71,7 @@ const router = new Router({
           component: () => import('@/views/inmates/Enrollment'),
           meta: {
             title: 'Enrollment | NCS Admin',
+            authRequired: true,
           }
         },
         {
@@ -79,10 +80,12 @@ const router = new Router({
           component: () => import('@/views/inmates/ManageInmates'),
           meta: {
             title: 'Manage Inmates | NCS Admin',
+            authRequired: true,
           }
         }
       ]
     },
+    // auth routes
     {
       path: '/auth',
       component: () => import('@/layouts/variations/Simple.vue'),
