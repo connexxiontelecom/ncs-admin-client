@@ -36,7 +36,7 @@
                 Zonal Commands
               </div>
               <div class="font-size-h3">
-                4 <span class="font-size-sm text-muted">Active Zones</span>
+                4 <span class="font-size-sm text-muted">active</span>
               </div>
             </div>
             <div class="d-flex ml-2">
@@ -51,7 +51,7 @@
                State Commands
               </div>
               <div class="font-size-h3">
-                15 <span class="font-size-sm text-muted">Active States</span>
+                15 <span class="font-size-sm text-muted">active</span>
               </div>
             </div>
             <div class="d-flex ml-2">
@@ -66,7 +66,7 @@
                 Custodial Centers
               </div>
               <div class="font-size-h3">
-                42 <span class="font-size-sm text-muted">Active custodial centers</span>
+                42 <span class="font-size-sm text-muted">active</span>
               </div>
             </div>
             <div class="d-flex ml-2">
@@ -75,13 +75,13 @@
           </base-block>
         </b-col>
         <b-col cols="6" md="3" lg="6" xl="3">
-          <base-block tag="a" rounded link-pop content-class="d-flex py-4" href="javascript:void(0)" v-b-tooltip.hover.top="'Manage Cells'">
+          <base-block tag="a" rounded link-pop content-class="d-flex py-4" href="javascript:void(0)" v-b-tooltip.hover.top="'Manage Users'">
             <div class="flex-grow-1">
               <div class="font-size-sm font-w600 text-uppercase text-muted">
-                Cell Capacity
+                Users
               </div>
               <div class="font-size-h3">
-                68% <span class="font-size-sm text-muted">Occupied</span>
+                3 <span class="font-size-sm text-muted">online</span>
               </div>
             </div>
             <div class="d-flex ml-2">

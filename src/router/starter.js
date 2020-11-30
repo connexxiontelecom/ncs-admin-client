@@ -25,30 +25,56 @@ const router = new Router({
   },
   routes: [
     {
-      path: '',
+      path: '/',
       component: () => import('@/layouts/variations/BackendStarter.vue'),
       children: [
         {
           path: '/',
-          name: 'Dashboard',
+          name: 'Home',
           component: () => import('@/views/starter/Dashboard.vue'),
           meta: {
             title: 'Home | NCS Admin',
             authRequired: true,
           },
-
+        },
+      ]
+    },
+    {
+      path: '/zones',
+      component: () => import('@/layouts/variations/BackendStarter'),
+      children: [
+        {
+          path: 'new_zonal_command',
+          name: 'New Zonal Command',
+          component: () => import('@/views/zones/NewZone'),
+          meta: {
+            title: 'New Zonal Command | NCS Admin',
+          }
         },
         {
-          path: 'inmates/enrollment',
+          path: 'manage_zonal_commands',
+          name: "Manage Zonal Commands",
+          component: () => import('@/views/zones/ManageZones'),
+          meta: {
+            title: 'Manage Zonal Commands | NCS Admin',
+          }
+        },
+      ]
+    },
+    {
+      path: '/inmates',
+      component: () => import('@/layouts/variations/BackendStarter'),
+      children: [
+        {
+          path: 'enrollment',
           name: 'Enrollment',
           component: () => import('@/views/inmates/Enrollment'),
           meta: {
             title: 'Enrollment | NCS Admin',
-            accessRequired: 4,
           }
         },
         {
-          path: 'inmates/manage_inmates',
+          path: 'manage_inmates',
           name: 'Manage Inmates',
           component: () => import('@/views/inmates/ManageInmates'),
           meta: {
@@ -81,7 +107,7 @@ router.beforeEach((to, from, next) => {
   }
   if (to.meta.authRequired) {
     if (!localStorage.getItem('accessToken')) {
-      router.push({ path: '/auth/signin' })
+      router.push({ path: '/auth/signin' }).catch(() => {})
     }
   }
   return next()
@@ -93,7 +119,19 @@ router.afterEach((to, from) => {
     store.commit('pageLoader', {mode: 'on'})
     setTimeout(() => {
       store.commit('pageLoader', {mode: 'off'})
-    }, 3000);
+    }, 1000);
+  }
+  // prevent routing back to app after logging out
+  if (!localStorage.getItem('accessToken')) {
+    router.push({ path: '/auth/signin' }).catch(() => {})
+  }
+  // don't route to sign in page if user hasn't logged out
+  if (to.name === 'Sign In') {
+    if(localStorage.getItem('accessToken')) {
+      router.push(from.fullPath)
+    } else {
+      router.push({ path: '/auth/signin' }).catch(() => {})
+    }
   }
 })
 export default router
