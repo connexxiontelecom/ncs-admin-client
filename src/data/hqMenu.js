@@ -30,12 +30,8 @@ export default {
       to: '',
       sub: [
         {
-          name: 'New Custodial Center',
-          to: '',
-        },
-        {
           name: 'Manage Custodial Centers',
-          to: ''
+          to: '/custodial_centers'
         }
       ]
     },
