@@ -38,7 +38,7 @@
             </div>
             <div class="block-content block-content-full text-right border-top">
               <b-button type="submit" variant="alt-primary" class="mr-2" v-click-ripple>Create Zone</b-button>
-              <b-button variant="alt-secondary" class="mr-1" @click="$bvModal.hide('new-zone-form')">Close</b-button>
+              <b-button variant="alt-secondary" class="mr-1" @click="$bvModal.hide('new-zone-form')" v-click-ripple>Close</b-button>
             </div>
           </b-form>
         </div>
@@ -52,7 +52,7 @@
                 <i class="si si-plus" v-b-tooltip.hover.nofade.topleft="'Create Zonal Command'"></i>
               </button>
             </template>
-            <b-table striped hover bordered :items="items"></b-table>
+            <b-table striped hover bordered :items="zones"></b-table>
           </base-block>
         </b-col>
       </b-row>
@@ -71,12 +71,7 @@ export default {
       newZoneForm: {
         zoneName: null
       },
-      items: [
-        { age: 40, first_name: 'Dickerson', last_name: 'Macdonald' },
-        { age: 21, first_name: 'Larsen', last_name: 'Shaw' },
-        { age: 89, first_name: 'Geneva', last_name: 'Wilson' },
-        { age: 38, first_name: 'Jami', last_name: 'Carney' }
-      ]
+      zones: []
     }
   },
   validations: {
@@ -85,15 +80,22 @@ export default {
     }
   },
   methods: {
-    onSubmit () {
+    async onSubmit () {
       this.$v.newZoneForm.$touch()
-
       if (this.$v.newZoneForm.$anyError) {
+        this.launchToast('Create Zonal Command Failure', 'Please fill all required fields', 'warning')
         return
       }
+      await this.$store.dispatch('zone/createZonalCommand', { newZoneForm: this.newZoneForm })
+      .then(response => {
+        this.launchToast('Create Zonal Command Success', response.data.message, 'success')
+        this.$bvModal.hide('new-zone-form')
+        this.newZoneForm.zoneName = null
+      })
+      .catch(error => {
+        this.launchToast('Create Zonal Command Failure', error.response.data.message, 'warning')
+      })
 
-      alert(this.newZoneForm.zoneName)
-      // Form submit logic
     }
   }
 }
