@@ -4,6 +4,7 @@
     <base-page-heading title="Zonal Commands" subtitle="Create and manage zonal commands here">
       <template #extra>
         <b-breadcrumb class="breadcrumb-alt">
+          <b-breadcrumb-item active><router-link to="/dashboard"><i class="fa fa-home"></i></router-link></b-breadcrumb-item>
           <b-breadcrumb-item href="javascript:void(0)" active>Zonal Commands</b-breadcrumb-item>
         </b-breadcrumb>
       </template>
