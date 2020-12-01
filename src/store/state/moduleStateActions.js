@@ -15,6 +15,17 @@ export default {
           reject(error)
         })
     })
-
+  },
+  // eslint-disable-next-line no-unused-vars
+  getStateCommands ({ commit }) {
+    return new Promise((resolve, reject) => {
+      axios({url: 'state/all_states', method: 'GET'})
+        .then(response => {
+          resolve(response)
+        })
+        .catch(error => {
+          reject(error)
+        })
+    })
   }
 }
