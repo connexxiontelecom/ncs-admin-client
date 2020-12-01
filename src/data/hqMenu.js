@@ -20,19 +20,9 @@ export default {
       to: '/zonal_commands'
     },
     {
-      name: 'States',
+      name: 'State Commands',
       icon: 'fa fa-globe',
-      to: '',
-      sub: [
-        {
-          name: 'New State Command',
-          to: '',
-        },
-        {
-          name: 'Manage State Commands',
-          to: ''
-        }
-      ]
+      to: '/state_commands'
     },
     {
       name: 'Custodial Centers',
