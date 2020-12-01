@@ -14,6 +14,7 @@ import mutations from "@/store/mutations";
 import moduleAuth from "./auth/moduleAuth";
 import moduleInmate from "./inmate/moduleInmate";
 import moduleZone from './zone/moduleZone';
+import moduleState from './state/moduleState';
 
 // Register Vuex
 Vue.use(Vuex)
@@ -29,6 +30,7 @@ export default new Vuex.Store({
   modules: {
     auth: moduleAuth,
     inmate: moduleInmate,
-    zone: moduleZone
+    zone: moduleZone,
+    states: moduleState
   }
 })
