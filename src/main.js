@@ -50,7 +50,7 @@ Vue.use(VueJWT)
 
 Vue.mixin({
   methods: {
-    launchToast (title, content, variant = null, append = false, toaster = 'b-toaster-top-right', autoHideDelay = 5000) {
+    launchToast (title, content, variant = null, append = false, toaster = 'b-toaster-top-right', autoHideDelay = 3000) {
       this.$bvToast.toast(content, {
         title: title,
         toaster: toaster,

@@ -14,5 +14,17 @@ export default {
           reject(error)
         })
     })
+  },
+  // eslint-disable-next-line no-unused-vars
+  getZonalCommands ({ commit }) {
+    return new Promise((resolve, reject) => {
+      axios({url: 'zone/all_zones', method: 'GET'})
+        .then(response => {
+          resolve(response)
+        })
+        .catch(error => {
+          reject(error)
+        })
+    })
   }
 }
