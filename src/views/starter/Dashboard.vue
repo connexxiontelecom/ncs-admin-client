@@ -75,13 +75,13 @@
           </base-block>
         </b-col>
         <b-col cols="6" md="3" lg="6" xl="3">
-          <base-block tag="a" rounded link-pop content-class="d-flex py-4" href="javascript:void(0)" v-b-tooltip.hover.top="'Manage Users'">
+          <base-block tag="a" rounded link-pop content-class="d-flex py-4" href="javascript:void(0)" v-b-tooltip.hover.top="'Manage Inmates'">
             <div class="flex-grow-1">
               <div class="font-size-sm font-w600 text-uppercase text-muted">
-                Users
+                Inmates
               </div>
               <div class="font-size-h3">
-                3 <span class="font-size-sm text-muted">active</span>
+                30,129 <span class="font-size-sm text-muted">convicted</span>
               </div>
             </div>
             <div class="d-flex ml-2">

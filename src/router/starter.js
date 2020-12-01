@@ -37,24 +37,15 @@ const router = new Router({
     },
     // zones routes
     {
-      path: '/zones',
+      path: '/zonal_commands',
       component: () => import('@/layouts/variations/BackendStarter'),
       children: [
         {
-          path: 'new_zonal_command',
-          name: 'New Zonal Command',
-          component: () => import('@/views/zones/NewZone'),
+          path: '',
+          name: 'Zones',
+          component: () => import('@/views/zones/ZonalCommands'),
           meta: {
-            title: 'New Zonal Command | NCS Admin',
-            authRequired: true,
-          }
-        },
-        {
-          path: 'manage_zonal_commands',
-          name: "Manage Zonal Commands",
-          component: () => import('@/views/zones/ManageZones'),
-          meta: {
-            title: 'Manage Zonal Commands | NCS Admin',
+            title: 'Zonal Commands | NCS Admin',
             authRequired: true,
           }
         },

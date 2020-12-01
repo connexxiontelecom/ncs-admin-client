@@ -11,12 +11,14 @@ import getters from "@/store/getters";
 import mutations from "@/store/mutations";
 
 // store modules
+import moduleAuth from "./auth/moduleAuth";
+import moduleInmate from "./inmate/moduleInmate";
+import moduleZone from './zone/moduleZone';
 
 // Register Vuex
 Vue.use(Vuex)
 
-import moduleAuth from "./auth/moduleAuth";
-import moduleInmate from "./inmate/moduleInmate";
+
 
 // Vuex Store
 export default new Vuex.Store({
@@ -26,6 +28,7 @@ export default new Vuex.Store({
   // actions,
   modules: {
     auth: moduleAuth,
-    inmate: moduleInmate
+    inmate: moduleInmate,
+    zone: moduleZone
   }
 })
