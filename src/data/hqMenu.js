@@ -15,34 +15,14 @@ export default {
       heading: true
     },
     {
-      name: 'Zones',
+      name: 'Zonal Commands',
       icon: 'fa fa-layer-group',
-      subActivePaths: '/zones',
-      sub: [
-        {
-          name: 'New Zonal Command',
-          to: '/zones/new_zonal_command',
-        },
-        {
-          name: 'Manage Zonal Commands',
-          to: '/zones/manage_zonal_commands'
-        }
-      ]
+      to: '/zonal_commands'
     },
     {
-      name: 'States',
+      name: 'State Commands',
       icon: 'fa fa-globe',
-      to: '',
-      sub: [
-        {
-          name: 'New State Command',
-          to: '',
-        },
-        {
-          name: 'Manage State Commands',
-          to: ''
-        }
-      ]
+      to: '/state_commands'
     },
     {
       name: 'Custodial Centers',
@@ -50,12 +30,8 @@ export default {
       to: '',
       sub: [
         {
-          name: 'New Custodial Center',
-          to: '',
-        },
-        {
           name: 'Manage Custodial Centers',
-          to: ''
+          to: '/custodial_centers'
         }
       ]
     },
