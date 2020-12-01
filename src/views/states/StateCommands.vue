@@ -145,9 +145,20 @@ export default {
   methods: {
     async onSubmit () {
       this.$v.newStateForm.$touch()
-      if (this.$v.newStateForm.$anyError()) {
+      if (this.$v.newStateForm.$anyError) {
+        this.launchToast('Create State Command Failure', 'Please fill all required fields', 'warning')
         return
       }
+      await this.$store.dispatch('states/createStateCommands', { newStateForm: this.newStateForm })
+      .then(response => {
+        this.launchToast('Create State Command Success', response.data.message, 'success')
+        this.$bvModal.hide('new-state-form')
+        this.newStateForm.stateName = null
+        this.newStateForm.stateZoneSelected = null
+      })
+      .catch(error => {
+        this.launchToast('Create State Command Failure', error.response.data.message, 'warning')
+      })
     },
     async getZones() {
       await this.$store.dispatch('zone/getZonalCommands')
