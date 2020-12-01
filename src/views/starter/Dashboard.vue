@@ -1,6 +1,6 @@
 
 <template>
-  <div v-if="parseInt(user.user_type) === 1">
+  <div v-if="isHQ">
     <!-- Hero -->
     <div class="bg-body-light">
       <div class="content content-full">
@@ -30,34 +30,38 @@
       <!-- Stats -->
       <b-row>
         <b-col cols="6" md="3" lg="6" xl="3">
-          <base-block tag="a" rounded link-pop content-class="d-flex py-4" href="javascript:void(0)" v-b-tooltip.hover.top="'Manage Zones'">
-            <div class="flex-grow-1">
-              <div class="font-size-sm font-w600 text-uppercase text-muted">
-                Zonal Commands
+          <router-link to="/zonal_commands">
+            <base-block tag="a" rounded link-pop content-class="d-flex py-4">
+              <div class="flex-grow-1">
+                <div class="font-size-sm font-w600 text-uppercase text-muted">
+                  Zonal Commands
+                </div>
+                <div class="font-size-h3">
+                  {{ zones }} <span class="font-size-sm text-muted">active</span>
+                </div>
               </div>
-              <div class="font-size-h3">
-                4 <span class="font-size-sm text-muted">active</span>
+              <div class="d-flex ml-2">
+                <div class="flex-grow-1 px-1 bg-success-light rounded-lg"></div>
               </div>
-            </div>
-            <div class="d-flex ml-2">
-              <div class="flex-grow-1 px-1 bg-success-light rounded-lg"></div>
-            </div>
-          </base-block>
+            </base-block>
+          </router-link>
         </b-col>
         <b-col cols="6" md="3" lg="6" xl="3">
-          <base-block tag="a" rounded link-pop content-class="d-flex py-4" href="javascript:void(0)" v-b-tooltip.hover.top="'Manage States'">
-            <div class="flex-grow-1">
-              <div class="font-size-sm font-w600 text-uppercase text-muted">
-               State Commands
+          <router-link to="/state_commands">
+            <base-block tag="a" rounded link-pop content-class="d-flex py-4">
+              <div class="flex-grow-1">
+                <div class="font-size-sm font-w600 text-uppercase text-muted">
+                  State Commands
+                </div>
+                <div class="font-size-h3">
+                  {{ states }} <span class="font-size-sm text-muted">active</span>
+                </div>
               </div>
-              <div class="font-size-h3">
-                15 <span class="font-size-sm text-muted">active</span>
+              <div class="d-flex ml-2">
+                <div class="flex-grow-1 px-1 bg-warning-light rounded-lg"></div>
               </div>
-            </div>
-            <div class="d-flex ml-2">
-              <div class="flex-grow-1 px-1 bg-warning-light rounded-lg"></div>
-            </div>
-          </base-block>
+            </base-block>
+          </router-link>
         </b-col>
         <b-col cols="6" md="3" lg="6" xl="3">
           <base-block tag="a" rounded link-pop content-class="d-flex py-4" href="javascript:void(0)" v-b-tooltip.hover.top="'Manage Custodial Centers'">
@@ -586,10 +590,44 @@
 <script>
 
 export default {
+  mounted() {
+    this.init()
+  },
   data () {
     return {
-      user: this.$store.getters["auth/currentUser"]
+      user: {},
+      zones: 0,
+      states: 0,
+      isHQ: false,
     }
+  },
+  methods: {
+    init() {
+      this.user = this.$store.getters["auth/currentUser"]
+      if (parseInt(this.user.user_type) === 1) {
+        this.isHQ = true
+        this.getZones()
+        this.getStates()
+      }
+    },
+    async getZones() {
+      await this.$store.dispatch('zone/getZonalCommands')
+        .then(response => {
+          this.zones = response.data.message.length
+        })
+        .catch(error => {
+          this.launchToast('Loading Zonal Command Failure', error.response.data.message, 'warning')
+        })
+    },
+    async getStates() {
+      await this.$store.dispatch('states/getStateCommands')
+        .then(response => {
+          this.states = response.data.message.length
+        })
+        .catch(error => {
+          this.launchToast('Loading State Command Failure', error.response.data.message, 'warning')
+        })
+    },
   }
 }
 </script>

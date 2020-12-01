@@ -33,15 +33,9 @@ const router = new Router({
             authRequired: true,
           },
         },
-      ]
-    },
-    // zones routes
-    {
-      path: '/zonal_commands',
-      component: () => import('@/layouts/variations/BackendStarter'),
-      children: [
+        // zones routes
         {
-          path: '',
+          path: 'zonal_commands',
           name: 'Zones',
           component: () => import('@/views/zones/ZonalCommands'),
           meta: {
@@ -49,31 +43,29 @@ const router = new Router({
             authRequired: true,
           }
         },
-      ]
-    },
-    // states routes
-    {
-      path: '/state_commands',
-      component: () => import('@/layouts/variations/BackendStarter'),
-      children: [
+        // states routes
         {
-          path: '',
+          path: 'state_commands',
           name: 'States',
           component: () => import('@/views/states/StateCommands'),
           meta: {
             title: 'State Commands | NCS Admin',
             authRequired: true
           }
-        }
-      ]
-    },
-    // inmates routes
-    {
-      path: '/inmates',
-      component: () => import('@/layouts/variations/BackendStarter'),
-      children: [
+        },
+        // custodial centers
         {
-          path: 'enrollment',
+          path: 'custodial_centers',
+          name: 'Custodial Centers',
+          component: () => import('@/views/custodials/CustodialCenters'),
+          meta: {
+            title: 'Custodial Centers | NCS Admin',
+            authRequired: true
+          }
+        },
+        // inmates routes
+        {
+          path: 'inmates/enrollment',
           name: 'Enrollment',
           component: () => import('@/views/inmates/Enrollment'),
           meta: {
@@ -82,7 +74,7 @@ const router = new Router({
           }
         },
         {
-          path: 'manage_inmates',
+          path: 'inmates/manage_inmates',
           name: 'Manage Inmates',
           component: () => import('@/views/inmates/ManageInmates'),
           meta: {
