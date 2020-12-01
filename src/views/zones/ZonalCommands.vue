@@ -64,8 +64,13 @@
                 </b-form-group>
               </b-col>
               <b-col lg="4"></b-col>
-              <b-col lg="4" class="text-right mb-2">
-                <b-button variant="alt-primary" size="sm" v-click-ripple>Export</b-button>
+              <b-col lg="4" class="text-right">
+                <download-excel class="btn btn-secondary btn-sm" :data="this.filteredItems" :fields="this.exportFields" name="NCS Admin - Zonal Commands.xls" v-b-tooltip.hover.nofade.topleft="'Export Excel'">
+                  <i class="fa fa-file-excel"></i>
+                </download-excel>
+                <download-excel class="btn btn-secondary btn-sm" type="csv" :data="this.filteredItems" :fields="this.exportFields" name="NCS Admin - Zonal Commands.csv" v-b-tooltip.hover.nofade.topleft="'Export CSV'">
+                  <i class="fa fa-file-csv"></i>
+                </download-excel>
               </b-col>
             </b-row>
             <b-table class="mb-2" @filtered="onFiltered" show-empty striped hover bordered head-variant="light" :filter="filter" :items="zones" :fields="zoneFields" :current-page="currentPage" :per-page="perPage">
@@ -113,8 +118,10 @@ export default {
         zoneName: null
       },
       zoneFields: [{key: 'zone_id', sortable: true, thStyle: 'width: 10%'}, {key: 'zone_name', sortable: true}, {key: 'actions', sortable: false, thStyle: 'width: 9px'}],
+      exportFields: {'Zone ID': 'zone_id', 'Zone Name': 'zone_name'},
       zones: [],
       filter: null,
+      filteredItems: [],
       totalRows: 1,
       currentPage: 1,
       perPage: 5,
@@ -149,6 +156,7 @@ export default {
         .then(response => {
           this.zones = response.data.message
           this.totalRows = response.data.message.length
+          this.filteredItems = this.zones
         })
         .catch(error => {
           this.launchToast('Loading Zonal Command Failure', error.response.data.message, 'warning')
@@ -157,7 +165,8 @@ export default {
     onFiltered(filteredItems) {
       this.totalRows = filteredItems.length
       this.currentPage = 1
-    }
+      this.filteredItems = filteredItems
+    },
   }
 }
 </script>

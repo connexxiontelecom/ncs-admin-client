@@ -11,6 +11,9 @@ import router from './router/starter'
 // Vue JWT
 import VueJWT from 'vuejs-jwt'
 
+// Json Excel
+import JsonExcel from "vue-json-excel";
+
 
 import App from './App.vue'
 import store from './store'
@@ -41,11 +44,13 @@ Vue.component(BaseBlock.name, BaseBlock)
 Vue.component(BaseBackground.name, BaseBackground)
 Vue.component(BasePageHeading.name, BasePageHeading)
 Vue.component(BaseNavigation.name, BaseNavigation)
+Vue.component('downloadExcel', JsonExcel)
 
 // Register global directives
 Vue.directive('click-ripple', clickRipple)
 Vue.directive('toggle-class', toggleClass)
 
+// Register vue jwt
 Vue.use(VueJWT)
 
 Vue.mixin({
