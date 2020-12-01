@@ -15,19 +15,9 @@ export default {
       heading: true
     },
     {
-      name: 'Zones',
+      name: 'Zonal Commands',
       icon: 'fa fa-layer-group',
-      subActivePaths: '/zones',
-      sub: [
-        {
-          name: 'New Zonal Command',
-          to: '/zones/new_zonal_command',
-        },
-        {
-          name: 'Manage Zonal Commands',
-          to: '/zones/manage_zonal_commands'
-        }
-      ]
+      to: '/zonal_commands'
     },
     {
       name: 'States',
