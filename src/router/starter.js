@@ -51,6 +51,22 @@ const router = new Router({
         },
       ]
     },
+    // states routes
+    {
+      path: '/state_commands',
+      component: () => import('@/layouts/variations/BackendStarter'),
+      children: [
+        {
+          path: '',
+          name: 'States',
+          component: () => import('@/views/states/StateCommands'),
+          meta: {
+            title: 'State Commands | NCS Admin',
+            authRequired: true
+          }
+        }
+      ]
+    },
     // inmates routes
     {
       path: '/inmates',

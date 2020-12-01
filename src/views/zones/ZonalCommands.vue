@@ -3,7 +3,7 @@
     <!-- Hero -->
     <base-page-heading title="Zonal Commands" subtitle="Create and manage zonal commands here">
       <template #extra>
-        <b-breadcrumb class="breadcrumb">
+        <b-breadcrumb class="breadcrumb-alt">
           <b-breadcrumb-item href="javascript:void(0)" active>Zonal Commands</b-breadcrumb-item>
         </b-breadcrumb>
       </template>
@@ -152,7 +152,7 @@ export default {
       })
     },
     async getZones() {
-      this.$store.dispatch('zone/getZonalCommands')
+      await this.$store.dispatch('zone/getZonalCommands')
         .then(response => {
           this.zones = response.data.message
           this.totalRows = response.data.message.length
