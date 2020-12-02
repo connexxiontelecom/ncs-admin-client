@@ -124,8 +124,7 @@ import { required } from 'vuelidate/lib/validators'
 export default {
   mixins: [validationMixin],
   mounted() {
-    this.getZones()
-    this.getStates()
+    this.getZoneOptions()
   },
   data() {
     return {
@@ -138,10 +137,10 @@ export default {
       },
       stateFields: [{key: 'state_id', sortable: true, thStyle: 'width: 10%'}, {key: 'state_name', sortable: true}, {key: 'zone_name', sortable: true}, {key: 'actions', sortable: false, thStyle: 'width: 9px'}],
       exportFields: {'State ID': 'state_id', 'State Name': 'state_name', 'Zone Name': 'zone_name'},
-      states: [],
+      states: this.$store.getters.getStates,
       filter: null,
-      filteredItems: [],
-      totalRows: 1,
+      filteredItems: this.states,
+      totalRows: this.$store.getters.getNumStates,
       currentPage: 1,
       perPage: 5,
       pageOptions: [{value: 5, text: '5 per page'}, {value: 10, text: '10 per page'}, {value: 15, text: '15 per page'}],
@@ -160,7 +159,7 @@ export default {
         this.launchToast('Create State Command Failure', 'Please fill all required fields', 'warning')
         return
       }
-      await this.$store.dispatch('states/createStateCommands', { newStateForm: this.newStateForm })
+      await this.$store.dispatch('createStateCommands', { newStateForm: this.newStateForm })
       .then(response => {
         this.launchToast('Create State Command Success', response.data.message, 'success')
         this.$bvModal.hide('new-state-form')
@@ -172,30 +171,13 @@ export default {
         this.launchToast('Create State Command Failure', error.response.data.message, 'warning')
       })
     },
-    async getZones() {
-      await this.$store.dispatch('zone/getZonalCommands')
-        .then(response => {
-          let zones = response.data.message
-          if (zones) {
-            zones.forEach((currentZone) => {
-              this.newStateForm.stateZoneOptions.push({ value: currentZone.zone_id, text: currentZone.zone_name })
-            })
-          }
+    getZoneOptions() {
+      let zones = this.$store.getters.getZones
+      if (zones) {
+        zones.forEach((currentZone) => {
+          this.newStateForm.stateZoneOptions.push({value: currentZone.zone_id, text: currentZone.zone_name})
         })
-        .catch(error => {
-          this.launchToast('Loading Zonal Command Failure', error.response.data.message, 'warning')
-        })
-    },
-    async getStates() {
-      await this.$store.dispatch('states/getStateCommands')
-      .then(response => {
-        this.states = response.data.message
-        this.totalRows = response.data.message.length
-        this.filteredItems = this.states
-      })
-      .catch(error => {
-        this.launchToast('Loading State Command Failure', error.response.data.message, 'warning')
-      })
+      }
     },
     onFiltered(filteredItems) {
       this.totalRows = filteredItems.length

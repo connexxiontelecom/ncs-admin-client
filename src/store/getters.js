@@ -15,9 +15,29 @@ const getters = {
   appColorTheme: (state) => {
     return state.settings.colorTheme
   },
-  // Get authenticated state
-  isAuthenticated: (state) => {
-    return state.settings.isAuthenticated
+  // Get session user
+  getUser: (state) => {
+    return state.session.user
+  },
+  // get session isHQ
+  getIsHQ: (state) => {
+    return state.session.isHQ
+  },
+  // get Zones
+  getZones: (state) => {
+    return state.data.zones
+  },
+  // get states
+  getStates: (state) => {
+    return state.data.states
+  },
+  // get numZones
+  getNumZones: (state) => {
+    return state.data.numZones
+  },
+  // get numStates
+  getNumStates: (state) => {
+    return state.data.numStates
   }
 }
 

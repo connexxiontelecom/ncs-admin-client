@@ -64,6 +64,26 @@ Vue.mixin({
         appendToast: append
       })
     },
+    async getZones() {
+      await this.$store.dispatch('getZonalCommands')
+        .then(response => {
+          localStorage.setItem('zones', JSON.stringify(response.data.message))
+          this.$store.commit('initZonesData', { zones: response.data.message })
+        })
+        .catch(error => {
+          this.launchToast('Loading Zonal Command Failure', error.response.data.message, 'warning')
+        })
+    },
+    async getStates() {
+      await this.$store.dispatch('getStateCommands')
+        .then(response => {
+          localStorage.setItem('states', JSON.stringify(response.data.message))
+          this.$store.commit('initStatesData', { states: response.data.message })
+        })
+        .catch(error => {
+          this.launchToast('Loading State Command Failure', error.response.data.message, 'warning')
+        })
+    },
   }
 })
 
@@ -75,10 +95,16 @@ new Vue({
   store,
   router,
   beforeCreate() {
+    // get information if web app is reloaded
     if (localStorage.getItem('accessToken')) {
-      let userData = this.$jwt.decode(localStorage.getItem('accessToken')).data
-      this.$store.commit('auth/SET_BEARER', localStorage.getItem('accessToken'))
-      this.$store.commit('auth/INIT_SESSION', userData)
+      let accessToken = localStorage.getItem('accessToken')
+      let userData = this.$jwt.decode(accessToken).data
+      let zones = JSON.parse(localStorage.getItem('zones'))
+      let states = JSON.parse(localStorage.getItem('states'))
+      this.$store.commit('setBearer', { accessToken })
+      this.$store.commit('initSession', { userData, accessToken })
+      this.$store.commit('initZonesData', { zones })
+      this.$store.commit('initStatesData', { states })
     }
   },
   render: h => h(App)

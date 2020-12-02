@@ -1,11 +1,28 @@
 import helpers from "@/store/helpers";
 
 const state = {
-// App vital details
+  // App vital details
   app: {
     name: 'NCS Admin',
     version: process.env.PACKAGE_VERSION,
     copyright: helpers.getCurrentYear()
+  },
+
+  // Session Details
+  session: {
+    user: {},
+    isHQ: false,
+    isZone: false,
+    isState: false,
+    isCenter: false,
+  },
+
+  // data details
+  data: {
+    zones: [],
+    states: [],
+    numZones: 0,
+    numStates: 0
   },
 
   // Default layout options
