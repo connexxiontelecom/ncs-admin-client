@@ -11,7 +11,7 @@
         <!-- END User Avatar -->
 
         <!-- User Info -->
-        <div class="ml-2" v-if="parseInt(user.user_type) === 1">
+        <div class="ml-2" v-if="isHQ">
           <a class="text-dark font-w600 font-size-sm" href="javascript:void(0)">NCS HQ Command</a>
         </div>
         <!-- END User Info -->
@@ -270,7 +270,7 @@ export default {
   },
   data () {
     return {
-      user: this.$store.getters["auth/currentUser"],
+      isHQ: this.$store.getters.getIsHQ,
       settings: {
         status: true,
         updated: true,

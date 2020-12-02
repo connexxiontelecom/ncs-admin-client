@@ -590,44 +590,14 @@
 <script>
 
 export default {
-  mounted() {
-    this.init()
-  },
   data () {
     return {
-      user: {},
-      zones: 0,
-      states: 0,
-      isHQ: false,
+      user: this.$store.getters.getUser,
+      isHQ: this.$store.getters.getIsHQ,
+      zones: this.$store.getters.getNumZones,
+      states: this.$store.getters.getNumStates,
     }
   },
-  methods: {
-    init() {
-      this.user = this.$store.getters["auth/currentUser"]
-      if (parseInt(this.user.user_type) === 1) {
-        this.isHQ = true
-        this.getZones()
-        this.getStates()
-      }
-    },
-    async getZones() {
-      await this.$store.dispatch('zone/getZonalCommands')
-        .then(response => {
-          this.zones = response.data.message.length
-        })
-        .catch(error => {
-          this.launchToast('Loading Zonal Command Failure', error.response.data.message, 'warning')
-        })
-    },
-    async getStates() {
-      await this.$store.dispatch('states/getStateCommands')
-        .then(response => {
-          this.states = response.data.message.length
-        })
-        .catch(error => {
-          this.launchToast('Loading State Command Failure', error.response.data.message, 'warning')
-        })
-    },
-  }
+  methods: {}
 }
 </script>

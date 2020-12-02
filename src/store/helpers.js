@@ -4,6 +4,23 @@ const helpers = {
   },
   getCurrentYear () {
     return new Date().getFullYear()
+  },
+  getLoginForm(form) {
+    let formData = new FormData()
+    formData.append('username', form.username)
+    formData.append('password', form.password)
+    return formData
+  },
+  getZonalForm(form) {
+    let formData = new FormData()
+    formData.append('zone_name', form.zoneName)
+    return formData
+  },
+  getStatesForm(form) {
+    let formData = new FormData()
+    formData.append('state_name', form.stateName)
+    formData.append('state_zone_id', form.stateZoneSelected)
+    return formData
   }
 }
 

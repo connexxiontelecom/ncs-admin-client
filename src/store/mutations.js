@@ -1,6 +1,50 @@
+import axios from "@/axios";
 import helpers from "@/store/helpers";
 
 const mutations = {
+
+  // initialize app session
+  initSession (state, payload) {
+    delete payload.userData.user_password
+    localStorage.setItem('accessToken', payload.accessToken)
+    state.session.user = payload.userData
+    switch (parseInt(state.session.user.user_type)){
+      case 1:
+        state.session.isHQ = true
+        break;
+      case 2:
+        state.session.isZone = true
+        break;
+      case 3:
+        state.session.isState = true
+        break;
+      case 4:
+        state.session.isCenter = true
+    }
+  },
+  // initialize app data
+  initZonesData (state, payload) {
+    state.data.zones = payload.zones
+    state.data.numZones = payload.zones.length
+  },
+  initStatesData (state, payload) {
+    state.data.states = payload.states
+    state.data.numStates = payload.states.length
+  },
+  // clear session
+  clearSession () {
+    localStorage.removeItem('accessToken')
+    localStorage.removeItem('zones')
+    localStorage.removeItem('states')
+  },
+  // set authentication header
+  setBearer (state, payload) {
+    axios.defaults.headers.common['HTTP_AUTHORIZATION'] = `Bearer ${payload.accessToken}`
+  },
+  // clear authentication header
+  clearBearer () {
+    delete axios.defaults.headers.common['HTTP_AUTHORIZATION']
+  },
   // Sets the layout, useful for setting different layouts (under layouts/variations/)
   setLayout (state, payload) {
     state.layout.header = payload.header

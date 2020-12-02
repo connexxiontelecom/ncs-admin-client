@@ -63,6 +63,15 @@ const router = new Router({
             authRequired: true
           }
         },
+        {
+          path: 'custodial_center_types',
+          name: 'Custodial Center Types',
+          component: () => import('@/views/custodials/CustodialCenterTypes'),
+          meta: {
+            title: 'Custodial Center Types | NCS Admin',
+            authRequired: true
+          }
+        },
         // inmates routes
         {
           path: 'inmates/enrollment',

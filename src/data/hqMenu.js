@@ -30,8 +30,12 @@ export default {
       to: '',
       sub: [
         {
-          name: 'Manage Custodial Centers',
+          name: 'Custodial Centers',
           to: '/custodial_centers'
+        },
+        {
+          name: 'Custodial Center Types',
+          to: '/custodial_center_types'
         }
       ]
     },
