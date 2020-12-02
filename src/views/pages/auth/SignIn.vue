@@ -92,11 +92,13 @@ export default {
         return
       }
       // Form submit logic
-
-      await this.$store.dispatch('auth/login', { form: this.form })
+      await this.$store.dispatch('login', { form: this.form })
         .then(response => {
-          let userData = this.$jwt.decode(response.data.token).data
-          this.$store.commit('auth/INIT_SESSION', userData)
+          let accessToken = response.data.token
+          let userData = this.$jwt.decode(accessToken).data
+          this.$store.commit('initSession', { userData, accessToken })
+          this.getZones()
+          this.getStates()
           this.$router.push('/dashboard')
         })
         .catch(error => {
@@ -107,6 +109,7 @@ export default {
           }
         })
     },
+
   }
 }
 </script>

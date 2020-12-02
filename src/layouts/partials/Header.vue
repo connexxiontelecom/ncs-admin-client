@@ -149,7 +149,7 @@
                 <router-link class="dropdown-item d-flex align-items-center justify-content-between" to="/auth/lock">
                   <span class="font-size-sm font-w500">Lock Account</span>
                 </router-link>
-                <a class="dropdown-item d-flex align-items-center justify-content-between" @click="logout">
+                <a class="dropdown-item d-flex align-items-center justify-content-between" href="javascript:void(0)" @click="logout">
                   <span class="font-size-sm font-w500">Log Out</span>
                 </a>
               </div>
@@ -244,10 +244,9 @@ export default {
     classes: String
   },
   data () {
-    // const user_details = this.$jwt.decode(localStorage.getItem('username')).data
     return {
       baseSearchTerm: '',
-      user: this.$store.getters["auth/currentUser"] ,
+      user: this.$store.getters.getUser,
       notifications: [
         {
           href: 'javascript:void(0)',
@@ -300,10 +299,8 @@ export default {
       }
     },
     logout () {
-      this.$store.dispatch('auth/logout')
-        .then(() => {
-          this.$router.push('/auth/signin')
-        })
+      this.$store.dispatch('logout')
+        .then(() => { this.$router.push('/auth/signin') })
     }
   },
   mounted () {
