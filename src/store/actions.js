@@ -10,12 +10,9 @@ const actions = {
         .then(response => {
           const accessToken = response.data.token
           commit('setBearer', { accessToken })
-
           resolve(response)
         })
         .catch(error => {
-          commit('clearSession')
-          commit('clearBearer')
           reject(error)
         })
     })
