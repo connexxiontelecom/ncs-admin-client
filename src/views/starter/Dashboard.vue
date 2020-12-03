@@ -37,7 +37,7 @@
                   Zonal Commands
                 </div>
                 <div class="font-size-h3">
-                  {{ zones }} <span class="font-size-sm text-muted">active</span>
+                  {{ zones }} <span class="font-size-sm text-muted">total</span>
                 </div>
               </div>
               <div class="d-flex ml-2">
@@ -54,7 +54,7 @@
                   State Commands
                 </div>
                 <div class="font-size-h3">
-                  {{ states }} <span class="font-size-sm text-muted">active</span>
+                  {{ states }} <span class="font-size-sm text-muted">total</span>
                 </div>
               </div>
               <div class="d-flex ml-2">
@@ -71,7 +71,7 @@
                   Custodial Centers
                 </div>
                 <div class="font-size-h3">
-                  {{ centers }} <span class="font-size-sm text-muted">active</span>
+                  {{ centers }} <span class="font-size-sm text-muted">total</span>
                 </div>
               </div>
               <div class="d-flex ml-2">
@@ -442,7 +442,7 @@
     </div>
     <!-- END Page Content -->
   </div>
-  <div v-else-if="parseInt(user.user_type) === 4">
+  <div v-else-if="isCenter">
     <!-- Hero -->
     <div class="bg-body-light">
       <div class="content content-full">
@@ -596,6 +596,7 @@ export default {
     return {
       user: this.$store.getters.getUser,
       isHQ: this.$store.getters.getIsHQ,
+      isCenter: this.$store.getters.getIsCenter,
       zones: this.$store.getters.getNumZones,
       states: this.$store.getters.getNumStates,
       centers: this.$store.getters.getNumCenters,

@@ -124,8 +124,20 @@ const actions = {
           reject(error)
         })
     })
+  },
+  // eslint-disable-next-line no-unused-vars
+  enrollInmate ({ commit }, payload) {
+    return new Promise((resolve, reject) => {
+      let formData = helpers.getEnrollmentForm(payload.enrollmentForm)
+      axios({url: 'inmate/new_inmate', data: formData, method: 'POST'})
+        .then(response => {
+          resolve(response)
+        })
+        .catch(error => {
+          reject(error)
+        })
+    })
   }
-
 }
 
 export default actions
