@@ -143,7 +143,10 @@ export default {
         this.launchToast('Create Zonal Command Success', response.data.message, 'success')
         this.$bvModal.hide('new-zone-form')
         this.newZoneForm.zoneName = null
-        this.getZones()
+        this.getZones().then(() => {
+          this.zones = this.$store.getters.getZones
+          this.totalRows = this.$store.getters.getNumZones
+        })
       })
       .catch(error => {
         this.launchToast('Create Zonal Command Failure', error.response.data.message, 'warning')

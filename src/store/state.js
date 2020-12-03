@@ -21,8 +21,11 @@ const state = {
   data: {
     zones: [],
     states: [],
+    ccTypes: [],
+
     numZones: 0,
-    numStates: 0
+    numStates: 0,
+    numCCTypes: 0
   },
 
   // Default layout options

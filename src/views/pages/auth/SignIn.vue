@@ -99,6 +99,7 @@ export default {
           this.$store.commit('initSession', { userData, accessToken })
           this.getZones()
           this.getStates()
+          this.getCCTypes()
           this.$router.push('/dashboard')
         })
         .catch(error => {

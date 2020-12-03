@@ -38,7 +38,15 @@ const getters = {
   // get numStates
   getNumStates: (state) => {
     return state.data.numStates
-  }
+  },
+  // get cc types
+  getCCTypes: (state) => {
+    return state.data.ccTypes
+  },
+  // get num cc
+  getNumCCTypes: (state) => {
+    return state.data.numCCTypes
+  },
 }
 
 export default getters

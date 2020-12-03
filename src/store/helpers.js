@@ -21,6 +21,11 @@ const helpers = {
     formData.append('state_name', form.stateName)
     formData.append('state_zone_id', form.stateZoneSelected)
     return formData
+  },
+  getCCTypeForm(form) {
+    let formData = new FormData()
+    formData.append('cc_type_name', form.centerTypeName)
+    return formData
   }
 }
 

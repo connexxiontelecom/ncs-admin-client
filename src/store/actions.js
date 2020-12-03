@@ -56,7 +56,7 @@ const actions = {
   // eslint-disable-next-line no-unused-vars
   createStateCommands ({ commit }, payload) {
     return new Promise((resolve, reject) => {
-      let formData = helpers.getZonalForm(payload.newStateForm)
+      let formData = helpers.getStatesForm(payload.newStateForm)
       axios({url: 'state/new_state', data: formData, method: 'POST'})
         .then(response => {
           resolve(response)
@@ -70,6 +70,31 @@ const actions = {
   getStateCommands ({ commit }) {
     return new Promise((resolve, reject) => {
       axios({url: 'state/all_states', method: 'GET'})
+        .then(response => {
+          resolve(response)
+        })
+        .catch(error => {
+          reject(error)
+        })
+    })
+  },
+  // eslint-disable-next-line no-unused-vars
+  createCustodialCenterType ({ commit }, payload) {
+    return new Promise((resolve, reject) => {
+      let formData = helpers.getCCTypeForm(payload.newCenterTypeForm)
+      axios({url: 'new_cc_type', data: formData, method: 'POST'})
+        .then(response => {
+          resolve(response)
+        })
+        .catch(error => {
+          reject(error)
+        })
+    })
+  },
+  // eslint-disable-next-line no-unused-vars
+  getCustodialCenterTypes ({ commit }) {
+    return new Promise((resolve, reject) => {
+      axios({url: 'all_cc_types', method: 'GET'})
         .then(response => {
           resolve(response)
         })

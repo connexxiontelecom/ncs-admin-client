@@ -84,6 +84,16 @@ Vue.mixin({
           this.launchToast('Loading State Command Failure', error.response.data.message, 'warning')
         })
     },
+    async getCCTypes() {
+      await this.$store.dispatch('getCustodialCenterTypes')
+        .then(response => {
+          localStorage.setItem('ccTypes', JSON.stringify(response.data.message))
+          this.$store.commit('initCCTypesData', { ccTypes: response.data.message })
+        })
+        .catch(error => {
+          this.launchToast('Loading CC Types Failure', error.response.data.message, 'warning')
+        })
+    },
   }
 })
 
@@ -99,13 +109,14 @@ new Vue({
     if (localStorage.getItem('accessToken')) {
       let accessToken = localStorage.getItem('accessToken')
       let userData = this.$jwt.decode(accessToken).data
-      let zones = JSON.parse(localStorage.getItem('zones'))
-      let states = JSON.parse(localStorage.getItem('states'))
       this.$store.commit('setBearer', { accessToken })
       this.$store.commit('initSession', { userData, accessToken })
-      this.$store.commit('initZonesData', { zones })
-      this.$store.commit('initStatesData', { states })
     }
+  },
+  created() {
+    this.getZones().then()
+    this.getStates().then()
+    this.getCCTypes().then()
   },
   render: h => h(App)
 }).$mount('#app')

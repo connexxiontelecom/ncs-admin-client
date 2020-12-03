@@ -31,11 +31,16 @@ const mutations = {
     state.data.states = payload.states
     state.data.numStates = payload.states.length
   },
+  initCCTypesData (state, payload) {
+    state.data.ccTypes = payload.ccTypes
+    state.data.numCCTypes = payload.ccTypes.length
+  },
   // clear session
   clearSession () {
     localStorage.removeItem('accessToken')
     localStorage.removeItem('zones')
     localStorage.removeItem('states')
+    localStorage.removeItem('ccTypes')
   },
   // set authentication header
   setBearer (state, payload) {
