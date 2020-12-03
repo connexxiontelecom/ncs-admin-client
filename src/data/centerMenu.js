@@ -6,26 +6,21 @@ export default {
       to: '/dashboard',
     },
     {
-      name: 'Activities',
-      icon: 'fa fa-list-alt',
-      to: ''
-    },
-    {
       name: 'Prison Management',
       heading: true
     },
     {
       name: 'Inmates',
       icon: 'fa fa-users',
-      to: '/inmates',
+      to: '',
       sub: [
         {
           name: 'Enrollment',
-          to: '/inmates/enrollment'
+          to: 'enrollment'
         },
         {
           name: 'Manage Inmates',
-          to: '/inmates/manage_inmates'
+          to: 'manage_inmates'
         }
       ]
     },
@@ -37,7 +32,8 @@ export default {
           name: 'Cells'
         },
         {
-          name: 'Cell Blocks'
+          name: 'Cell Blocks',
+          to: 'cell_blocks'
         },
         {
           name: 'Cell Assignment'

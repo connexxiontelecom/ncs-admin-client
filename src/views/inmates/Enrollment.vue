@@ -4,8 +4,8 @@
     <base-page-heading title="Enrollment" subtitle="Admission & profiling of new inmates">
       <template #extra>
         <b-breadcrumb class="breadcrumb-alt">
-          <b-breadcrumb-item href="javascript:void(0)">Inmates</b-breadcrumb-item>
-          <b-breadcrumb-item active>Enrollment</b-breadcrumb-item>
+          <b-breadcrumb-item active><router-link to="/dashboard"><i class="fa fa-home"></i></router-link></b-breadcrumb-item>
+          <b-breadcrumb-item href="javascript:void(0)" active>Enrollment</b-breadcrumb-item>
         </b-breadcrumb>
       </template>
     </base-page-heading>
@@ -36,7 +36,7 @@
     <div class="content">
       <base-block rounded title="Inmate Enrollment Form" ref="enrollmentBlock" btn-option-fullscreen>
         <b-form @submit.stop.prevent="onSubmit">
-          <b-tabs id="form-block" class="block" nav-class="nav-tabs-block " content-class="block-content overflow-hidden" vertical>
+          <b-tabs v-model="tabIndex" id="form-block" class="block"  content-class="block-content overflow-hidden" pills fill>
             <b-tab title="Personal" active class="fade-left p-4">
               <h4 class="font-w400">Personal Information</h4>
               <b-row>
@@ -337,9 +337,12 @@
                 </b-col>
               </b-row>
             </b-tab>
-            <b-tab title-item-class="" class="fade-left p-4">
+            <b-tab title="Biometrics" class="fade-left p-4">
+              <h4 class="font-w400">Biometrics Information</h4>
+            </b-tab>
+            <b-tab title-item-class="ml-auto" class="p-4">
               <template #title>
-                <i class="si si-check"></i> Done
+                Done <b-spinner type="grow" small></b-spinner>
               </template>
               <h4 class="font-w400">Finalize & Submit</h4>
               <p>Please ensure all required fields are filled before submitting</p>
@@ -352,6 +355,10 @@
                 </b-col>
               </b-row>
             </b-tab>
+            <b-button-group class="float-right p-4">
+              <b-button variant="alt-primary" @click="tabIndex--">Previous</b-button>
+              <b-button variant="alt-primary" @click="tabIndex++">Next</b-button>
+            </b-button-group>
           </b-tabs>
         </b-form>
       </base-block>
@@ -367,6 +374,7 @@
 <script>
 import { validationMixin } from 'vuelidate'
 import { required, minLength } from 'vuelidate/lib/validators'
+import enrollmentOptions from '@/data/formOptions/enrollmentOptions'
 
 export default {
   mounted() {
@@ -379,6 +387,7 @@ export default {
   components: {},
   data () {
     return {
+      tabIndex: 1,
       // enrollment form
       enrollmentForm: {
         refNo: null,
@@ -386,150 +395,33 @@ export default {
         lastname: null,
         othernames: null,
         genderSelected: null,
-        genderOptions: [
-          { value: null, text: 'Please select' },
-          { value: 'male', text: 'Male' },
-          { value: 'female', text: 'Female' }
-        ],
+        genderOptions: enrollmentOptions.genderOptions,
         dob: null,
         nationalitySelected: 1,
-        nationalityOptions: [
-          { value: null, text: 'Please select' },
-          { value: 1, text: 'Nigeria' },
-        ],
+        nationalityOptions: enrollmentOptions.nationalityOptions,
         lgaSelected: null,
-        lgaOptions: [
-          { value: null, text: 'Please select' }
-        ],
+        lgaOptions: enrollmentOptions.lgaOptions,
         stateSelected: null,
-        stateOptions: [
-          { value: null, text: 'Please select' },
-          { value: 1, text: 'Abia' },
-          { value: 2, text: 'Adamawa' },
-          { value: 3, text: 'Akwa Ibom' },
-          { value: 4, text: 'Anambra' },
-          { value: 5, text: 'Bauchi' },
-          { value: 6, text: 'Bayelsa' },
-          { value: 7, text: 'Benue' },
-          { value: 8, text: 'Borno' },
-          { value: 9, text: 'Cross River' },
-          { value: 10, text: 'Delta' },
-          { value: 11, text: 'Ebonyi' },
-          { value: 12, text: 'Edo' },
-          { value: 13, text: 'Ekiti' },
-          { value: 14, text: 'Enugu' },
-          { value: 15, text: 'Gombe' },
-          { value: 16, text: 'Imo' },
-          { value: 17, text: 'Jigawa' },
-          { value: 18, text: 'Kaduna' },
-          { value: 19, text: 'Kano' },
-          { value: 20, text: 'Katsina' },
-          { value: 21, text: 'Kebbi' },
-          { value: 22, text: 'Kogi' },
-          { value: 23, text: 'Kwara' },
-          { value: 24, text: 'Lagos' },
-          { value: 25, text: 'Nasarawa' },
-          { value: 26, text: 'Niger' },
-          { value: 27, text: 'Ogun' },
-          { value: 28, text: 'Ondo' },
-          { value: 29, text: 'Osun' },
-          { value: 30, text: 'Oyo' },
-          { value: 31, text: 'Plateau' },
-          { value: 32, text: 'Rivers' },
-          { value: 33, text: 'Sokoto' },
-          { value: 34, text: 'Taraba' },
-          { value: 35, text: 'Yobe' },
-          { value: 36, text: 'Zamfara' },
-          { value: 37, text: 'Federal Capital Territory (FCT)' },
-
-        ],
+        stateOptions: enrollmentOptions.stateOptions,
         hometown: null,
         address: null,
         city: null,
         countrySelected: null,
-        countryOptions: [
-          { value: null, text: 'Please select' },
-          { value: 'nigeria', text: 'Nigeria' },
-        ],
+        countryOptions: enrollmentOptions.countryOptions,
         religionSelected: null,
-        religionOptions: [
-          { value: null, text: 'Please select' },
-          { value: 'christian', text: 'Christian' },
-          { value: 'muslim', text: 'Muslim' },
-          { value: 'other', text: 'Other' },
-        ],
+        religionOptions: enrollmentOptions.religionOptions,
         specifyReligion: null,
         maritalSelected: null,
-        maritalOptions: [
-          { value: null, text: 'Please select' },
-          { value: 'married', text: 'Married'},
-          { value: 'single', text: 'Single'},
-          { value: 'separated', text: 'Separated' },
-          { value: 'divorced', text: 'Divorced' },
-        ],
+        maritalOptions: enrollmentOptions.maritalOptions,
         children: 0,
         spouseInfo: null,
         nokInfo: null,
         categorySelected: null,
-        categoryOptions: [
-          { value: null, text: 'Please select'},
-          { value: 1, text: 'Awaiting Trial'},
-          { value: 2, text: 'Convicted'},
-        ],
+        categoryOptions: enrollmentOptions.categoryOptions,
         courtSelected: null,
-        courtOptions: [
-          { value: null, text: 'Please select' },
-          { value: 'supreme_court', text: 'Supreme Court' },
-          { value: 'appeal_court', text: 'Court of Appeal' },
-          { value: 'federal_high_court', text: 'Federal High Court' },
-          { value: 'state_high_court', text: 'State High Court' },
-          { value: 'national_industrial_court', text: 'National Industrial Court' },
-          { value: 'sharia_appeal_court', text: 'Sharia Court of Appeal' },
-          { value: 'customary_appeal_court', text: 'Customary Court of Appeal' },
-          { value: 'magistrate_court', text: 'Magistrate Court (District Court)' },
-        ],
+        courtOptions: enrollmentOptions.courtOptions,
         courtStateSelected: null,
-        courtStateOptions: [
-          { value: null, text: 'Please select' },
-          { value: 1, text: 'Abia' },
-          { value: 2, text: 'Adamawa' },
-          { value: 3, text: 'Akwa Ibom' },
-          { value: 4, text: 'Anambra' },
-          { value: 5, text: 'Bauchi' },
-          { value: 6, text: 'Bayelsa' },
-          { value: 7, text: 'Benue' },
-          { value: 8, text: 'Borno' },
-          { value: 9, text: 'Cross River' },
-          { value: 10, text: 'Delta' },
-          { value: 11, text: 'Ebonyi' },
-          { value: 12, text: 'Edo' },
-          { value: 13, text: 'Ekiti' },
-          { value: 14, text: 'Enugu' },
-          { value: 15, text: 'Gombe' },
-          { value: 16, text: 'Imo' },
-          { value: 17, text: 'Jigawa' },
-          { value: 18, text: 'Kaduna' },
-          { value: 19, text: 'Kano' },
-          { value: 20, text: 'Katsina' },
-          { value: 21, text: 'Kebbi' },
-          { value: 22, text: 'Kogi' },
-          { value: 23, text: 'Kwara' },
-          { value: 24, text: 'Lagos' },
-          { value: 25, text: 'Nasarawa' },
-          { value: 26, text: 'Niger' },
-          { value: 27, text: 'Ogun' },
-          { value: 28, text: 'Ondo' },
-          { value: 29, text: 'Osun' },
-          { value: 30, text: 'Oyo' },
-          { value: 31, text: 'Plateau' },
-          { value: 32, text: 'Rivers' },
-          { value: 33, text: 'Sokoto' },
-          { value: 34, text: 'Taraba' },
-          { value: 35, text: 'Yobe' },
-          { value: 36, text: 'Zamfara' },
-          { value: 37, text: 'Federal Capital Territory (FCT)' },
-
-        ],
+        courtStateOptions: enrollmentOptions.courtStateOptions,
         chargesInfo: null,
         judgementFile: null,
         judge: null,
@@ -539,30 +431,9 @@ export default {
         sentenceDuration: 1,
         otherInfo: null,
         bloodGroupSelected: null,
-        bloodGroupOptions: [
-          { value: null, text: 'Please select' },
-          { value: 'a+', text: 'A RhD positive (A+)' },
-          { value: 'a-', text: 'A RhD negative (A-)' },
-          { value: 'b+', text: 'B RhD positive (B+)' },
-          { value: 'b-', text: 'B RhD negative (B-)' },
-          { value: 'o+', text: 'O RhD positive (O+)' },
-          { value: 'o-', text: 'O RhD negative (O-)' },
-          { value: 'ab+', text: 'AB RhD positive (AB+)' },
-          { value: 'ab-', text: 'AB RhD negative (AB-)' },
-        ],
+        bloodGroupOptions: enrollmentOptions.bloodGroupOptions,
         genotypeSelected: null,
-        genotypeOptions: [
-          { value: null, text: 'Please select' },
-          { value: 'aa', text: 'AA' },
-          { value: 'ao', text: 'AO' },
-          { value: 'bb', text: 'BB' },
-          { value: 'bo', text: 'BO' },
-          { value: 'ab', text: 'AB' },
-          { value: 'oo', text: 'OO' },
-          { value: 'as', text: 'AS' },
-          { value: 'ss', text: 'SS' },
-          { value: 'ac', text: 'AC' },
-        ],
+        genotypeOptions: enrollmentOptions.genotypeOptions,
         height: null,
         weight: null,
         ailments: null,
@@ -623,7 +494,7 @@ export default {
         this.$v.enrollmentForm.religionSelected.$model = this.$v.enrollmentForm.specifyReligion.$model
       }
 
-      await this.$store.dispatch('inmate/enrollInmate', { enrollmentForm: this.enrollmentForm })
+      await this.$store.dispatch('enrollInmate', { enrollmentForm: this.enrollmentForm })
       .then(response => {
         this.launchToast('Enrollment Success', response.data.message, 'success')
       })
@@ -634,9 +505,6 @@ export default {
     religionChange(event) {
       this.specifyReligionDisabled = event !== 'other';
     },
-    redirect() {
-      this.$router.push('/')
-    }
   }
 }
 </script>
