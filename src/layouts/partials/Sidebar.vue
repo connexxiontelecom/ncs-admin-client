@@ -118,6 +118,7 @@ import simplebar from 'simplebar-vue'
 
 // Get navigation data
 import hqMenu from "@/data/hqMenu";
+import centerMenu from "@/data/centerMenu";
 // import menuList from '@/data/menu'
 
 export default {
@@ -129,11 +130,12 @@ export default {
     simplebar
   },
   data () {
-    let nav
-    this.$store.getters.getIsHQ ? nav = hqMenu.main : ''
+    let sideNav
+    this.$store.getters.getIsHQ ? sideNav = hqMenu.main : ''
+    this.$store.getters.getIsCenter ? sideNav = centerMenu.main : ''
     return {
       // Get main navigation
-      navigation: nav
+      navigation: sideNav
     }
   }
 }

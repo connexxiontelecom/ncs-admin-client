@@ -6,12 +6,7 @@ export default {
       to: '/dashboard',
     },
     {
-      name: 'Activities',
-      icon: 'fa fa-list-alt',
-      to: ''
-    },
-    {
-      name: 'General Management',
+      name: 'Config',
       heading: true
     },
     {
@@ -40,21 +35,51 @@ export default {
       ]
     },
     {
+      name: 'User Accounts',
+      icon: 'fa fa-user',
+      sub: [
+        {
+          name: 'Manage Users',
+          to: ''
+        },
+        {
+          name: 'Manage Ranks',
+          to: ''
+        },
+        {
+          name: 'Manage Permissions',
+          to: ''
+        }
+      ]
+    },
+    {
       name: 'Administration',
       heading: true
     },
     {
-      name: 'Users',
-      icon: 'fa fa-users',
-      to: '',
+      name: 'Operations',
+      icon: 'fa fa-archive',
       sub: [
         {
-          name: 'New User',
-          to: '',
+          name: 'Zonal Operations'
         },
         {
-          name: 'Manage Users',
-          to: ''
+          name: 'State Operations'
+        },
+        {
+          name: 'Custodial Operations'
+        }
+      ]
+    },
+    {
+      name: 'Reports',
+      icon: 'fa fa-chart-pie',
+      sub: [
+        {
+          name: 'Activity Logs'
+        },
+        {
+          name: 'Inmate Reports'
         }
       ]
     },
@@ -65,10 +90,6 @@ export default {
     {
       name: 'Documents',
       icon: 'fa fa-folder-open',
-    },
-    {
-      name: 'Reports',
-      icon: 'fa fa-chart-pie',
     },
     {
       name: 'Setup',

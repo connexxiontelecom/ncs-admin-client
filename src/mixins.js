@@ -75,22 +75,15 @@ export default {
         starter.push('/auth/signin')
       }, false);
     },
-    initSession() {
-      // get information if web app is reloaded
-      if (localStorage.getItem('accessToken')) {
-        let accessToken = localStorage.getItem('accessToken')
-        let userData = this.$jwt.decode(accessToken).data
-        this.$store.commit('setBearer', { accessToken })
-        this.$store.commit('initSession', { userData, accessToken })
-      }
-    },
     setupData() {
       // load all our data from api
       if (localStorage.getItem('accessToken')) {
-        this.getZones().then()
-        this.getStates().then()
-        this.getCCTypes().then()
-        this.getCenters().then()
+        if (this.$store.getters.getIsHQ) {
+          this.getZones().then()
+          this.getStates().then()
+          this.getCCTypes().then()
+          this.getCenters().then()
+        }
       }
     }
   }
