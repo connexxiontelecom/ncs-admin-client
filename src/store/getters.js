@@ -23,6 +23,18 @@ const getters = {
   getIsHQ: (state) => {
     return state.session.isHQ
   },
+  // get session isZone
+  getIsZone: (state) => {
+    return state.session.isZone
+  },
+  // get session isState
+  getIsState: (state) => {
+    return state.session.isState
+  },
+  // get session isCenter
+  getIsCenter: (state) => {
+    return state.session.isCenter
+  },
   // get Zones
   getZones: (state) => {
     return state.data.zones

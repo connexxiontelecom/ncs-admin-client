@@ -20,6 +20,7 @@ const mutations = {
         break;
       case 4:
         state.session.isCenter = true
+        break;
     }
   },
   // initialize app data

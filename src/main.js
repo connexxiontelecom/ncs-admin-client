@@ -62,8 +62,16 @@ Vue.config.productionTip = false
 new Vue({
   store,
   router,
+  beforeCreate() {
+    // get information if web app is reloaded
+    if (localStorage.getItem('accessToken')) {
+      let accessToken = localStorage.getItem('accessToken')
+      let userData = this.$jwt.decode(accessToken).data
+      this.$store.commit('setBearer', { accessToken })
+      this.$store.commit('initSession', { userData, accessToken })
+    }
+  },
   created() {
-    this.initSession()
     this.setupData()
   },
   render: h => h(App)
