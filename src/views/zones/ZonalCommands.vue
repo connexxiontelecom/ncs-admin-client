@@ -47,7 +47,7 @@
 
       <b-row>
         <b-col>
-          <base-block rounded title="All Zonal Commands" ref="manageZoneBlock" btn-option-fullscreen>
+          <base-block rounded title="All Zonal Commands" :subtitle="totalRows +' total zonal commands'" ref="manageZoneBlock" btn-option-fullscreen>
             <template #options>
               <button type="button" class="btn-block-option" @click="$bvModal.show('new-zone-form')" >
                 <i class="si si-plus" v-b-tooltip.hover.nofade.topleft="'Create Zonal Command'"></i>

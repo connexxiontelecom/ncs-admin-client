@@ -47,7 +47,7 @@
 
       <b-row>
         <b-col>
-          <base-block rounded title="All Custodial Center Types" btn-option-fullscreen>
+          <base-block rounded title="All Custodial Center Types" :subtitle="totalRows +' total custodial center types'" btn-option-fullscreen>
             <template #options>
               <button type="button" class="btn-block-option" @click="$bvModal.show('new-center-type-form')" >
                 <i class="si si-plus" v-b-tooltip.hover.nofade.topleft="'Create Center Type'"></i>

@@ -25,21 +25,47 @@
             <div class="block-content font-size-sm">
               <b-row>
                 <b-col>
-                  <b-form-group label-for="zone-name">
+                  <b-form-group label-for="center-name">
                     <template #label>
-                      Zonal Command Name <span class="text-danger">*</span>
+                     Custodial Center Name <span class="text-danger">*</span>
                     </template>
-                    <b-form-input id="zone-name" type="text" name="zoneName" v-model="$v.newZoneForm.zoneName.$model" :state="$v.newZoneForm.zoneName.$dirty ? !$v.newZoneForm.zoneName.$error : null"></b-form-input>
+                    <b-form-input id="center-name" type="text" name="centerName" v-model="$v.newCenterForm.centerName.$model" :state="$v.newCenterForm.centerName.$dirty ? !$v.newCenterForm.centerName.$error : null"></b-form-input>
                     <b-form-invalid-feedback>
-                      please fill in a zonal command name
+                      please fill in a custodial center name
+                    </b-form-invalid-feedback>
+                  </b-form-group>
+                </b-col>
+              </b-row>
+              <b-row>
+                <b-col>
+                  <b-form-group label-for="cc-type">
+                    <template #label>
+                      Custodial Center Type <span class="text-danger">*</span>
+                    </template>
+                    <b-form-select id="cc-type" name="centerTypeSelected" v-model="$v.newCenterForm.centerTypeSelected.$model" :state="$v.newCenterForm.centerTypeSelected.$dirty ? !$v.newCenterForm.centerTypeSelected.$error : null" :options="newCenterForm.centerTypeOptions"></b-form-select>
+                    <b-form-invalid-feedback>
+                      please select a center type for this custodial center
+                    </b-form-invalid-feedback>
+                  </b-form-group>
+                </b-col>
+              </b-row>
+              <b-row>
+                <b-col>
+                  <b-form-group label-for="center-state">
+                    <template #label>
+                      Custodial Center State <span class="text-danger">*</span>
+                    </template>
+                    <b-form-select id="center-state" name="centerStateSelected" v-model="$v.newCenterForm.centerStateSelected.$model" :state="$v.newCenterForm.centerStateSelected.$dirty ? !$v.newCenterForm.centerTypeSelected.$error : null" :options="newCenterForm.centerStateOptions"></b-form-select>
+                    <b-form-invalid-feedback>
+                      please select a center state for this custodial center
                     </b-form-invalid-feedback>
                   </b-form-group>
                 </b-col>
               </b-row>
             </div>
             <div class="block-content block-content-full text-right border-top">
-              <b-button type="submit" variant="alt-primary" class="mr-2" v-click-ripple>Create Zone</b-button>
-              <b-button variant="alt-secondary" class="mr-1" @click="$bvModal.hide('new-zone-form')" v-click-ripple>Close</b-button>
+              <b-button type="submit" variant="alt-primary" class="mr-2" v-click-ripple>Create Center</b-button>
+              <b-button variant="alt-secondary" class="mr-1" @click="$bvModal.hide('new-center-form')" v-click-ripple>Close</b-button>
             </div>
           </b-form>
         </div>
@@ -59,3 +85,64 @@
     </div>
   </div>
 </template>
+
+<script>
+import { validationMixin } from 'vuelidate'
+import { required } from 'vuelidate/lib/validators'
+
+export default {
+  mixins: [validationMixin],
+  mounted() {
+    this.getCenterTypeOptions()
+    this.getCenterStateOptions()
+  },
+  data() {
+    return {
+      newCenterForm: {
+        centerName: null,
+        centerTypeSelected: null,
+        centerTypeOptions: [
+          { value: null, text: 'Please select' },
+        ],
+        centerStateSelected: null,
+        centerStateOptions: [
+          { value: null, text: 'Please select' },
+        ]
+      }
+    }
+  },
+  validations: {
+    newCenterForm: {
+      centerName: { required },
+      centerTypeSelected: { required },
+      centerStateSelected: { required }
+    }
+  },
+  methods: {
+    getCenterTypeOptions() {
+      let centerTypes = this.$store.getters.getCCTypes
+      if (centerTypes) {
+        centerTypes.forEach((currentType) => {
+          this.newCenterForm.centerTypeOptions.push({value: currentType.cc_type_id, text: currentType.cc_type_name})
+        })
+      }
+    },
+    getCenterStateOptions() {
+      let centerStates = this.$store.getters.getStates
+      if (centerStates) {
+        centerStates.forEach((currentState) => {
+          this.newCenterForm.centerStateOptions.push({value: currentState.state_id, text: currentState.state_name})
+        })
+      }
+    },
+    async onSubmit() {
+      this.$v.newCenterForm.$touch()
+      if (this.$v.newCenterForm.$anyError) {
+        this.launchToast('Create Custodial Center Failure', 'Please fill all required fields', 'warning')
+        return
+      }
+    }
+
+  }
+}
+</script>
