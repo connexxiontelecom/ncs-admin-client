@@ -47,6 +47,14 @@ const getters = {
   getNumCCTypes: (state) => {
     return state.data.numCCTypes
   },
+  // get centers
+  getCenters: (state) => {
+    return state.data.centers
+  },
+  // get num centers
+  getNumCenters: (state) => {
+    return state.data.numCenters
+  },
 }
 
 export default getters

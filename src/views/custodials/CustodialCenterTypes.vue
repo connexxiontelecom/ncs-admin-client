@@ -115,7 +115,7 @@ export default {
       newCenterTypeForm: {
         centerTypeName: null
       },
-      fields: [{key: 'cc_type_id', sortable: true, thStyle: 'width: 10%'}, {key: 'cc_type_name', sortable: true}, {key: 'actions', sortable: false, thStyle: 'width: 9px'}],
+      fields: [{key: 'cc_type_id', sortable: true, thStyle: 'width: 10%'}, {key: 'cc_type_name', label: 'Custodial Center Type Name', sortable: true}, {key: 'actions', sortable: false, thStyle: 'width: 9px'}],
       exportFields: {'CC Type ID': 'cc_type_id', 'CC Type Name': 'cc_type_name'},
       ccTypes: this.$store.getters.getCCTypes,
       filter: null,

@@ -115,6 +115,18 @@ const actions = {
           reject(error)
         })
     })
+  },
+  // eslint-disable-next-line no-unused-vars
+  getCustodialCenters ({ commit }) {
+    return new Promise((resolve, reject) => {
+      axios({url: 'centre/all_centres', method: 'GET'})
+        .then(response => {
+          resolve(response)
+        })
+        .catch(error => {
+          reject(error)
+        })
+    })
   }
 
 }
