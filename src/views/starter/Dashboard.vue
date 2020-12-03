@@ -64,19 +64,21 @@
           </router-link>
         </b-col>
         <b-col cols="6" md="3" lg="6" xl="3">
-          <base-block tag="a" rounded link-pop content-class="d-flex py-4" href="javascript:void(0)" v-b-tooltip.hover.top="'Manage Custodial Centers'">
-            <div class="flex-grow-1">
-              <div class="font-size-sm font-w600 text-uppercase text-muted">
-                Custodial Centers
+          <router-link to="/custodial_centers">
+            <base-block tag="a" rounded link-pop content-class="d-flex py-4">
+              <div class="flex-grow-1">
+                <div class="font-size-sm font-w600 text-uppercase text-muted">
+                  Custodial Centers
+                </div>
+                <div class="font-size-h3">
+                  {{ centers }} <span class="font-size-sm text-muted">active</span>
+                </div>
               </div>
-              <div class="font-size-h3">
-                42 <span class="font-size-sm text-muted">active</span>
+              <div class="d-flex ml-2">
+                <div class="flex-grow-1 px-1 bg-danger-light rounded-lg"></div>
               </div>
-            </div>
-            <div class="d-flex ml-2">
-              <div class="flex-grow-1 px-1 bg-danger-light rounded-lg"></div>
-            </div>
-          </base-block>
+            </base-block>
+          </router-link>
         </b-col>
         <b-col cols="6" md="3" lg="6" xl="3">
           <base-block tag="a" rounded link-pop content-class="d-flex py-4" href="javascript:void(0)" v-b-tooltip.hover.top="'Manage Inmates'">
@@ -596,6 +598,7 @@ export default {
       isHQ: this.$store.getters.getIsHQ,
       zones: this.$store.getters.getNumZones,
       states: this.$store.getters.getNumStates,
+      centers: this.$store.getters.getNumCenters,
     }
   },
   methods: {}
