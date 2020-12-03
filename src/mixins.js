@@ -86,10 +86,12 @@ export default {
     },
     setupData() {
       // load all our data from api
-      this.getZones().then()
-      this.getStates().then()
-      this.getCCTypes().then()
-      this.getCenters().then()
+      if (localStorage.getItem('accessToken')) {
+        this.getZones().then()
+        this.getStates().then()
+        this.getCCTypes().then()
+        this.getCenters().then()
+      }
     }
   }
 }
