@@ -26,6 +26,13 @@ const helpers = {
     let formData = new FormData()
     formData.append('cc_type_name', form.centerTypeName)
     return formData
+  },
+  getCenterForm(form) {
+    let formData = new FormData()
+    formData.append('cc_name', form.centerName)
+    formData.append('cc_type', form.centerTypeSelected)
+    formData.append('cc_state_id', form.centerStateSelected)
+    return formData
   }
 }
 

@@ -141,6 +141,17 @@ export default {
         this.launchToast('Create Custodial Center Failure', 'Please fill all required fields', 'warning')
         return
       }
+      await this.$store.dispatch('createCustodialCenter', { newCenterForm: this.newCenterForm })
+      .then(response => {
+        this.launchToast('Create Custodial Center Success', response.data.message, 'success')
+        this.$bvModal.hide('new-center-form')
+        this.newCenterForm.centerName = null
+        this.newCenterForm.centerTypeSelected = null
+        this.newCenterForm.centerStateSelected = null
+      })
+      .catch(error => {
+        this.launchToast('Create Custodial Center Failure', error.response.data.message, 'warning')
+      })
     }
 
   }

@@ -102,6 +102,19 @@ const actions = {
           reject(error)
         })
     })
+  },
+  // eslint-disable-next-line no-unused-vars
+  createCustodialCenter ({ commit }, payload) {
+    return new Promise((resolve, reject) => {
+      let formData = helpers.getCenterForm(payload.newCenterForm)
+      axios({url: 'centre/new_centre', data: formData, method: 'POST'})
+        .then(response => {
+          resolve(response)
+        })
+        .catch(error => {
+          reject(error)
+        })
+    })
   }
 
 }
