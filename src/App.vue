@@ -21,30 +21,12 @@
 </style>
 
 <script>
-import store from './store'
-import starter from './router/starter'
 
 export default {
   name: 'App',
   created() {
-    // if token has an issue the app gracefully exits
-    this.$http.interceptors.response.use(undefined, function (err) {
-      return new Promise(function () {
-        if (err.response.data.message === 'Unauthorized Access') {
-          store.dispatch('logout')
-          starter.push('/auth/signin')
-        }
-        // if (err.status === 401 && err.config && !err.config.__isRetryRequest) {
-        //   this.$store.dispatch('auth/logout')
-        // }
-        throw err
-      })
-    })
-    // if local storage is altered, app gracefully exits
-    window.addEventListener("storage", function () {
-      store.dispatch('logout')
-      starter.push('/auth/signin')
-    }, false);
+    this.handleFailedAuth()
+    this.handleStorageAlteration()
   },
 }
 

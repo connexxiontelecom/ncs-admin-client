@@ -60,7 +60,7 @@
 
       <b-row>
         <b-col>
-          <base-block rounded title="All State Commands" ref="manageStateBlock" btn-option-fullscreen>
+          <base-block rounded title="All State Commands" :subtitle="totalRows +' total state commands'" ref="manageStateBlock" btn-option-fullscreen>
             <template #options>
               <button type="button" class="btn-block-option" @click="$bvModal.show('new-state-form')" >
                 <i class="si si-plus" v-b-tooltip.hover.nofade.topleft="'Create State Command'"></i>
@@ -165,7 +165,10 @@ export default {
         this.$bvModal.hide('new-state-form')
         this.newStateForm.stateName = null
         this.newStateForm.stateZoneSelected = null
-        this.getStates()
+        this.getStates().then(() => {
+          this.states = this.$store.getters.getStates
+          this.totalRows = this.$store.getters.getNumStates
+        })
       })
       .catch(error => {
         this.launchToast('Create State Command Failure', error.response.data.message, 'warning')
