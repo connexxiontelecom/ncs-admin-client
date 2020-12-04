@@ -23,11 +23,13 @@ const state = {
     states: [],
     ccTypes: [],
     centers: [],
+    cellBlocks: [],
 
     numZones: 0,
     numStates: 0,
     numCCTypes: 0,
-    numCenters: 0
+    numCenters: 0,
+    numCellBlocks: 0,
   },
 
   // Default layout options
