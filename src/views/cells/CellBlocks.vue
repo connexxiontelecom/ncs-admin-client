@@ -111,7 +111,7 @@ import { required } from 'vuelidate/lib/validators'
 export default {
   mixins: [validationMixin],
   computed: {
-    cellBlocksSN (){
+    cellBlocksSN () {
       return this.cellBlocks.map((d, index) => ({ ...d, sno: index + 1 }))
     }
   },

@@ -60,6 +60,16 @@ export default {
           this.launchToast('Loading Cell Blocks Failure', error.response.data.message, 'warning')
         })
     },
+    async getCells() {
+      await this.$store.dispatch('getCells')
+        .then(response => {
+          localStorage.setItem('cells', JSON.stringify(response.data.message))
+          this.$store.commit('initCellData', { cells: response.data.message })
+        })
+        .catch(error => {
+          this.launchToast('Loading Cells Failure', error.response.data.message, 'warning')
+        })
+    },
 
     setupData() {
       // load all our data from api
@@ -72,6 +82,7 @@ export default {
         }
         if (this.$store.getters.getIsCenter) {
           this.getCellBlocks().then()
+          this.getCells().then()
         }
       }
     }

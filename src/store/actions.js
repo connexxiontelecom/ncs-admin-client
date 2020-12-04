@@ -175,6 +175,18 @@ const actions = {
           reject(error)
         })
     })
+  },
+  // eslint-disable-next-line no-unused-vars
+  getCells ({ commit }, payload) {
+    return new Promise((resolve, reject) => {
+      axios({url: 'cell/all_cc_cell', method: 'GET'})
+        .then(response => {
+          resolve(response)
+        })
+        .catch(error => {
+          reject(error)
+        })
+    })
   }
 }
 

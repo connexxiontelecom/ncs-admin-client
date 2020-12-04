@@ -24,12 +24,14 @@ const state = {
     ccTypes: [],
     centers: [],
     cellBlocks: [],
+    cells: [],
 
     numZones: 0,
     numStates: 0,
     numCCTypes: 0,
     numCenters: 0,
     numCellBlocks: 0,
+    numCells: 0
   },
 
   // Default layout options
