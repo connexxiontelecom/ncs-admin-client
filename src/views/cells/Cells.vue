@@ -127,6 +127,17 @@ export default {
         this.launchToast('Create Cell Failure', 'Please fill all required fields', 'warning')
         return
       }
+      await this.$store.dispatch('createCell', { newCellForm: this.newCellForm })
+      .then(response => {
+        this.launchToast('Create Cell Success', response.data.message, 'success')
+        this.resetForm()
+      })
+    },
+    resetForm () {
+      this.$bvModal.hide('new-cell-form')
+      this.newCellForm.cellAlias = null
+      this.newCellForm.cellCapacity = null
+      this.newCellForm.cellBlockSelected = null
     }
   }
 }

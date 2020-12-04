@@ -162,6 +162,19 @@ const actions = {
           reject(error)
         })
     })
+  },
+  // eslint-disable-next-line no-unused-vars
+  createCell ({ commit }, payload) {
+    return new Promise((resolve, reject) => {
+      let formData = helpers.getCellForm(payload.newCellForm)
+      axios({url: 'cell/new_cell', data: formData, method: 'POST'})
+        .then(response => {
+          resolve(response)
+        })
+        .catch(error => {
+          reject(error)
+        })
+    })
   }
 }
 
