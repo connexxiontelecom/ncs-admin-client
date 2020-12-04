@@ -67,6 +67,14 @@ const getters = {
   getNumCenters: (state) => {
     return state.data.numCenters
   },
+  // get cell blocks
+  getCellBlocks: (state) => {
+    return state.data.cellBlocks
+  },
+  // get num cell blocks
+  getNumCellBlocks: (state) => {
+    return state.data.numCellBlocks
+  }
 }
 
 export default getters

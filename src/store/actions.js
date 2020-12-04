@@ -150,6 +150,18 @@ const actions = {
           reject(error)
         })
     })
+  },
+  // eslint-disable-next-line no-unused-vars
+  getCellBlocks ({ commit }) {
+    return new Promise((resolve, reject) => {
+      axios({url: 'all_cell_blocks', method: 'GET'})
+        .then(response => {
+          resolve(response)
+        })
+        .catch(error => {
+          reject(error)
+        })
+    })
   }
 }
 
