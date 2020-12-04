@@ -30,7 +30,7 @@
       <!-- Stats -->
       <b-row>
         <b-col cols="6" md="3" lg="6" xl="3">
-          <router-link to="/zonal_commands">
+          <router-link to="/zonal_operations">
             <base-block tag="a" rounded link-pop content-class="d-flex py-4">
               <div class="flex-grow-1">
                 <div class="font-size-sm font-w600 text-uppercase text-muted">
