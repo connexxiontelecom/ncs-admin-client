@@ -76,6 +76,12 @@ const helpers = {
     formData.append('inmate_country_residence', form.enrollmentForm.countrySelected)
     return formData
   },
+  getCellBlockForm(form) {
+    let formData = new FormData()
+    formData.append('cell_block_alias', form.cellBlockAlias)
+    return formData
+  }
+
 }
 
 export default helpers

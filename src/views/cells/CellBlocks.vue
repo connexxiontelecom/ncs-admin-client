@@ -85,6 +85,18 @@ export default {
         this.launchToast('Create Cell Block Failure', 'Please fill all required fields', 'warning')
         return
       }
+      await this.$store.dispatch('createCellBlock', { newCellBlockForm: this.newCellBlockForm })
+      .then(response => {
+        this.launchToast('Create Cell Block Success', response.data.message, 'success')
+        this.resetForm()
+      })
+      .catch(error => {
+        this.launchToast('Create Cell Block Failure', error.response.data.message, 'warning')
+      })
+    },
+    resetForm () {
+      this.$bvModal.hide('new-cell-block-form')
+      this.newCellBlockForm.cellBlockAlias = null
     }
   }
 }
