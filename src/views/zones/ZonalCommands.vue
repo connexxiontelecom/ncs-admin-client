@@ -47,7 +47,7 @@
 
       <b-row>
         <b-col>
-          <base-block rounded title="All Zonal Commands" ref="manageZoneBlock" btn-option-fullscreen>
+          <base-block rounded title="All Zonal Commands" :subtitle="totalRows +' total zonal commands'" ref="manageZoneBlock" btn-option-fullscreen>
             <template #options>
               <button type="button" class="btn-block-option" @click="$bvModal.show('new-zone-form')" >
                 <i class="si si-plus" v-b-tooltip.hover.nofade.topleft="'Create Zonal Command'"></i>
@@ -110,9 +110,6 @@ import { required } from 'vuelidate/lib/validators'
 
 export default {
   mixins: [validationMixin],
-  mounted() {
-    this.getZones()
-  },
   data() {
     return {
       newZoneForm: {
@@ -120,10 +117,10 @@ export default {
       },
       zoneFields: [{key: 'zone_id', sortable: true, thStyle: 'width: 10%'}, {key: 'zone_name', sortable: true}, {key: 'actions', sortable: false, thStyle: 'width: 9px'}],
       exportFields: {'Zone ID': 'zone_id', 'Zone Name': 'zone_name'},
-      zones: [],
+      zones: this.$store.getters.getZones,
       filter: null,
-      filteredItems: [],
-      totalRows: 1,
+      filteredItems: this.zones,
+      totalRows: this.$store.getters.getNumZones,
       currentPage: 1,
       perPage: 5,
       pageOptions: [{value: 5, text: '5 per page'}, {value: 10, text: '10 per page'}, {value: 15, text: '15 per page'}],
@@ -141,27 +138,19 @@ export default {
         this.launchToast('Create Zonal Command Failure', 'Please fill all required fields', 'warning')
         return
       }
-      await this.$store.dispatch('zone/createZonalCommand', { newZoneForm: this.newZoneForm })
+      await this.$store.dispatch('createZonalCommand', { newZoneForm: this.newZoneForm })
       .then(response => {
         this.launchToast('Create Zonal Command Success', response.data.message, 'success')
         this.$bvModal.hide('new-zone-form')
         this.newZoneForm.zoneName = null
-        this.getZones()
+        this.getZones().then(() => {
+          this.zones = this.$store.getters.getZones
+          this.totalRows = this.$store.getters.getNumZones
+        })
       })
       .catch(error => {
         this.launchToast('Create Zonal Command Failure', error.response.data.message, 'warning')
       })
-    },
-    async getZones() {
-      await this.$store.dispatch('zone/getZonalCommands')
-        .then(response => {
-          this.zones = response.data.message
-          this.totalRows = response.data.message.length
-          this.filteredItems = this.zones
-        })
-        .catch(error => {
-          this.launchToast('Loading Zonal Command Failure', error.response.data.message, 'warning')
-        })
     },
     onFiltered(filteredItems) {
       this.totalRows = filteredItems.length

@@ -63,9 +63,27 @@ const router = new Router({
             authRequired: true
           }
         },
+        {
+          path: 'custodial_center_types',
+          name: 'Custodial Center Types',
+          component: () => import('@/views/custodials/CustodialCenterTypes'),
+          meta: {
+            title: 'Custodial Center Types | NCS Admin',
+            authRequired: true
+          }
+        },
+        {
+          path: 'cell_blocks',
+          name: 'Cell Blocks',
+          component: () => import('@/views/cells/CellBlocks'),
+          meta: {
+            title: 'Cell Blocks | NCS Admin',
+            authRequired: true
+          }
+        },
         // inmates routes
         {
-          path: 'inmates/enrollment',
+          path: 'enrollment',
           name: 'Enrollment',
           component: () => import('@/views/inmates/Enrollment'),
           meta: {
@@ -74,7 +92,7 @@ const router = new Router({
           }
         },
         {
-          path: 'inmates/manage_inmates',
+          path: 'manage_inmates',
           name: 'Manage Inmates',
           component: () => import('@/views/inmates/ManageInmates'),
           meta: {
@@ -99,6 +117,22 @@ const router = new Router({
           }
         }
       ]
+    },
+    // error pages
+    {
+      path: '',
+      component: () => import('@/layouts/variations/Simple'),
+      children: [
+        {
+          path: '/error404',
+          name: 'Error 404',
+          component: () => import('@/views/pages/errors/404')
+        }
+      ]
+    },
+    {
+      path: '*',
+      redirect: '/error404'
     }
   ]
 })

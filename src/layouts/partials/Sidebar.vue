@@ -118,7 +118,8 @@ import simplebar from 'simplebar-vue'
 
 // Get navigation data
 import hqMenu from "@/data/hqMenu";
-import menuList from '@/data/menu'
+import centerMenu from "@/data/centerMenu";
+// import menuList from '@/data/menu'
 
 export default {
   name: 'BaseSidebar',
@@ -129,26 +130,12 @@ export default {
     simplebar
   },
   data () {
-    const user = this.$store.getters["auth/currentUser"]
-    let nav
-    switch (parseInt(user.user_type)) {
-      case 1:
-        nav = hqMenu.main
-        break
-      case 2:
-        nav = menuList.ncszone
-        break
-      case 3:
-        nav = menuList.ncsstate
-        break
-      default:
-        nav = menuList.ncs
-        break
-    }
-
+    let sideNav
+    this.$store.getters.getIsHQ ? sideNav = hqMenu.main : ''
+    this.$store.getters.getIsCenter ? sideNav = centerMenu.main : ''
     return {
       // Get main navigation
-      navigation: nav
+      navigation: sideNav
     }
   }
 }
