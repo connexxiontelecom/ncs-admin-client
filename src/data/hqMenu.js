@@ -47,6 +47,9 @@ export default {
           to: ''
         },
         {
+          name: 'Manage Titles'
+        },
+        {
           name: 'Manage Permissions',
           to: ''
         }
