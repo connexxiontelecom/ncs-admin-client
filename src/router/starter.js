@@ -74,6 +74,15 @@ const router = new Router({
         },
         // cells
         {
+          path: 'cells',
+          name: 'Cells',
+          component: () => import('@/views/cells/Cells'),
+          meta: {
+            title: 'Cells | NCS Admin',
+            authRequired: true
+          }
+        },
+        {
           path: 'cell_blocks',
           name: 'Cell Blocks',
           component: () => import('@/views/cells/CellBlocks'),

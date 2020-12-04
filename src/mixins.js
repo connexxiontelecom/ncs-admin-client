@@ -1,6 +1,3 @@
-import store from "@/store";
-import starter from "@/router/starter";
-
 
 export default {
   methods: {
@@ -63,28 +60,7 @@ export default {
           this.launchToast('Loading Cell Blocks Failure', error.response.data.message, 'warning')
         })
     },
-    handleFailedAuth() {
-      // if token has an issue the app gracefully exits
-      this.$http.interceptors.response.use(undefined, function (err) {
-        return new Promise(function () {
-          if (err.response.data.message === 'Unauthorized Access' || err.response.data.message === 'Access Denied') {
-            store.dispatch('logout')
-            starter.push('/auth/signin')
-          }
-          // if (err.status === 401 && err.config && !err.config.__isRetryRequest) {
-          //   this.$store.dispatch('auth/logout')
-          // }
-          throw err
-        })
-      })
-    },
-    handleStorageAlteration() {
-      // if local storage is altered, app gracefully exits
-      window.addEventListener("storage", function () {
-        store.dispatch('logout')
-        starter.push('/auth/signin')
-      }, false);
-    },
+
     setupData() {
       // load all our data from api
       if (localStorage.getItem('accessToken')) {
