@@ -39,6 +39,7 @@ const getters = {
   getZones: (state) => {
     return state.data.zones
   },
+
   // get states
   getStates: (state) => {
     return state.data.states
@@ -66,6 +67,14 @@ const getters = {
   // get num centers
   getNumCenters: (state) => {
     return state.data.numCenters
+  },
+
+  getZoneParams: (state)=>{
+    return state.routeParams.zoneID
+  },
+
+  getStateParams: (state)=>{
+    return state.routeParams.stateID
   },
 }
 

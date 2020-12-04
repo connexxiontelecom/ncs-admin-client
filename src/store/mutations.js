@@ -23,6 +23,7 @@ const mutations = {
         break;
     }
   },
+
   // initialize app data
   initZonesData (state, payload) {
     state.data.zones = payload.zones
@@ -40,6 +41,14 @@ const mutations = {
     state.data.centers = payload.centers
     state.data.numCenters = payload.centers.length
   },
+
+  setZoneRouteParam(state, payload){
+    state.routeParams.zoneID = payload.zoneID
+  },
+    setStateRouteParam(state, payload){
+    state.routeParams.stateID = payload.stateID
+   },
+
   // clear session
   clearSession () {
     localStorage.removeItem('accessToken')
