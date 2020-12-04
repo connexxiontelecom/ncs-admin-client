@@ -163,6 +163,31 @@ const actions = {
           reject(error)
         })
     })
+  },
+  // eslint-disable-next-line no-unused-vars
+  createCellBlock ({ commit }, payload) {
+    return new Promise((resolve, reject) => {
+      let formData = helpers.getCellBlockForm(payload.newCellBlockForm)
+      axios({url: 'new_cell_block', data: formData, method: 'POST'})
+        .then(response => {
+          resolve(response)
+        })
+        .catch(error => {
+          reject(error)
+        })
+    })
+  },
+  // eslint-disable-next-line no-unused-vars
+  getCellBlocks ({ commit }) {
+    return new Promise((resolve, reject) => {
+      axios({url: 'all_cell_blocks', method: 'GET'})
+        .then(response => {
+          resolve(response)
+        })
+        .catch(error => {
+          reject(error)
+        })
+    })
   }
 }
 

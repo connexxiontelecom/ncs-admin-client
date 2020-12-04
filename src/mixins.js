@@ -53,6 +53,16 @@ export default {
           this.launchToast('Loading Centers Failure', error.response.data.message, 'warning')
         })
     },
+    async getCellBlocks() {
+      await this.$store.dispatch('getCellBlocks')
+        .then(response => {
+          localStorage.setItem('cellBlocks', JSON.stringify(response.data.message))
+          this.$store.commit('initCellBlockData', { cellBlocks: response.data.message })
+        })
+        .catch(error => {
+          this.launchToast('Loading Cell Blocks Failure', error.response.data.message, 'warning')
+        })
+    },
     handleFailedAuth() {
       // if token has an issue the app gracefully exits
       this.$http.interceptors.response.use(undefined, function (err) {
@@ -83,6 +93,9 @@ export default {
           this.getStates().then()
           this.getCCTypes().then()
           this.getCenters().then()
+        }
+        if (this.$store.getters.getIsCenter) {
+          this.getCellBlocks().then()
         }
       }
     }

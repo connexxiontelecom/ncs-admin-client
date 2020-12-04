@@ -106,6 +106,7 @@ const router = new Router({
             authRequired: true
           }
         },
+        // cells
         {
           path: 'cell_blocks',
           name: 'Cell Blocks',
@@ -133,7 +134,7 @@ const router = new Router({
             title: 'Manage Inmates | NCS Admin',
             authRequired: true,
           }
-        }
+        },
       ]
     },
     // auth routes
@@ -160,7 +161,10 @@ const router = new Router({
         {
           path: '/error404',
           name: 'Error 404',
-          component: () => import('@/views/pages/errors/404')
+          component: () => import('@/views/pages/errors/404'),
+          meta: {
+            title: 'Not Found | NCS Admin'
+          }
         }
       ]
     },

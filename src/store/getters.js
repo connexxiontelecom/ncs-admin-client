@@ -69,6 +69,7 @@ const getters = {
     return state.data.numCenters
   },
 
+
   getZoneParams: (state)=>{
     return state.routeParams.zoneID
   },
@@ -76,6 +77,16 @@ const getters = {
   getStateParams: (state)=>{
     return state.routeParams.stateID
   },
+
+  // get cell blocks
+  getCellBlocks: (state) => {
+    return state.data.cellBlocks
+  },
+  // get num cell blocks
+  getNumCellBlocks: (state) => {
+    return state.data.numCellBlocks
+  }
+
 }
 
 export default getters

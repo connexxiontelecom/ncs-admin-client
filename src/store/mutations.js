@@ -49,6 +49,12 @@ const mutations = {
     state.routeParams.stateID = payload.stateID
    },
 
+
+  initCellBlockData (state, payload) {
+    state.data.cellBlocks = payload.cellBlocks
+    state.data.numCellBlocks = payload.cellBlocks.length
+  },
+
   // clear session
   clearSession () {
     localStorage.removeItem('accessToken')
@@ -56,6 +62,7 @@ const mutations = {
     localStorage.removeItem('states')
     localStorage.removeItem('ccTypes')
     localStorage.removeItem('centers')
+    localStorage.removeItem('cellBlocks')
   },
   // set authentication header
   setBearer (state, payload) {
