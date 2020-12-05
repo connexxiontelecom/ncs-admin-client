@@ -3,13 +3,12 @@ import helpers from "@/store/helpers";
 
 const actions = {
   // auth actions
+  // eslint-disable-next-line no-unused-vars
   login ({ commit }, payload) {
     return new Promise((resolve, reject) => {
       let formData = helpers.getLoginForm(payload.form)
       axios({url: 'login', data: formData, method: 'POST'})
         .then(response => {
-          const accessToken = response.data.token
-          commit('setBearer', { accessToken })
           resolve(response)
         })
         .catch(error => {

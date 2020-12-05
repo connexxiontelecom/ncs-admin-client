@@ -96,6 +96,7 @@ export default {
         .then(response => {
           let accessToken = response.data.token
           let userData = this.$jwt.decode(accessToken).data
+          this.$store.commit('setBearer', { accessToken })
           this.$store.commit('initSession', { userData, accessToken })
           this.setupData()
           this.$router.push('/dashboard')
