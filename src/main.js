@@ -53,6 +53,7 @@ Vue.use(VueJWT)
 
 // register mixins
 import mixins from './mixins'
+import starter from "@/router/starter";
 Vue.mixin(mixins)
 
 // Disable tip shown in dev console when in development mode
@@ -70,6 +71,17 @@ new Vue({
       this.$store.commit('setBearer', { accessToken })
       this.$store.commit('initSession', { userData, accessToken })
     }
+    axios.interceptors.response.use(undefined, function (err) {
+      return new Promise(function () {
+        if (err.response.data.message === 'Unauthorized Access' || err.response.data.message === 'Access Denied') {
+          store.dispatch('logout')
+        }
+        // // if (err.status === 401 && err.config && !err.config.__isRetryRequest) {
+        // //   this.$store.dispatch('auth/logout')
+        // // }
+        throw err
+      })
+    })
   },
   created() {
     this.setupData()

@@ -85,6 +85,14 @@ const getters = {
   // get num cell blocks
   getNumCellBlocks: (state) => {
     return state.data.numCellBlocks
+  },
+  // get cells
+  getCells: (state) => {
+    return state.data.cells
+  },
+  // get num cells
+  getNumCells: (state) => {
+    return state.data.numCells
   }
 
 }

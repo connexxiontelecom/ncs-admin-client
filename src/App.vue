@@ -22,11 +22,32 @@
 
 <script>
 
+import store from "@/store";
+import starter from "@/router/starter";
+// import axios from "@/axios";
+
 export default {
   name: 'App',
   created() {
-    this.handleFailedAuth()
-    this.handleStorageAlteration()
+    // if token has an issue the app gracefully exits
+    // axios.interceptors.response.use(undefined, function (err) {
+    //   return new Promise(function () {
+    //     console.log('Created')
+    //     if (err.response.data.message === 'Unauthorized Access' || err.response.data.message === 'Access Denied') {
+    //       store.dispatch('logout')
+    //       starter.push('/auth/signin')
+    //     }
+    //     // if (err.status === 401 && err.config && !err.config.__isRetryRequest) {
+    //     //   this.$store.dispatch('auth/logout')
+    //     // }
+    //     throw err
+    //   })
+    // })
+    // if local storage is altered, app gracefully exits
+    window.addEventListener("storage", function () {
+      store.dispatch('logout')
+      starter.push('/auth/signin')
+    }, false);
   },
 }
 

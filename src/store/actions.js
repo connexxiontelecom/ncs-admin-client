@@ -3,13 +3,12 @@ import helpers from "@/store/helpers";
 
 const actions = {
   // auth actions
+  // eslint-disable-next-line no-unused-vars
   login ({ commit }, payload) {
     return new Promise((resolve, reject) => {
       let formData = helpers.getLoginForm(payload.form)
       axios({url: 'login', data: formData, method: 'POST'})
         .then(response => {
-          const accessToken = response.data.token
-          commit('setBearer', { accessToken })
           resolve(response)
         })
         .catch(error => {
@@ -181,6 +180,31 @@ const actions = {
   getCellBlocks ({ commit }) {
     return new Promise((resolve, reject) => {
       axios({url: 'all_cell_blocks', method: 'GET'})
+        .then(response => {
+          resolve(response)
+        })
+        .catch(error => {
+          reject(error)
+        })
+    })
+  },
+  // eslint-disable-next-line no-unused-vars
+  createCell ({ commit }, payload) {
+    return new Promise((resolve, reject) => {
+      let formData = helpers.getCellForm(payload.newCellForm)
+      axios({url: 'cell/new_cell', data: formData, method: 'POST'})
+        .then(response => {
+          resolve(response)
+        })
+        .catch(error => {
+          reject(error)
+        })
+    })
+  },
+  // eslint-disable-next-line no-unused-vars
+  getCells ({ commit }, payload) {
+    return new Promise((resolve, reject) => {
+      axios({url: 'cell/all_cc_cell', method: 'GET'})
         .then(response => {
           resolve(response)
         })
