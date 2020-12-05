@@ -47,7 +47,7 @@
 
       <b-row>
         <b-col>
-          <base-block rounded title="All Cell Blocks" btn-option-fullscreen>
+          <base-block rounded title="All Cell Blocks" :subtitle="totalRows +' total cell blocks'" btn-option-fullscreen>
             <template #options>
               <button type="button" class="btn-block-option" @click="$bvModal.show('new-cell-block-form')" >
                 <i class="si si-plus" v-b-tooltip.hover.nofade.topleft="'Create Cell Block'"></i>
@@ -74,7 +74,7 @@
                 </download-excel>
               </b-col>
             </b-row>
-            <b-table class="mb-2" @filtered="onFiltered" show-empty striped hover bordered head-variant="light" :filter="filter" :items="cellBlocksSN" :fields="fields" :current-page="currentPage" :per-page="perPage">
+            <b-table class="mb-2" @filtered="onFiltered" selectable selected-variant="info" @row-selected="onRowSelected" show-empty striped hover bordered head-variant="light" :filter="filter" :items="cellBlocksSN" :fields="fields" :current-page="currentPage" :per-page="perPage">
               <template #cell(actions)>
                 <b-button-group>
                   <b-button size="sm" variant="light">
@@ -111,7 +111,7 @@ import { required } from 'vuelidate/lib/validators'
 export default {
   mixins: [validationMixin],
   computed: {
-    cellBlocksSN (){
+    cellBlocksSN () {
       return this.cellBlocks.map((d, index) => ({ ...d, sno: index + 1 }))
     }
   },
@@ -168,6 +168,9 @@ export default {
       this.currentPage = 1
       this.filteredItems = filteredItems
     },
+    onRowSelected() {
+      // this.$router.push('/dashboard')
+    }
   }
 }
 </script>

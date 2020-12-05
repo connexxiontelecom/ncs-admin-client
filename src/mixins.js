@@ -1,6 +1,3 @@
-import store from "@/store";
-import starter from "@/router/starter";
-
 
 export default {
   methods: {
@@ -63,28 +60,17 @@ export default {
           this.launchToast('Loading Cell Blocks Failure', error.response.data.message, 'warning')
         })
     },
-    handleFailedAuth() {
-      // if token has an issue the app gracefully exits
-      this.$http.interceptors.response.use(undefined, function (err) {
-        return new Promise(function () {
-          if (err.response.data.message === 'Unauthorized Access' || err.response.data.message === 'Access Denied') {
-            store.dispatch('logout')
-            starter.push('/auth/signin')
-          }
-          // if (err.status === 401 && err.config && !err.config.__isRetryRequest) {
-          //   this.$store.dispatch('auth/logout')
-          // }
-          throw err
+    async getCells() {
+      await this.$store.dispatch('getCells')
+        .then(response => {
+          localStorage.setItem('cells', JSON.stringify(response.data.message))
+          this.$store.commit('initCellData', { cells: response.data.message })
         })
-      })
+        .catch(error => {
+          this.launchToast('Loading Cells Failure', error.response.data.message, 'warning')
+        })
     },
-    handleStorageAlteration() {
-      // if local storage is altered, app gracefully exits
-      window.addEventListener("storage", function () {
-        store.dispatch('logout')
-        starter.push('/auth/signin')
-      }, false);
-    },
+
     setupData() {
       // load all our data from api
       if (localStorage.getItem('accessToken')) {
@@ -96,6 +82,7 @@ export default {
         }
         if (this.$store.getters.getIsCenter) {
           this.getCellBlocks().then()
+          this.getCells().then()
         }
       }
     }

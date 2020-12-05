@@ -29,7 +29,8 @@ export default {
       icon: 'fa fa-bars',
       sub: [
         {
-          name: 'Cells'
+          name: 'Cells',
+          to: 'cells'
         },
         {
           name: 'Cell Blocks',
