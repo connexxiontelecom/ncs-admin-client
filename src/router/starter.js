@@ -43,6 +43,40 @@ const router = new Router({
             authRequired: true,
           }
         },
+//zonal operations
+
+        {
+          path: 'zonal_operations',
+          name: 'zonal_operations',
+          component: () => import('@/views/operation/ZonalCommands'),
+          meta: {
+            title:  'Zonal Operations | NCS Admin',
+            authRequired: true,
+          }
+        },
+
+        {
+          path: 'zonal_operations/view_zone',
+          name: 'zonal_operations/view_zone',
+          component: () => import('@/views/operation/ViewZone'),
+          meta: {
+            title:  'Zonal Operations | NCS Admin',
+            authRequired: true,
+          }
+        },
+
+        {
+          path: 'zonal_operations/view_state',
+          name: 'zonal_operations/view_state',
+          component: () => import('@/views/operation/ViewState'),
+          meta: {
+            title:  'Zonal Operations | NCS Admin',
+            authRequired: true,
+          }
+        },
+
+
+
         // states routes
         {
           path: 'state_commands',

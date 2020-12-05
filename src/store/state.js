@@ -17,6 +17,12 @@ const state = {
     isCenter: false,
   },
 
+  routeParams :{
+    zoneID: null,
+    stateID: null
+
+  },
+
   // data details
   data: {
     zones: [],

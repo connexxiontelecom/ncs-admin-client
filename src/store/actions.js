@@ -112,6 +112,32 @@ const actions = {
         })
     })
   },
+
+  // eslint-disable-next-line no-unused-vars
+  getZoneDetails( { commit }, payload){
+   return new Promise((resolve, reject) => {
+     axios({ url: `zone/view_zone/${payload.zoneID}`, method: 'GET'})
+       .then(response =>{
+         resolve(response)
+       })
+       .catch(error => {
+         reject(error)
+       })
+   })
+  },
+
+  // eslint-disable-next-line no-unused-vars
+  getStateDetails( { commit }, payload){
+    return new Promise((resolve, reject) => {
+      axios({ url: `state/view_state/${payload.stateID}`, method: 'GET'})
+        .then(response =>{
+          resolve(response)
+        })
+        .catch(error => {
+          reject(error)
+        })
+    })
+  },
   // eslint-disable-next-line no-unused-vars
   getCustodialCenters ({ commit }) {
     return new Promise((resolve, reject) => {
