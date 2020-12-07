@@ -80,7 +80,7 @@ export default {
       let zoneName = item.zone_name
       this.$store.commit('setZoneRouteParam', { zoneID, zoneName })
       this.getZoneDetails()
-      this.$router.push("/zonal_operations/view_zone")
+      this.$router.push("/zonal_operations/zone")
     },
     onFiltered(filteredItems) {
       this.totalRows = filteredItems.length

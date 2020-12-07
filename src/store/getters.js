@@ -93,6 +93,18 @@ const getters = {
     return state.stateDetails
   },
 
+  getCenterIDParam: (state) => {
+    return state.routeParams.centerID
+  },
+
+  getCenterNameParam: (state) => {
+    return state.routeParams.centerName
+  },
+
+  getCenterDetails: (state) => {
+    return state.centerDetails
+  },
+
   // get cell blocks
   getCellBlocks: (state) => {
     return state.data.cellBlocks

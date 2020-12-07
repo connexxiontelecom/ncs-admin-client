@@ -6,7 +6,7 @@
         <b-breadcrumb class="breadcrumb-alt">
           <b-breadcrumb-item active><router-link to="/operations"><i class="fa fa-home"></i></router-link></b-breadcrumb-item>
           <b-breadcrumb-item active><router-link to="/zonal_operations">Zonal Operations</router-link></b-breadcrumb-item>
-          <b-breadcrumb-item active><router-link to="/zonal_operations/view_zone">{{ zoneName }}</router-link></b-breadcrumb-item>
+          <b-breadcrumb-item active><router-link to="/zonal_operations/zone">{{ zoneName }}</router-link></b-breadcrumb-item>
           <b-breadcrumb-item href="javascript:void(0)" active>{{ stateName }}</b-breadcrumb-item>
         </b-breadcrumb>
       </template>
@@ -145,7 +145,7 @@
                 <!--                </download-excel>-->
                 <!--              </b-col>-->
               </b-row>
-              <b-table class="mb-2" @filtered="onFiltered" selectable show-empty striped hover bordered head-variant="light" :filter="filter" :items="centersSN" :fields="centreFields" :current-page="currentPage" :per-page="perPage" @row-clicked="viewZone" >
+              <b-table class="mb-2" @filtered="onFiltered" selectable selected-variant="primary" show-empty striped hover bordered head-variant="light" :filter="filter" :items="centersSN" :fields="centreFields" :current-page="currentPage" :per-page="perPage" @row-clicked="viewCentre">
               </b-table>
               <b-row>
                 <b-col lg="2" class="my-1">
@@ -190,9 +190,11 @@ export default {
   },
   methods: {
     viewCentre(item){
-      let stateID = item.state_id
-      this.$store.commit('setZoneRouteParam', {stateID})
-      this.$router.push("/zonal_operations/view_state")
+      let centerID = item.cc_id
+      let centerName = item.cc_name
+      this.$store.commit('setCenterRouteParam', { centerID, centerName })
+      this.getCenterDetails().then()
+      this.$router.push("/zonal_operations/zone/state/center")
     },
     onFiltered(filteredItems) {
       this.totalRows = filteredItems.length

@@ -129,7 +129,19 @@ const actions = {
   getStateDetails( { commit }, payload){
     return new Promise((resolve, reject) => {
       axios({ url: `state/view_state/${payload.stateID}`, method: 'GET'})
-        .then(response =>{
+        .then(response => {
+          resolve(response)
+        })
+        .catch(error => {
+          reject(error)
+        })
+    })
+  },
+  // eslint-disable-next-line no-unused-vars
+  getCenterDetails({ commit }, payload) {
+    return new Promise((resolve, reject) => {
+      axios({url: `centre/view_centre/${payload.centerID}`, method: 'GET'})
+        .then(response => {
           resolve(response)
         })
         .catch(error => {
