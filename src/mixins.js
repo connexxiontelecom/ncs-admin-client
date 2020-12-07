@@ -70,7 +70,19 @@ export default {
           this.launchToast('Loading Cells Failure', error.response.data.message, 'warning')
         })
     },
-
+    async getZoneDetails() {
+      this.$store.dispatch('getZoneDetails', { zoneID: this.$store.getters.getZoneIDParam })
+      .then(response => {
+        console.log(response)
+        localStorage.setItem('stateZoneDetails', JSON.stringify(response.data.message.states))
+        localStorage.setItem('centerZoneDetails', JSON.stringify(response.data.message.cc))
+        this.$store.commit('initZoneDetails', { states: response.data.message.states, centers: response.data.message.cc })
+      })
+      .catch(error => {
+        console.log(error.response)
+        this.launchToast('Loading Zone Details Failure', error.response.data.message, 'warning')
+      })
+    },
     setupData() {
       // load all our data from api
       if (localStorage.getItem('accessToken')) {
@@ -84,6 +96,14 @@ export default {
           this.getCellBlocks().then()
           this.getCells().then()
         }
+      }
+    },
+    setupDetailsPage() {
+      if(localStorage.getItem('zoneIDRouteParams')) {
+        let zoneID = localStorage.getItem('zoneIDRouteParams')
+        let zoneName = localStorage.getItem('zoneNameRouteParams')
+        this.$store.commit('setZoneRouteParam', { zoneID, zoneName })
+        this.getZoneDetails().then()
       }
     }
   }

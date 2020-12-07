@@ -69,9 +69,16 @@ const getters = {
     return state.data.numCenters
   },
 
-
-  getZoneParams: (state)=>{
+  getZoneIDParam: (state) => {
     return state.routeParams.zoneID
+  },
+
+  getZoneNameParam: (state) => {
+    return state.routeParams.zoneName
+  },
+
+  getZoneDetails: (state) => {
+    return state.zoneDetails
   },
 
   getStateParams: (state)=>{

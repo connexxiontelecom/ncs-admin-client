@@ -43,40 +43,15 @@ const router = new Router({
             authRequired: true,
           }
         },
-//zonal operations
-
-        {
-          path: 'zonal_operations',
-          name: 'zonal_operations',
-          component: () => import('@/views/operation/ZonalCommands'),
-          meta: {
-            title:  'Zonal Operations | NCS Admin',
-            authRequired: true,
-          }
-        },
-
-        {
-          path: 'zonal_operations/view_zone',
-          name: 'zonal_operations/view_zone',
-          component: () => import('@/views/operation/ViewZone'),
-          meta: {
-            title:  'Zonal Operations | NCS Admin',
-            authRequired: true,
-          }
-        },
-
         {
           path: 'zonal_operations/view_state',
           name: 'zonal_operations/view_state',
-          component: () => import('@/views/operation/ViewState'),
+          component: () => import('@/views/operations/ViewState'),
           meta: {
             title:  'Zonal Operations | NCS Admin',
             authRequired: true,
           }
         },
-
-
-
         // states routes
         {
           path: 'state_commands',
@@ -141,6 +116,40 @@ const router = new Router({
           component: () => import('@/views/inmates/ManageInmates'),
           meta: {
             title: 'Manage Inmates | NCS Admin',
+            authRequired: true,
+          }
+        },
+      ]
+    },
+    // operations
+    {
+      path: '',
+      component: () => import('@/layouts/variations/Operations'),
+      children: [
+        {
+          path: 'operations',
+          name: 'operations',
+          component: () => import('@/views/operations/Operations'),
+          meta: {
+            title:  'Operations | NCS Admin',
+            authRequired: true,
+          }
+        },
+        {
+          path: 'zonal_operations',
+          name: 'zonal_operations',
+          component: () => import('@/views/operations/Zones'),
+          meta: {
+            title:  'Zonal Operations | NCS Admin',
+            authRequired: true,
+          }
+        },
+        {
+          path: 'zonal_operations/view_zone',
+          name: 'zonal_operations_view_zone',
+          component: () => import('@/views/operations/ViewZone'),
+          meta: {
+            title:  'View Zone | NCS Admin',
             authRequired: true,
           }
         },

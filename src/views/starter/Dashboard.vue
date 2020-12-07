@@ -30,8 +30,8 @@
       <!-- Stats -->
       <b-row>
         <b-col cols="6" md="3" lg="6" xl="3">
-          <router-link to="/zonal_operations">
-            <base-block tag="a" rounded link-pop content-class="d-flex py-4">
+          <router-link to="/operations/zonal_operations">
+            <base-block tag="a" rounded link-pop content-class="d-flex py-4" v-b-tooltip.hover.top="'Zonal Operations'">
               <div class="flex-grow-1">
                 <div class="font-size-sm font-w600 text-uppercase text-muted">
                   Zonal Commands
@@ -48,7 +48,7 @@
         </b-col>
         <b-col cols="6" md="3" lg="6" xl="3">
           <router-link to="/state_commands">
-            <base-block tag="a" rounded link-pop content-class="d-flex py-4">
+            <base-block tag="a" rounded link-pop content-class="d-flex py-4" v-b-tooltip.hover.top="'State Operations'">
               <div class="flex-grow-1">
                 <div class="font-size-sm font-w600 text-uppercase text-muted">
                   State Commands
