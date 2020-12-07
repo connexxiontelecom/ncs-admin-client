@@ -62,17 +62,7 @@ export default {
     {
       name: 'Operations',
       icon: 'fa fa-archive',
-      sub: [
-        {
-          name: 'Zonal Operations'
-        },
-        {
-          name: 'State Operations'
-        },
-        {
-          name: 'Custodial Operations'
-        }
-      ]
+      to: '/operations'
     },
     {
       name: 'Reports',

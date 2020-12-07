@@ -41,15 +41,6 @@ const mutations = {
     state.data.centers = payload.centers
     state.data.numCenters = payload.centers.length
   },
-
-  setZoneRouteParam(state, payload){
-    state.routeParams.zoneID = payload.zoneID
-  },
-    setStateRouteParam(state, payload){
-    state.routeParams.stateID = payload.stateID
-   },
-
-
   initCellBlockData (state, payload) {
     state.data.cellBlocks = payload.cellBlocks
     state.data.numCellBlocks = payload.cellBlocks.length
@@ -58,8 +49,46 @@ const mutations = {
     state.data.cells = payload.cells
     state.data.numCells = payload.cells.length
   },
+  initZoneDetails (state, payload) {
+    state.zoneDetails.states = payload.states
+    state.zoneDetails.numStates = payload.states.length
+    state.zoneDetails.centers = payload.centers
+    state.zoneDetails.numCenters = payload.centers.length
+  },
+  // set route params for view details get requests
+  setZoneRouteParam(state, payload){
+    state.routeParams.zoneID = payload.zoneID
+    state.routeParams.zoneName = payload.zoneName
+    localStorage.setItem('zoneIDRouteParams', payload.zoneID)
+    localStorage.setItem('zoneNameRouteParams', payload.zoneName)
+  },
+  setStateRouteParam(state, payload){
+    state.routeParams.stateID = payload.stateID
+  },
   // clear session
-  clearSession () {
+  clearSession (state) {
+    state.session.user = {}
+    state.session.isHQ = false
+    state.session.isZone = false
+    state.session.isState = false
+    state.session.isCenter = false
+
+  },
+  // clear data
+  clearData (state) {
+    state.data.zones = []
+    state.data.states = []
+    state.data.ccTypes = []
+    state.data.centers = []
+    state.data.cellBlocks = []
+    state.data.cells = []
+    state.data.numZones = 0
+    state.data.numStates = 0
+    state.data.numCCTypes = 0
+    state.data.numCenters = 0
+    state.data.numCellBlocks = 0
+    state.data.numCells = 0
+    // clear storage
     localStorage.removeItem('accessToken')
     localStorage.removeItem('zones')
     localStorage.removeItem('states')

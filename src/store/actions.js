@@ -19,6 +19,7 @@ const actions = {
   logout ({ commit }) {
     return new Promise(resolve => {
       commit('clearSession')
+      commit('clearData')
       commit('clearBearer')
       resolve()
     })
@@ -112,7 +113,6 @@ const actions = {
         })
     })
   },
-
   // eslint-disable-next-line no-unused-vars
   getZoneDetails( { commit }, payload){
    return new Promise((resolve, reject) => {
@@ -125,7 +125,6 @@ const actions = {
        })
    })
   },
-
   // eslint-disable-next-line no-unused-vars
   getStateDetails( { commit }, payload){
     return new Promise((resolve, reject) => {
