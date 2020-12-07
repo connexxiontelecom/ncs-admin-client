@@ -53,7 +53,6 @@ Vue.use(VueJWT)
 
 // register mixins
 import mixins from './mixins'
-import starter from "@/router/starter";
 Vue.mixin(mixins)
 
 // Disable tip shown in dev console when in development mode
@@ -85,6 +84,7 @@ new Vue({
   },
   created() {
     this.setupData()
+    this.setupDetailsPage()
   },
   render: h => h(App)
 }).$mount('#app')

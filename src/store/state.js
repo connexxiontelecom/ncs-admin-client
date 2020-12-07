@@ -17,10 +17,20 @@ const state = {
     isCenter: false,
   },
 
-  routeParams :{
+  // route params for inner pages
+  routeParams: {
     zoneID: null,
+    zoneName: null,
     stateID: null
+  },
 
+  // zone details
+  zoneDetails: {
+    states: [],
+    centers: [],
+
+    numStates: 0,
+    numCenters: 0
   },
 
   // data details
