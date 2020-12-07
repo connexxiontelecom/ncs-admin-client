@@ -55,6 +55,10 @@ const mutations = {
     state.zoneDetails.centers = payload.centers
     state.zoneDetails.numCenters = payload.centers.length
   },
+  initStateDetails (state, payload) {
+    state.stateDetails.centers = payload.centers
+    state.stateDetails.numCenters = payload.centers.length
+  },
   // set route params for view details get requests
   setZoneRouteParam(state, payload){
     state.routeParams.zoneID = payload.zoneID
@@ -64,6 +68,9 @@ const mutations = {
   },
   setStateRouteParam(state, payload){
     state.routeParams.stateID = payload.stateID
+    state.routeParams.stateName = payload.stateName
+    localStorage.setItem('stateIDRouteParams', payload.stateID)
+    localStorage.setItem('stateNameRouteParams', payload.stateName)
   },
   // clear session
   clearSession (state) {
@@ -72,7 +79,6 @@ const mutations = {
     state.session.isZone = false
     state.session.isState = false
     state.session.isCenter = false
-
   },
   // clear data
   clearData (state) {
@@ -89,13 +95,21 @@ const mutations = {
     state.data.numCellBlocks = 0
     state.data.numCells = 0
     // clear storage
-    localStorage.removeItem('accessToken')
     localStorage.removeItem('zones')
     localStorage.removeItem('states')
     localStorage.removeItem('ccTypes')
     localStorage.removeItem('centers')
     localStorage.removeItem('cellBlocks')
     localStorage.removeItem('cells')
+    localStorage.removeItem('zoneIDRouteParams')
+    localStorage.removeItem('zoneNameRouteParams')
+    localStorage.removeItem('centerZoneDetails')
+    localStorage.removeItem('stateZoneDetails')
+    localStorage.removeItem('stateIDRouteParams')
+    localStorage.removeItem('stateNameRouteParams')
+    localStorage.removeItem('centerStateDetails')
+    localStorage.removeItem('accessToken')
+
   },
   // set authentication header
   setBearer (state, payload) {
