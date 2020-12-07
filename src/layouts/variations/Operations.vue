@@ -106,9 +106,9 @@
                 <router-link class="dropdown-item d-flex align-items-center justify-content-between" to="/auth/lock">
                   <span class="font-size-sm font-w500">Lock Account</span>
                 </router-link>
-                <router-link class="dropdown-item d-flex align-items-center justify-content-between" to="/auth/signin">
+                <a class="dropdown-item d-flex align-items-center justify-content-between" href="javascript:void(0)" @click="logout">
                   <span class="font-size-sm font-w500">Log Out</span>
-                </router-link>
+                </a>
               </div>
             </li>
           </b-dropdown>
@@ -244,6 +244,10 @@ export default {
         event.preventDefault()
         this.$store.commit('headerSearch', { mode: 'off' })
       }
+    },
+    logout () {
+      this.$store.dispatch('logout')
+        .then(() => { this.$router.push('/auth/signin') })
     }
   },
   mounted () {

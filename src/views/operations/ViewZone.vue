@@ -207,8 +207,10 @@ export default {
   methods: {
     viewState(item){
       let stateID = item.state_id
-      this.$store.commit('setStateRouteParam', {stateID})
-      this.$router.push("/zonal_operations/view_state")
+      let stateName = item.state_name
+      this.$store.commit('setStateRouteParam', { stateID, stateName })
+      this.getStateDetails()
+      this.$router.push("/zonal_operations/view_zone/view_state")
     },
     onFiltered(filteredItems) {
       this.totalRows = filteredItems.length
@@ -217,8 +219,8 @@ export default {
     },
   },
   destroyed() {
-    localStorage.removeItem('zoneIDRouteParams')
-    localStorage.removeItem('zoneNameRouteParams')
+    // localStorage.removeItem('zoneIDRouteParams')
+    // localStorage.removeItem('zoneNameRouteParams')
   }
 }
 </script>
