@@ -73,15 +73,23 @@ export default {
     async getZoneDetails() {
       this.$store.dispatch('getZoneDetails', { zoneID: this.$store.getters.getZoneIDParam })
       .then(response => {
-        console.log(response)
         localStorage.setItem('stateZoneDetails', JSON.stringify(response.data.message.states))
         localStorage.setItem('centerZoneDetails', JSON.stringify(response.data.message.cc))
         this.$store.commit('initZoneDetails', { states: response.data.message.states, centers: response.data.message.cc })
       })
       .catch(error => {
-        console.log(error.response)
         this.launchToast('Loading Zone Details Failure', error.response.data.message, 'warning')
       })
+    },
+    async getStateDetails() {
+      this.$store.dispatch('getStateDetails', { stateID: this.$store.getters.getStateIDParam })
+        .then(response => {
+          localStorage.setItem('centerStateDetails', JSON.stringify((response.data.message.centres)))
+          this.$store.commit('initStateDetails', { centers: response.data.message.centres })
+        })
+        .catch(error => {
+          this.launchToast('Loading State Details Failure', error.response.data.message, 'warning')
+        })
     },
     setupData() {
       // load all our data from api
@@ -99,11 +107,17 @@ export default {
       }
     },
     setupDetailsPage() {
-      if(localStorage.getItem('zoneIDRouteParams')) {
+      if (localStorage.getItem('zoneIDRouteParams')) {
         let zoneID = localStorage.getItem('zoneIDRouteParams')
         let zoneName = localStorage.getItem('zoneNameRouteParams')
         this.$store.commit('setZoneRouteParam', { zoneID, zoneName })
         this.getZoneDetails().then()
+      }
+      if (localStorage.getItem('stateIDRouteParams')) {
+        let stateID = localStorage.getItem('stateIDRouteParams')
+        let stateName = localStorage.getItem('stateNameRouteParams')
+        this.$store.commit('setStateRouteParam', { stateID, stateName })
+        this.getStateDetails().then()
       }
     }
   }

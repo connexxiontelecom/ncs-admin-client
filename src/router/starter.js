@@ -43,15 +43,6 @@ const router = new Router({
             authRequired: true,
           }
         },
-        {
-          path: 'zonal_operations/view_state',
-          name: 'zonal_operations/view_state',
-          component: () => import('@/views/operations/ViewState'),
-          meta: {
-            title:  'Zonal Operations | NCS Admin',
-            authRequired: true,
-          }
-        },
         // states routes
         {
           path: 'state_commands',
@@ -150,6 +141,15 @@ const router = new Router({
           component: () => import('@/views/operations/ViewZone'),
           meta: {
             title:  'View Zone | NCS Admin',
+            authRequired: true,
+          }
+        },
+        {
+          path: 'zonal_operations/view_zone/view_state',
+          name: 'view_zone_view_state',
+          component: () => import('@/views/operations/ViewState'),
+          meta: {
+            title:  'View State | NCS Admin',
             authRequired: true,
           }
         },

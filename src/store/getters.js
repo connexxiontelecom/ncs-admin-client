@@ -81,8 +81,16 @@ const getters = {
     return state.zoneDetails
   },
 
-  getStateParams: (state)=>{
+  getStateIDParam: (state) => {
     return state.routeParams.stateID
+  },
+
+  getStateNameParam: (state) => {
+    return state.routeParams.stateName
+  },
+
+  getStateDetails: (state) => {
+    return state.stateDetails
   },
 
   // get cell blocks
