@@ -11,8 +11,8 @@
         <!-- END User Avatar -->
 
         <!-- User Info -->
-        <div class="ml-2" v-if="isHQ">
-          <a class="text-dark font-w600 font-size-sm" href="javascript:void(0)">NCS HQ Command</a>
+        <div class="ml-2" >
+          <a v-if="isHQ" class="text-dark font-w600 font-size-sm" href="javascript:void(0)">NCS HQ Command</a>
         </div>
         <!-- END User Info -->
 
@@ -37,15 +37,15 @@
               <b-row class="items-push pull-t">
                 <b-col cols="4">
                   <div class="font-size-sm font-w600 text-uppercase">Zones</div>
-                  <a class="font-size-lg" href="javascript:void(0)">4</a>
+                  <a class="font-size-lg" href="javascript:void(0)">{{ numZones }}</a>
                 </b-col>
                 <b-col cols="4">
                   <div class="font-size-sm font-w600 text-uppercase">States</div>
-                  <a class="font-size-lg" href="javascript:void(0)">15</a>
+                  <a class="font-size-lg" href="javascript:void(0)">{{ numStates }}</a>
                 </b-col>
                 <b-col cols="4">
                   <div class="font-size-sm font-w600 text-uppercase">Centers</div>
-                  <a class="font-size-lg" href="javascript:void(0)">42</a>
+                  <a class="font-size-lg" href="javascript:void(0)">{{ numCenters }}</a>
                 </b-col>
               </b-row>
             </div>
@@ -53,39 +53,15 @@
             <!-- Activity -->
             <base-block title="Zonal Commands" header-bg btn-option-content>
               <ul class="nav-items mb-0">
-<!--                <li v-for="(appEvent, index) in activity" :key="`event-${index}`">-->
-<!--                  <a class="text-dark media py-2" :href="`${appEvent.href}`">-->
-<!--                    <div class="mr-3 ml-2">-->
-<!--                      <i :class="`${appEvent.icon} text-${appEvent.color}`"></i>-->
-<!--                    </div>-->
-<!--                    <div class="media-body">-->
-<!--                      <div class="font-size-sm font-w600">{{ appEvent.title }}</div>-->
-<!--                      <div :class="`text-${appEvent.color}`">{{ appEvent.subtitle }}</div>-->
-<!--                      <small class="font-size-sm text-muted">{{ appEvent.time }}</small>-->
-<!--                    </div>-->
-<!--                  </a>-->
-<!--                </li>-->
-                <li>
-                  <a href="javascript:void(0)" class="text-dark media py-1">
+                <li v-for="(zone, index) in zones" :key="`zone-${index}`">
+                  <a class="text-dark media py-1" href="javascript:void(0)">
                     <div class="mr-3 ml-2">
                       <i class="fa fa-layer-group text-danger"></i>
                     </div>
                     <div class="media-body">
-                      <div class="font-size-sm font-w600">Cmdr Benjamin Masari</div>
-                      <div class="text-danger">North Central</div>
+<!--                      <div class="font-size-sm font-w600">Cmdr Benjamin Masari</div>-->
+                      <div class="text-danger">{{ zone.zone_name }}</div>
                       <small class="font-size-sm text-muted">3 active states</small>
-                    </div>
-                  </a>
-                </li>
-                <li>
-                  <a href="javascript:void(0)" class="text-dark media py-1">
-                    <div class="mr-3 ml-2">
-                      <i class="fa fa-layer-group text-danger"></i>
-                    </div>
-                    <div class="media-body">
-                      <div class="font-size-sm font-w600">Cmdr Issac Oki</div>
-                      <div class="text-danger">North East</div>
-                      <small class="font-size-sm text-muted">6 active states</small>
                     </div>
                   </a>
                 </li>
@@ -96,60 +72,36 @@
             <!-- Online Friends -->
             <base-block title="State Commands" header-bg btn-option-content>
               <ul class="nav-items mb-0">
-                <li>
-                  <a href="javascript:void(0)" class="text-dark media py-1">
+                <li v-for="(state, index) in states" :key="`state-${index}`">
+                  <a class="text-dark media py-1" href="javascript:void(0)">
                     <div class="mr-3 ml-2">
                       <i class="fa fa-globe text-info"></i>
                     </div>
                     <div class="media-body">
-                      <div class="font-size-sm font-w600">Cmdr Emmanuel Asai</div>
-                      <div class="text-info">Ekiti State</div>
-                      <small class="font-size-sm text-muted">1 active center</small>
+                      <div class="font-size-sm font-w600">{{ state.zone_name }}</div>
+                      <div class="text-info">{{ state.state_name }}</div>
+                      <small class="font-size-sm text-muted">3 active states</small>
                     </div>
                   </a>
                 </li>
-<!--                <li v-for="(user, index) in userList" :key="`userlist-${index}`">-->
-<!--                  <a class="media py-2" :href="`${user.href}`">-->
-<!--                    <div class="mr-3 ml-2 overlay-container overlay-bottom">-->
-<!--                      <img class="img-avatar img-avatar48" :src="`img/avatars/${user.avatar}.jpg`" alt="Avatar">-->
-<!--                      <span :class="`overlay-item item item-tiny item-circle border border-2x border-white bg-${user.statusColor}`"></span>-->
-<!--                    </div>-->
-<!--                    <div class="media-body">-->
-<!--                      <div class="font-w600">{{ user.name }}</div>-->
-<!--                      <div class="font-size-sm text-muted">{{ user.profession }}</div>-->
-<!--                    </div>-->
-<!--                  </a>-->
-<!--                </li>-->
               </ul>
             </base-block>
             <!-- END Online Friends -->
 
             <!-- Online Friends -->
-            <base-block title="State Commands" header-bg btn-option-content>
+            <base-block title="Custodial Centers" header-bg btn-option-content>
               <ul class="nav-items mb-0">
-                <li>
+                <li v-for="(center, index) in centers" :key="`center-${index}`">
                   <a class="media py-1" href="javascript:void(0)">
                     <div class="mr-3 ml-2 overlay-container overlay-bottom">
                       <i class="fa fa-university"></i>
                     </div>
                     <div class="media-body">
-                      <div class="font-w600">Medium Correctional Center</div>
-                      <div class="font-size-sm text-muted">Cmdr Timothy Isaiah</div>
+                      <div class="font-w600">{{ center.cc_name }}</div>
+                      <small class="font-size-sm text-muted">3 active states</small>
                     </div>
                   </a>
                 </li>
-<!--                <li v-for="(user, index) in userList" :key="`userlist-${index}`">-->
-<!--                  <a class="media py-2" :href="`${user.href}`">-->
-<!--                    <div class="mr-3 ml-2 overlay-container overlay-bottom">-->
-<!--                      <img class="img-avatar img-avatar48" :src="`img/avatars/${user.avatar}.jpg`" alt="Avatar">-->
-<!--                      <span :class="`overlay-item item item-tiny item-circle border border-2x border-white bg-${user.statusColor}`"></span>-->
-<!--                    </div>-->
-<!--                    <div class="media-body">-->
-<!--                      <div class="font-w600">{{ user.name }}</div>-->
-<!--                      <div class="font-size-sm text-muted">{{ user.profession }}</div>-->
-<!--                    </div>-->
-<!--                  </a>-->
-<!--                </li>-->
               </ul>
             </base-block>
             <!-- END Online Friends -->
@@ -271,6 +223,12 @@ export default {
   data () {
     return {
       isHQ: this.$store.getters.getIsHQ,
+      zones: this.$store.getters.getZones,
+      numZones: this.$store.getters.getNumZones,
+      states: this.$store.getters.getStates,
+      numStates: this.$store.getters.getNumStates,
+      centers: this.$store.getters.getCenters,
+      numCenters: this.$store.getters.getNumCenters,
       settings: {
         status: true,
         updated: true,

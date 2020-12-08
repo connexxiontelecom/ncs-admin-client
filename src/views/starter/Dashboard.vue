@@ -101,28 +101,6 @@
           <base-block rounded content-class="py-4" title="Activities" subtitle="Recent Activities">
             <ul class="timeline timeline-alt">
               <li class="timeline-event">
-                <div class="timeline-event-icon bg-danger">
-                  <i class="fa fa-calendar"></i>
-                </div>
-                <base-block rounded title="Meeting" header-bg class="timeline-event-block">
-                  <template #options>
-                    <div class="timeline-event-time block-options-item font-size-sm font-w600">
-                      3 hrs ago
-                    </div>
-                  </template>
-                  <b-media class="font-size-sm push">
-                    <template #aside>
-                      <a class="img-link" href="javascript:void(0)">
-                        <i class="fa fa-utensils fa-fw fa-3x text-danger-light"></i>
-                      </a>
-                    </template>
-                    <p>
-                      You have a meal meeting scheduled with <a class="font-w600" href="javascript:void(0)">Adam McCoy</a> today at 16:18.
-                    </p>
-                  </b-media>
-                </base-block>
-              </li>
-              <li class="timeline-event">
                 <div class="timeline-event-icon bg-dark">
                   <i class="fa fa-cogs"></i>
                 </div>
