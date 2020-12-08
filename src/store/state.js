@@ -21,8 +21,12 @@ const state = {
   routeParams: {
     zoneID: null,
     zoneName: null,
+
     stateID: null,
     stateName: null,
+
+    centerID: null,
+    centerName: null
   },
 
   // zone details
@@ -39,6 +43,17 @@ const state = {
     centers: [],
 
     numCenters: 0
+  },
+
+  // center details
+  centerDetails: {
+    cells: [],
+    cellBlocks: [],
+    inmates: [],
+
+    numCells: 0,
+    numCellBlocks: 0,
+    numInmates: 0
   },
 
   // data details
