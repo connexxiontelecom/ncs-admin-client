@@ -210,7 +210,7 @@ export default {
       let stateName = item.state_name
       this.$store.commit('setStateRouteParam', { stateID, stateName })
       this.getStateDetails()
-      this.$router.push("/zonal_operations/view_zone/view_state")
+      this.$router.push("/zonal_operations/zone/state")
     },
     onFiltered(filteredItems) {
       this.totalRows = filteredItems.length

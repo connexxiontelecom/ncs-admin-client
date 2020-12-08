@@ -91,6 +91,15 @@ export default {
           this.launchToast('Loading State Details Failure', error.response.data.message, 'warning')
         })
     },
+    async getCenterDetails() {
+      this.$store.dispatch('getCenterDetails', { centerID: this.$store.getters.getCenterIDParam })
+        .then(response => {
+          console.log(response)
+        })
+        .catch(error => {
+          this.launchToast('Loading Center Details Failure', error.response.data.message, 'warning')
+        })
+    },
     setupData() {
       // load all our data from api
       if (localStorage.getItem('accessToken')) {
@@ -118,6 +127,12 @@ export default {
         let stateName = localStorage.getItem('stateNameRouteParams')
         this.$store.commit('setStateRouteParam', { stateID, stateName })
         this.getStateDetails().then()
+      }
+      if (localStorage.getItem('centerIDRouteParams')) {
+        let centerID = localStorage.getItem('centerIDRouteParams')
+        let centerName = localStorage.getItem('centerNameRouteParams')
+        this.$store.commit('setCenterRouteParam', { centerID, centerName })
+        this.getCenterDetails().then()
       }
     }
   }

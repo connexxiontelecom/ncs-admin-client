@@ -59,18 +59,32 @@ const mutations = {
     state.stateDetails.centers = payload.centers
     state.stateDetails.numCenters = payload.centers.length
   },
+  initCenterDetails (state, payload) {
+    state.centerDetails.cells = payload.cells
+    state.centerDetails.numCells = payload.cells.length
+    state.centerDetails.cellBlocks = payload.cellBlocks
+    state.centerDetails.numCellBlocks = payload.cellBlocks.length
+    state.centerDetails.inmates = payload.inmates
+    state.centerDetails.numInmates = payload.inmates.length
+  },
   // set route params for view details get requests
-  setZoneRouteParam(state, payload){
+  setZoneRouteParam (state, payload) {
     state.routeParams.zoneID = payload.zoneID
     state.routeParams.zoneName = payload.zoneName
     localStorage.setItem('zoneIDRouteParams', payload.zoneID)
     localStorage.setItem('zoneNameRouteParams', payload.zoneName)
   },
-  setStateRouteParam(state, payload){
+  setStateRouteParam (state, payload) {
     state.routeParams.stateID = payload.stateID
     state.routeParams.stateName = payload.stateName
     localStorage.setItem('stateIDRouteParams', payload.stateID)
     localStorage.setItem('stateNameRouteParams', payload.stateName)
+  },
+  setCenterRouteParam (state, payload) {
+    state.routeParams.centerID = payload.centerID
+    state.routeParams.centerName = payload.centerName
+    localStorage.setItem('centerIDRouteParams', payload.centerID)
+    localStorage.setItem('centerNameRouteParams', payload.centerName)
   },
   // clear session
   clearSession (state) {
@@ -108,6 +122,8 @@ const mutations = {
     localStorage.removeItem('stateIDRouteParams')
     localStorage.removeItem('stateNameRouteParams')
     localStorage.removeItem('centerStateDetails')
+    localStorage.removeItem('centerIDRouteParams')
+    localStorage.removeItem('centerNameRouteParams')
     localStorage.removeItem('accessToken')
 
   },
