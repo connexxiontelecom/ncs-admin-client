@@ -84,7 +84,7 @@ export default {
     async getStateDetails() {
       this.$store.dispatch('getStateDetails', { stateID: this.$store.getters.getStateIDParam })
         .then(response => {
-          localStorage.setItem('centerStateDetails', JSON.stringify((response.data.message.centres)))
+          localStorage.setItem('centerStateDetails', JSON.stringify(response.data.message.centres))
           this.$store.commit('initStateDetails', { centers: response.data.message.centres })
         })
         .catch(error => {
@@ -94,7 +94,10 @@ export default {
     async getCenterDetails() {
       this.$store.dispatch('getCenterDetails', { centerID: this.$store.getters.getCenterIDParam })
         .then(response => {
-          console.log(response)
+          localStorage.setItem('cellCenterDetails', JSON.stringify(response.data.message.cells))
+          localStorage.setItem('cellBlocksCenterDetails', JSON.stringify(response.data.message.cell_blocks))
+          localStorage.setItem('inmateCenterDetails', JSON.stringify(response.data.message.inmates))
+          this.$store.commit('initCenterDetails', { cells: response.data.message.cells, cellBlocks: response.data.message.cell_blocks, inmates: response.data.message.inmates })
         })
         .catch(error => {
           this.launchToast('Loading Center Details Failure', error.response.data.message, 'warning')
@@ -133,6 +136,11 @@ export default {
         let centerName = localStorage.getItem('centerNameRouteParams')
         this.$store.commit('setCenterRouteParam', { centerID, centerName })
         this.getCenterDetails().then()
+      }
+      if (localStorage.getItem('cellBlockIDRouteParams')) {
+        let cellBlockID = localStorage.getItem('cellBlockIDRouteParams')
+        let cellBlockAlias = localStorage.getItem('cellBlockAliasRouteParams')
+        this.$store.commit('setCellBlockRouteParam', { cellBlockID, cellBlockAlias })
       }
     }
   }

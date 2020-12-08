@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- Hero -->
-    <base-page-heading title="Zonal Operations" subtitle="Manage Each Zone Here">
+    <base-page-heading title="Zonal Operations" subtitle="Select Zone To View Operations">
       <template #extra>
         <b-breadcrumb class="breadcrumb-alt">
           <b-breadcrumb-item active><router-link to="/operations"><i class="fa fa-home"></i></router-link></b-breadcrumb-item>

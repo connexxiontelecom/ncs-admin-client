@@ -176,7 +176,7 @@
 
 <script>
 import BaseLayout from '../Base'
-import zonalOperationsMenu from "@/data/zonalOperationsMenu";
+import zonalOperationsMenu from "@/data/operationsMenu";
 
 export default {
   name: 'LayoutBackend',

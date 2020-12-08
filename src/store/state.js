@@ -26,7 +26,10 @@ const state = {
     stateName: null,
 
     centerID: null,
-    centerName: null
+    centerName: null,
+
+    cellBlockID: null,
+    cellBlockAlias: null,
   },
 
   // zone details
@@ -53,6 +56,15 @@ const state = {
 
     numCells: 0,
     numCellBlocks: 0,
+    numInmates: 0
+  },
+
+  // cell block details
+  cellBlockDetails: {
+    cells: [],
+    inmates: [],
+
+    numCells: 0,
     numInmates: 0
   },
 
