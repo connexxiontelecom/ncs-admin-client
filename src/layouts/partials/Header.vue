@@ -24,6 +24,9 @@
           </b-button>
           <!-- END Apps Modal Toggle Button -->
 
+          <b-button v-if="isHQ" variant="dual" class="mr-2" size="sm">NCS HQ</b-button>
+
+
           <!-- Apps Modal -->
           <b-modal id="one-modal-apps" size="sm" body-class="p-0" hide-footer hide-header>
             <div class="block block-rounded block-themed block-transparent mb-0">
@@ -247,6 +250,7 @@ export default {
     return {
       baseSearchTerm: '',
       user: this.$store.getters.getUser,
+      isHQ: this.$store.getters.getIsHQ,
       notifications: [
         {
           href: 'javascript:void(0)',
