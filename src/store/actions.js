@@ -149,6 +149,11 @@ const actions = {
         })
     })
   },
+  // getCellBlockDetails({ commit }, payload) {
+  //   return new Promise((resolve, reject) => {
+  //     axios({url: `centre/view_cell_blocks/${payload.c}`})
+  //   })
+  // },
   // eslint-disable-next-line no-unused-vars
   getCustodialCenters ({ commit }) {
     return new Promise((resolve, reject) => {

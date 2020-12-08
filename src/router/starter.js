@@ -161,6 +161,15 @@ const router = new Router({
             title: 'View Center | NCS Admin',
             authRequired: true
           }
+        },
+        {
+          path: 'zonal_operations/zone/state/center/cell_block',
+          name: 'zonal_operations_view_cell_block',
+          component: () => import('@/views/operations/ViewCellBlock'),
+          meta: {
+            title: 'View Cell Block | NCS Admin',
+            authRequired: true
+          }
         }
       ]
     },
