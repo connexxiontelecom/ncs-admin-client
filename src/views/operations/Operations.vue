@@ -21,17 +21,17 @@
         <b-row>
           <b-col sm="4">
             <base-block rounded>
-              <p class="text-center py-6">...</p>
+              <p class="text-center py-6">Custodial Centers</p>
             </base-block>
           </b-col>
           <b-col sm="4">
             <base-block rounded>
-              <p class="text-center py-6">...</p>
+              <p class="text-center py-6">States</p>
             </base-block>
           </b-col>
           <b-col sm="4">
             <base-block rounded>
-              <p class="text-center py-6">...</p>
+              <p class="text-center py-6">Zones</p>
             </base-block>
           </b-col>
           <b-col sm="12">

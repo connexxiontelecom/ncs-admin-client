@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- Hero -->
-    <base-page-heading title="View Custodial Center" :subtitle="'Details Of '+centerName">
+    <base-page-heading :title="'View '+centerName" subtitle="View Custodial Center Details Here">
       <template #extra>
         <b-breadcrumb class="breadcrumb-alt">
           <b-breadcrumb-item active><router-link to="/operations"><i class="fa fa-home"></i></router-link></b-breadcrumb-item>

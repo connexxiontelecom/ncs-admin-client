@@ -6,14 +6,19 @@ export default {
       icon: 'si si-compass'
     },
     {
-      name: 'Zones',
-      to: '/zonal_operations',
-      icon: 'si si-layers'
+      name: 'Custodial Centers',
+      to: '',
+      icon: 'si si-lock'
     },
     {
       name: 'States',
       to: '',
       icon: 'si si-globe'
+    },
+    {
+      name: 'Zones',
+      to: '/zonal_operations',
+      icon: 'si si-layers'
     },
     // {
     //   name: 'Variations',
@@ -37,11 +42,6 @@ export default {
     //     }
     //   ]
     // },
-    {
-      name: 'Search',
-      to: '/backend-boxed/search',
-      icon: 'si si-magnifier'
-    },
     {
       name: 'Go Back',
       to: '/dashboard',
