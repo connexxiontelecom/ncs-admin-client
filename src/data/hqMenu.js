@@ -6,56 +6,6 @@ export default {
       to: '/dashboard',
     },
     {
-      name: 'Config',
-      heading: true
-    },
-    {
-      name: 'Zonal Commands',
-      icon: 'fa fa-layer-group',
-      to: '/zonal_commands'
-    },
-    {
-      name: 'State Commands',
-      icon: 'fa fa-globe',
-      to: '/state_commands'
-    },
-    {
-      name: 'Custodial Centers',
-      icon: 'fa fa-university',
-      to: '',
-      sub: [
-        {
-          name: 'Custodial Centers',
-          to: '/custodial_centers'
-        },
-        {
-          name: 'Custodial Center Types',
-          to: '/custodial_center_types'
-        }
-      ]
-    },
-    {
-      name: 'User Accounts',
-      icon: 'fa fa-user',
-      sub: [
-        {
-          name: 'Manage Users',
-          to: ''
-        },
-        {
-          name: 'Manage Ranks',
-          to: ''
-        },
-        {
-          name: 'Manage Titles'
-        },
-        {
-          name: 'Manage Permissions',
-          to: ''
-        }
-      ]
-    },
-    {
       name: 'Administration',
       heading: true
     },
@@ -85,8 +35,58 @@ export default {
       icon: 'fa fa-folder-open',
     },
     {
+      name: 'Config',
+      heading: true
+    },
+    {
+      name: 'Zonal Commands',
+      icon: 'fa fa-layer-group',
+      to: '/zonal_commands'
+    },
+    {
+      name: 'State Commands',
+      icon: 'fa fa-globe',
+      to: '/state_commands'
+    },
+    {
+      name: 'Custodial Centers',
+      icon: 'fa fa-university',
+      to: '',
+      sub: [
+        {
+          name: 'Custodial Center Types',
+          to: '/custodial_center_types'
+        },
+        {
+          name: 'Custodial Centers',
+          to: '/custodial_centers'
+        },
+      ]
+    },
+    {
+      name: 'User Accounts',
+      icon: 'fa fa-user',
+      sub: [
+        {
+          name: 'Manage Users',
+          to: ''
+        },
+        {
+          name: 'Manage Ranks',
+          to: ''
+        },
+        {
+          name: 'Manage Titles'
+        },
+        {
+          name: 'Manage Permissions',
+          to: ''
+        }
+      ]
+    },
+    {
       name: 'Setup',
       icon: 'fa fa-cogs'
-    }
+    },
   ],
 }
