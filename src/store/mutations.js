@@ -86,6 +86,12 @@ const mutations = {
     localStorage.setItem('centerIDRouteParams', payload.centerID)
     localStorage.setItem('centerNameRouteParams', payload.centerName)
   },
+  setCellBlockRouteParam (state, payload) {
+    state.routeParams.cellBlockID = payload.cellBlockID
+    state.routeParams.cellBlockAlias = payload.cellBlockAlias
+    localStorage.setItem('cellBlockIDRouteParams', payload.cellBlockID)
+    localStorage.setItem('cellBlockAliasRouteParams', payload.cellBlockAlias)
+  },
   // clear session
   clearSession (state) {
     state.session.user = {}
@@ -124,6 +130,11 @@ const mutations = {
     localStorage.removeItem('centerStateDetails')
     localStorage.removeItem('centerIDRouteParams')
     localStorage.removeItem('centerNameRouteParams')
+    localStorage.removeItem('cellCenterDetails')
+    localStorage.removeItem('cellBlockCenterDetails')
+    localStorage.removeItem('inmateCenterDetails')
+    localStorage.removeItem('cellBlockIDRouteParams')
+    localStorage.removeItem('cellBlockAliasRouteParams')
     localStorage.removeItem('accessToken')
 
   },

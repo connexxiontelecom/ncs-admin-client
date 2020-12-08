@@ -17,7 +17,7 @@
           <base-block tag="a" rounded link-shadow content-class="d-flex py-4">
             <div class="flex-grow-1">
               <div class="font-size-sm font-w600 text-uppercase text-muted">
-                Zone Coordinator
+                Zonal Coordinator
               </div>
               <div class="font-size-h3">
                 Col Fataih<span class="font-size-sm text-muted"></span>
@@ -32,7 +32,7 @@
           <base-block tag="a" rounded link-shadow content-class="d-flex py-4">
             <div class="flex-grow-1">
               <div class="font-size-sm font-w600 text-uppercase text-muted">
-                Zone Capacity
+                Zonal Capacity
               </div>
               <div class="font-size-h3">
                 81% <span class="font-size-sm text-muted">occupied</span>
