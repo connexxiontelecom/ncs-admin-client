@@ -51,6 +51,7 @@
             </li>
           </b-dropdown>
           <!-- END Notifications Dropdown -->
+          <b-button v-if="isHQ" variant="dual" class="mr-2" size="sm">NCS HQ</b-button>
         </div>
         <!-- END Left Section -->
 
@@ -185,6 +186,7 @@ export default {
   data () {
     return {
       user: this.$store.getters.getUser,
+      isHQ: this.$store.getters.getIsHQ,
       // Override and set custom CSS classes to the container of each base layout element
       layoutClasses: {
         sideOverlay: '',

@@ -100,17 +100,7 @@
                 </download-excel>
               </b-col>
             </b-row>
-            <b-table class="mb-2" @filtered="onFiltered" show-empty striped hover bordered head-variant="light" :filter="filter" :items="centers" :fields="fields" :current-page="currentPage" :per-page="perPage">
-              <template #cell(actions)>
-                <b-button-group>
-                  <b-button size="sm" variant="light">
-                    <i class="fa fa-fw fa-pencil-alt"></i>
-                  </b-button>
-                  <b-button size="sm" variant="light">
-                    <i class="fa fa-fw fa-times"></i>
-                  </b-button>
-                </b-button-group>
-              </template>
+            <b-table class="mb-2" @filtered="onFiltered" selectable show-empty striped hover bordered head-variant="light" :filter="filter" :items="centersSN" :fields="fields" :current-page="currentPage" :per-page="perPage" @row-clicked="viewCenter">
             </b-table>
             <b-row>
               <b-col lg="2" class="my-1">
@@ -126,6 +116,54 @@
           </base-block>
         </b-col>
       </b-row>
+
+      <b-modal id="view-center" dialog-class="modal-dialog-slideup" body-class="p-0" hide-footer hide-header>
+        <div class="block block-rounded block-themed block-transparent mb-0">
+          <div class="block-header bg-primary-dark">
+            <h3 class="block-title">View Custodial Center</h3>
+            <div class="block-options">
+              <button type="button" class="btn-block-option" @click="$bvModal.hide('view-center')">
+                <i class="fa fa-fw fa-times"></i>
+              </button>
+            </div>
+          </div>
+          <div class="block-content font-size-sm">
+            <b-row>
+              <b-col>
+                <b-form-group label-for="zone-name">
+                  <template #label>
+                    Custodial Center Name
+                  </template>
+                  <b-form-input id="zone-name" type="text" :value="center" readonly></b-form-input>
+                </b-form-group>
+              </b-col>
+            </b-row>
+            <b-row>
+              <b-col>
+                <b-form-group label-for="type">
+                  <template #label>
+                    Custodial Center Type
+                  </template>
+                  <b-form-input id="type" type="text" :value="centerType" readonly></b-form-input>
+                </b-form-group>
+              </b-col>
+            </b-row>
+            <b-row>
+              <b-col>
+                <b-form-group label-for="state">
+                  <template #label>
+                    Custodial Center State
+                  </template>
+                  <b-form-input id="state" type="text" :value="centerState" readonly></b-form-input>
+                </b-form-group>
+              </b-col>
+            </b-row>
+          </div>
+          <div class="block-content block-content-full text-right border-top">
+            <b-button variant="alt-secondary" class="mr-1" @click="$bvModal.hide('view-center')" v-click-ripple>Close</b-button>
+          </div>
+        </div>
+      </b-modal>
     </div>
   </div>
 </template>
@@ -136,12 +174,20 @@ import { required } from 'vuelidate/lib/validators'
 
 export default {
   mixins: [validationMixin],
+  computed: {
+    centersSN () {
+      return this.centers.map((d, index) => ({ ...d, sno: index + 1 }))
+    }
+  },
   mounted() {
     this.getCenterTypeOptions()
     this.getCenterStateOptions()
   },
   data() {
     return {
+      center: null,
+      centerType: null,
+      centerState: null,
       newCenterForm: {
         centerName: null,
         centerTypeSelected: null,
@@ -153,14 +199,14 @@ export default {
           { value: null, text: 'Please select' },
         ]
       },
-      fields: [{key: 'cc_id', sortable: true, thStyle: 'width: 10%'}, {key: 'cc_name', label: 'Correctional Center', sortable: true}, {key: 'cc_type', label: 'Center Type', sortable: true}, {key: 'state_name', label: 'State', sortable: true}, {key: 'zone_name', label: 'Zone', sortable: true}, {key: 'actions', sortable: false, thStyle: 'width: 9px'}],
-      exportFields: {'Correctional Center ID': 'cc_id', 'Correctional Center Name': 'cc_name', 'Correctional Center Type': 'cc_type' , 'Correctional Center State': 'state_name', 'Zone Name': 'zone_name'},
+      fields: [{key: 'sno', label: 'S/n', thStyle: 'width: 10%'}, {key: 'cc_name', label: 'Correctional Center', sortable: true}, {key: 'cc_type', label: 'Center Type', sortable: true}, {key: 'state_name', label: 'State', sortable: true}, {key: 'zone_name', label: 'Zone', sortable: true}],
+      exportFields: {'S/n': 'sno', 'Correctional Center Name': 'cc_name', 'Correctional Center Type': 'cc_type' , 'Correctional Center State': 'state_name', 'Zone Name': 'zone_name'},
       centers: this.$store.getters.getCenters,
       filter: null,
       filteredItems: this.centers,
       totalRows: this.$store.getters.getNumCenters,
       currentPage: 1,
-      perPage: 5,
+      perPage: 10,
       pageOptions: [{value: 5, text: '5 per page'}, {value: 10, text: '10 per page'}, {value: 15, text: '15 per page'}],
     }
   },
@@ -215,6 +261,12 @@ export default {
       this.currentPage = 1
       this.filteredItems = filteredItems
     },
+    viewCenter(item) {
+      this.center = item.cc_name
+      this.centerType = item.cc_type
+      this.centerState = item.state_name
+      this.$bvModal.show('view-center')
+    }
   }
 }
 </script>

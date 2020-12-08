@@ -87,18 +87,7 @@
                 </download-excel>
               </b-col>
             </b-row>
-            <b-table class="mb-2" @filtered="onFiltered" show-empty striped hover bordered head-variant="light" :filter="filter" :items="states" :fields="stateFields" :current-page="currentPage" :per-page="perPage">
-              <template #cell(actions)>
-                <b-button-group>
-                  <b-button size="sm" variant="light">
-                    <i class="fa fa-fw fa-pencil-alt"></i>
-                  </b-button>
-                  <b-button size="sm" variant="light">
-                    <i class="fa fa-fw fa-times"></i>
-                  </b-button>
-                </b-button-group>
-              </template>
-            </b-table>
+            <b-table class="mb-2" @filtered="onFiltered" selectable show-empty striped hover bordered head-variant="light" :filter="filter" :items="statesSN" :fields="stateFields" :current-page="currentPage" :per-page="perPage" @row-clicked="viewState"></b-table>
             <b-row>
               <b-col lg="2" class="my-1">
                 <b-form-group label-for="perPageSelect" class="mb-3">
@@ -113,6 +102,44 @@
           </base-block>
         </b-col>
       </b-row>
+
+      <b-modal id="view-state" dialog-class="modal-dialog-slideup" body-class="p-0" hide-footer hide-header>
+        <div class="block block-rounded block-themed block-transparent mb-0">
+          <div class="block-header bg-primary-dark">
+            <h3 class="block-title">View State Command</h3>
+            <div class="block-options">
+              <button type="button" class="btn-block-option" @click="$bvModal.hide('view-state')">
+                <i class="fa fa-fw fa-times"></i>
+              </button>
+            </div>
+          </div>
+          <div class="block-content font-size-sm">
+            <b-row>
+              <b-col>
+                <b-form-group label-for="state-name">
+                  <template #label>
+                    State Command Name
+                  </template>
+                  <b-form-input id="state-name" type="text" :value="state" readonly></b-form-input>
+                </b-form-group>
+              </b-col>
+            </b-row>
+            <b-row>
+              <b-col>
+                <b-form-group label-for="zone">
+                  <template #label>
+                    Zonal Command Name
+                  </template>
+                  <b-form-input id="zone" type="text" :value="zone" readonly></b-form-input>
+                </b-form-group>
+              </b-col>
+            </b-row>
+          </div>
+          <div class="block-content block-content-full text-right border-top">
+            <b-button variant="alt-secondary" class="mr-1" @click="$bvModal.hide('view-state')" v-click-ripple>Close</b-button>
+          </div>
+        </div>
+      </b-modal>
     </div>
   </div>
 </template>
@@ -123,11 +150,18 @@ import { required } from 'vuelidate/lib/validators'
 
 export default {
   mixins: [validationMixin],
+  computed: {
+    statesSN () {
+      return this.states.map((d, index) => ({ ...d, sno: index + 1 }))
+    }
+  },
   mounted() {
     this.getZoneOptions()
   },
   data() {
     return {
+      state: null,
+      zone: null,
       newStateForm: {
         stateName: null,
         stateZoneSelected: null,
@@ -135,14 +169,14 @@ export default {
           { value: null, text: 'Please select' },
         ]
       },
-      stateFields: [{key: 'state_id', sortable: true, thStyle: 'width: 10%'}, {key: 'state_name', sortable: true}, {key: 'zone_name', sortable: true}, {key: 'actions', sortable: false, thStyle: 'width: 9px'}],
-      exportFields: {'State ID': 'state_id', 'State Name': 'state_name', 'Zone Name': 'zone_name'},
+      stateFields: [{key: 'sno', label: 'S/n', thStyle: 'width: 10%'}, {key: 'state_name', sortable: true}, {key: 'zone_name', sortable: true},],
+      exportFields: {'S/n': 'sno', 'State Name': 'state_name', 'Zone Name': 'zone_name'},
       states: this.$store.getters.getStates,
       filter: null,
       filteredItems: this.states,
       totalRows: this.$store.getters.getNumStates,
       currentPage: 1,
-      perPage: 5,
+      perPage: 10,
       pageOptions: [{value: 5, text: '5 per page'}, {value: 10, text: '10 per page'}, {value: 15, text: '15 per page'}],
     }
   },
@@ -186,6 +220,11 @@ export default {
       this.totalRows = filteredItems.length
       this.currentPage = 1
       this.filteredItems = filteredItems
+    },
+    viewState(item) {
+      this.state = item.state_name
+      this.zone = item.zone_name
+      this.$bvModal.show('view-state')
     },
   }
 }
