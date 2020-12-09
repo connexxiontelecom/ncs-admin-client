@@ -7,6 +7,7 @@ const mutations = {
   initSession (state, payload) {
     delete payload.userData.user_password
     localStorage.setItem('accessToken', payload.accessToken)
+    console.log(payload.userData)
     state.session.user = payload.userData
     switch (parseInt(state.session.user.user_type)){
       case 1:
@@ -66,6 +67,10 @@ const mutations = {
     state.centerDetails.numCellBlocks = payload.cellBlocks.length
     state.centerDetails.inmates = payload.inmates
     state.centerDetails.numInmates = payload.inmates.length
+  },
+  initCellBlockDetails (state, payload) {
+    state.cellBlockDetails.cells = payload.cells
+    state.cellBlockDetails.numCells = payload.cells.length
   },
   // set route params for view details get requests
   setZoneRouteParam (state, payload) {
@@ -131,10 +136,11 @@ const mutations = {
     localStorage.removeItem('centerIDRouteParams')
     localStorage.removeItem('centerNameRouteParams')
     localStorage.removeItem('cellCenterDetails')
-    localStorage.removeItem('cellBlockCenterDetails')
+    localStorage.removeItem('cellBlocksCenterDetails')
     localStorage.removeItem('inmateCenterDetails')
     localStorage.removeItem('cellBlockIDRouteParams')
     localStorage.removeItem('cellBlockAliasRouteParams')
+    localStorage.removeItem('cellCellBlockDetails')
     localStorage.removeItem('accessToken')
 
   },

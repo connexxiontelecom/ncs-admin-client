@@ -179,7 +179,12 @@ export default {
       states: this.$store.getters.getZoneDetails.states,
       ccs: this.$store.getters.getZoneDetails.numCenters,
       stateCount: this.$store.getters.getZoneDetails.numStates,
-      stateFields: [{key: 'sno', label: 'S/n', thStyle: 'width: 10%'}, {key: 'state_name', sortable: true},],
+      stateFields: [
+        {key: 'sno', label: 'S/n', thStyle: 'width: 10%'},
+        {key: 'state_name', sortable: true},
+        {key: 'cc_count', label: 'Total Custodial Centers', sortable: true},
+        {key: 'inmate_count', label: 'Total Inmates', sortable: true},
+      ],
       exportFields: {'State ID': 'state_id', 'State Name': 'state_name'},
       filter: null,
       filteredItems: this.states,

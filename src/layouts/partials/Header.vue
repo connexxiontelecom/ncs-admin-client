@@ -25,6 +25,7 @@
           <!-- END Apps Modal Toggle Button -->
 
           <b-button v-if="isHQ" variant="dual" class="mr-2" size="sm">NCS HQ</b-button>
+          <b-button v-if="isCenter" variant="dual" class="mr-2" size="sm">{{ user.cc_data.cc_name }}</b-button>
 
 
           <!-- Apps Modal -->
@@ -251,6 +252,7 @@ export default {
       baseSearchTerm: '',
       user: this.$store.getters.getUser,
       isHQ: this.$store.getters.getIsHQ,
+      isCenter: this.$store.getters.getIsCenter,
       notifications: [
         {
           href: 'javascript:void(0)',

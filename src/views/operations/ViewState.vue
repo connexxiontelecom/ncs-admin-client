@@ -178,7 +178,12 @@ export default {
       stateName: this.$store.getters.getStateNameParam,
       centers: this.$store.getters.getStateDetails.centers,
       centerCount: this.$store.getters.getStateDetails.numCenters,
-      centreFields: [{key: 'sno', label: 'S/n', thStyle: 'width: 10%'}, {key: 'cc_name', label: 'Custodial Center Name', sortable: true}],
+      centreFields: [
+        {key: 'sno', label: 'S/n', thStyle: 'width: 10%'},
+        {key: 'cc_name', label: 'Custodial Center Name', sortable: true},
+        {key: 'cc_type_name', label: 'Custodial Center Type', sortable: true},
+
+      ],
       exportFields: {'centre ID': 'cc_id', 'Centre Name': 'cc_name'},
       filter: null,
       filteredItems: this.centers,

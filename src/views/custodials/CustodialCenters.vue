@@ -108,8 +108,8 @@
                   <b-form-select class="form-control-alt" v-model="perPage" id="perPageSelect" size="sm" :options="pageOptions"></b-form-select>
                 </b-form-group>
               </b-col>
-              <b-col lg="8"></b-col>
-              <b-col lg="2" class="my-1">
+              <b-col lg="7"></b-col>
+              <b-col lg="3" class="my-1">
                 <b-pagination class="mb-3 my-0" v-model="currentPage" :total-rows="totalRows" :per-page="perPage" align="fill" size="sm"></b-pagination>
               </b-col>
             </b-row>
@@ -199,7 +199,13 @@ export default {
           { value: null, text: 'Please select' },
         ]
       },
-      fields: [{key: 'sno', label: 'S/n', thStyle: 'width: 10%'}, {key: 'cc_name', label: 'Correctional Center', sortable: true}, {key: 'cc_type', label: 'Center Type', sortable: true}, {key: 'state_name', label: 'State', sortable: true}, {key: 'zone_name', label: 'Zone', sortable: true}],
+      fields: [
+        {key: 'sno', label: 'S/n', thStyle: 'width: 10%'},
+        {key: 'cc_name', label: 'Correctional Center', sortable: true},
+        {key: 'cc_type_name', label: 'Center Type', sortable: true},
+        {key: 'state_name', label: 'State', sortable: true},
+        {key: 'zone_name', label: 'Zone', sortable: true},
+      ],
       exportFields: {'S/n': 'sno', 'Correctional Center Name': 'cc_name', 'Correctional Center Type': 'cc_type' , 'Correctional Center State': 'state_name', 'Zone Name': 'zone_name'},
       centers: this.$store.getters.getCenters,
       filter: null,
@@ -263,7 +269,7 @@ export default {
     },
     viewCenter(item) {
       this.center = item.cc_name
-      this.centerType = item.cc_type
+      this.centerType = item.cc_type_name
       this.centerState = item.state_name
       this.$bvModal.show('view-center')
     }

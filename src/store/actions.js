@@ -149,11 +149,18 @@ const actions = {
         })
     })
   },
-  // getCellBlockDetails({ commit }, payload) {
-  //   return new Promise((resolve, reject) => {
-  //     axios({url: `centre/view_cell_blocks/${payload.c}`})
-  //   })
-  // },
+  // eslint-disable-next-line no-unused-vars
+  getCellBlockDetails({ commit }, payload) {
+    return new Promise((resolve, reject) => {
+      axios({url: `view_cell_block/${payload.cellBlockID}`, method: 'GET'})
+        .then(response => {
+          resolve(response)
+        })
+        .catch(error => {
+          reject(error)
+        })
+    })
+  },
   // eslint-disable-next-line no-unused-vars
   getCustodialCenters ({ commit }) {
     return new Promise((resolve, reject) => {

@@ -269,7 +269,7 @@ export default {
 
     // Set various template options
     this.$store.commit('headerStyle', { mode: 'dark'})
-    this.$store.commit('mainContent', { mode: 'boxed'})
+    this.$store.commit('mainContent', { mode: 'full'})
   }
 }
 </script>
