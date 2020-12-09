@@ -103,6 +103,16 @@ export default {
           this.launchToast('Loading Center Details Failure', error.response.data.message, 'warning')
         })
     },
+    async getCellBlockDetails() {
+      this.$store.dispatch('getCellBlockDetails', { cellBlockID: this.$store.getters.getCellBlockIDParam })
+        .then(response => {
+          localStorage.setItem('cellCellBlockDetails', JSON.stringify(response.data.message))
+          this.$store.commit('initCellBlockDetails', { cells: response.data.message })
+        })
+        .catch(error => {
+          this.launchToast('Loading Cell Block Details Failure', error.response.data.message, 'warning')
+        })
+    },
     setupData() {
       // load all our data from api
       if (localStorage.getItem('accessToken')) {
@@ -141,6 +151,7 @@ export default {
         let cellBlockID = localStorage.getItem('cellBlockIDRouteParams')
         let cellBlockAlias = localStorage.getItem('cellBlockAliasRouteParams')
         this.$store.commit('setCellBlockRouteParam', { cellBlockID, cellBlockAlias })
+        this.getCellBlockDetails().then()
       }
     }
   }

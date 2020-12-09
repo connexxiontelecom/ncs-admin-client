@@ -196,6 +196,7 @@ export default {
       let cellBlockAlias = item.cell_block_alias
       let cellBlockID = item.cell_block_id
       this.$store.commit('setCellBlockRouteParam', { cellBlockID, cellBlockAlias })
+      this.getCellBlockDetails()
       this.$router.push('/zonal_operations/zone/state/center/cell_block')
     },
     onFiltered(filteredItems) {

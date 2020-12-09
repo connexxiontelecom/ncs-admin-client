@@ -113,6 +113,10 @@ const getters = {
     return state.routeParams.cellBlockAlias
   },
 
+  getCellBlockDetails: (state) => {
+    return state.cellBlockDetails
+  },
+
   // get cell blocks
   getCellBlocks: (state) => {
     return state.data.cellBlocks

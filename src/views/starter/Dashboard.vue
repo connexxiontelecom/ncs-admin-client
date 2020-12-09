@@ -427,7 +427,7 @@
         <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center py-2 text-center text-sm-left">
           <div class="flex-sm-fill">
             <h1 class="h3 font-w700 mb-2">
-              Custodial Dashboard
+              {{ user.cc_data.cc_name }} Custodial Dashboard
             </h1>
             <h2 class="h6 font-w500 text-muted mb-0">
               Welcome <a class="font-w600" href="javascript:void(0)">{{ user.user_first_name +" " +" "+ user.user_last_name }}</a>, this is an overview of your Custodial Center.
