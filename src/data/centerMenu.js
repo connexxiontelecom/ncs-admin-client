@@ -29,12 +29,12 @@ export default {
       icon: 'fa fa-bars',
       sub: [
         {
-          name: 'Cells',
-          to: 'cells'
-        },
-        {
           name: 'Cell Blocks',
           to: 'cell_blocks'
+        },
+        {
+          name: 'Cells',
+          to: 'cells'
         },
         {
           name: 'Cell Assignment'

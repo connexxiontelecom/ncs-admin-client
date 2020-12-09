@@ -13,6 +13,7 @@ Vue.use(Router)
 // Router Configuration
 const router = new Router({
   mode: 'history',
+  base: '/dist/',
   // linkActiveClass: 'active',
   // linkExactActiveClass: '',
   scrollBehavior () {

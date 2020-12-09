@@ -120,7 +120,13 @@ export default {
       newCellBlockForm: {
         cellBlockAlias: null
       },
-      fields: [{key: 'sno', label: 'S/n', thStyle: 'width: 10%'}, {key: 'cell_block_alias', label: 'Cell Block Alias', sortable: true}, {key: 'actions', sortable: false, thStyle: 'width: 9px'}],
+      fields: [
+        {key: 'sno', label: 'S/n', thStyle: 'width: 10%'},
+        {key: 'cell_block_alias', label: 'Cell Block Alias', sortable: true},
+        {key: 'count_cells', label: 'Total Cells', sortable: true},
+        {key: 'count_inmates', label: 'Total Inmates', sortable: true},
+        {key: 'actions', sortable: false, thStyle: 'width: 9px'},
+      ],
       exportFields: {'S/n': 'sno', 'Cell Block Alias': 'cell_block_alias'},
       cellBlocks: this.$store.getters.getCellBlocks,
       filter: null,

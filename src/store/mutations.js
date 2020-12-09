@@ -7,7 +7,6 @@ const mutations = {
   initSession (state, payload) {
     delete payload.userData.user_password
     localStorage.setItem('accessToken', payload.accessToken)
-    console.log(payload.userData)
     state.session.user = payload.userData
     switch (parseInt(state.session.user.user_type)){
       case 1:
