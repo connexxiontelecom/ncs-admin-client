@@ -37,11 +37,14 @@
       <base-block rounded title="Inmate Enrollment Form" ref="enrollmentBlock" btn-option-fullscreen>
         <b-form @submit.stop.prevent="onSubmit">
           <b-tabs v-model="tabIndex" id="form-block" class="block"  content-class="block-content overflow-hidden" pills fill>
-            <b-tab title="Personal" active class="fade-left p-4">
+            <b-tab title="1. Personal" active class="fade-left p-4">
               <h4 class="font-w400">Personal Information</h4>
               <b-row>
                 <b-col lg="2">
-                  <b-form-group label="Ref No." label-for="ref-no">
+                  <b-form-group label-for="ref-no">
+                    <template #label>
+                      Ref No. <span class="text-danger">*</span>
+                    </template>
                     <b-form-input id="ref-no" type="text" name="refNo" v-model="$v.enrollmentForm.refNo.$model" :state="!$v.enrollmentForm.refNo.$error && null"></b-form-input>
                     <b-form-invalid-feedback>
                       A valid ref no. is required
@@ -49,7 +52,10 @@
                   </b-form-group>
                 </b-col>
                 <b-col lg="5">
-                  <b-form-group label="First Name" label-for="first-name">
+                  <b-form-group label-for="first-name">
+                    <template #label>
+                      First Name <span class="text-danger">*</span>
+                    </template>
                     <b-form-input id="first-name" type="text" name="firstname" v-model="$v.enrollmentForm.firstname.$model" :state="!$v.enrollmentForm.firstname.$error && null"></b-form-input>
                     <b-form-invalid-feedback>
                       A first name is required
@@ -57,7 +63,10 @@
                   </b-form-group>
                 </b-col>
                 <b-col lg="5">
-                  <b-form-group label="Last Name" label-for="last-name">
+                  <b-form-group label-for="last-name">
+                    <template #label>
+                      Last name <span class="text-danger">*</span>
+                    </template>
                     <b-form-input id="last-name" type="text" name="lastname" v-model="$v.enrollmentForm.lastname.$model" :state="!$v.enrollmentForm.lastname.$error && null"></b-form-input>
                     <b-form-invalid-feedback>
                       A last name is required
@@ -72,7 +81,10 @@
                   </b-form-group>
                 </b-col>
                 <b-col lg="3">
-                  <b-form-group label="Gender" label-for="gender">
+                  <b-form-group label-for="gender">
+                    <template #label>
+                      Gender <span class="text-danger">*</span>
+                    </template>
                     <b-form-select id="gender" name="genderSelected" v-model="$v.enrollmentForm.genderSelected.$model" :state="!$v.enrollmentForm.genderSelected.$error && null" :options="enrollmentForm.genderOptions"></b-form-select>
                     <b-form-invalid-feedback>
                       A gender is required
@@ -80,7 +92,10 @@
                   </b-form-group>
                 </b-col>
                 <b-col lg="3">
-                  <b-form-group label="Date of Birth" label-for="dob">
+                  <b-form-group label-for="dob">
+                    <template #label>
+                      Date of Birth <span class="text-danger">*</span>
+                    </template>
                     <b-form-input id="dob" type="date" name="dob" v-model="$v.enrollmentForm.dob.$model" :state="!$v.enrollmentForm.dob.$error && null"></b-form-input>
                     <b-form-invalid-feedback>
                       A date of birth is required
@@ -115,7 +130,10 @@
               </b-row>
               <b-row >
                 <b-col lg="6">
-                  <b-form-group label="Street Address" label-for="address">
+                  <b-form-group label-for="address">
+                    <template #label>
+                      Street Address <span class="text-danger">*</span>
+                    </template>
                     <b-form-textarea id="address" name="address" v-model="$v.enrollmentForm.address.$model" :state="!$v.enrollmentForm.address.$error && null" rows="2"></b-form-textarea>
                     <b-form-invalid-feedback>
                       A street address is required
@@ -124,6 +142,9 @@
                 </b-col>
                 <b-col lg="3">
                   <b-form-group label="City/State" label-for="city">
+                    <template #label>
+                      City/State <span class="text-danger">*</span>
+                    </template>
                     <b-form-input id="city" type="text" name="city" v-model="$v.enrollmentForm.city.$model" :state="!$v.enrollmentForm.city.$error && null"></b-form-input>
                     <b-form-invalid-feedback>
                       A city is required
@@ -132,6 +153,9 @@
                 </b-col>
                 <b-col lg="3">
                   <b-form-group label="Country of Residence" label-for="country">
+                    <template #label>
+                      Country of Residence <span class="text-danger">*</span>
+                    </template>
                     <b-form-select id="country" name="countrySelected" v-model="$v.enrollmentForm.countrySelected.$model" :state="!$v.enrollmentForm.countrySelected.$error && null" :options="enrollmentForm.countryOptions"></b-form-select>
                     <b-form-invalid-feedback>
                       A country of residence is required
@@ -142,6 +166,9 @@
               <b-row>
                 <b-col lg="3">
                   <b-form-group label="Religion" label-for="religion">
+                    <template #label>
+                      Religion <span class="text-danger">*</span>
+                    </template>
                     <b-form-select id="religion" name="religionSelected" @change="religionChange($event)" v-model="$v.enrollmentForm.religionSelected.$model" :state="!$v.enrollmentForm.religionSelected.$error && null" :options="enrollmentForm.religionOptions"></b-form-select>
                     <b-form-invalid-feedback>
                       A religion is required
@@ -155,6 +182,9 @@
                 </b-col>
                 <b-col lg="3">
                   <b-form-group label="Marital Status" label-for="marital-status">
+                    <template #label>
+                      Marital Status <span class="text-danger">*</span>
+                    </template>
                     <b-form-select id="marital-status" name="maritalSelected" v-model="$v.enrollmentForm.maritalSelected.$model" :state="!$v.enrollmentForm.maritalSelected.$error && null" :options="enrollmentForm.maritalOptions"></b-form-select>
                     <b-form-invalid-feedback>
                       A marital status is required
@@ -170,6 +200,9 @@
               <b-row>
                 <b-col lg="6">
                   <b-form-group label="Spouse Information" label-for="spouse-info">
+                    <template #label>
+                      Spouse Information <span class="text-danger">*</span>
+                    </template>
                     <b-form-textarea id="spouse-info" name="spouseInfo" v-model="$v.enrollmentForm.spouseInfo.$model" :state="!$v.enrollmentForm.spouseInfo.$error && null" rows="2"></b-form-textarea>
                   </b-form-group>
                   <b-form-invalid-feedback>
@@ -178,6 +211,9 @@
                 </b-col>
                 <b-col lg="6">
                   <b-form-group label="Next of Kin Information" label-for="nok-info">
+                    <template #label>
+                      Next of Kin Information <span class="text-danger">*</span>
+                    </template>
                     <b-form-textarea id="nok-info" name="nokInfo" v-model="$v.enrollmentForm.nokInfo.$model" :state="!$v.enrollmentForm.nokInfo.$error && null" rows="2"></b-form-textarea>
                   </b-form-group>
                   <b-form-invalid-feedback>
@@ -186,11 +222,14 @@
                 </b-col>
               </b-row>
             </b-tab>
-            <b-tab title="Crime/Court" class="fade-left p-4">
+            <b-tab title="2. Crime/Court" class="fade-left p-4">
               <h4 class="font-w400">Crime/Court Information</h4>
               <b-row>
                 <b-col lg="3">
                   <b-form-group label="Inmate Category" label-for="category">
+                    <template #label>
+                      Inmate Category <span class="text-danger">*</span>
+                    </template>
                     <b-form-select id="category" name="categorySelected" v-model="$v.enrollmentForm.categorySelected.$model" :state="!$v.enrollmentForm.categorySelected.$error && null" :options="enrollmentForm.categoryOptions"></b-form-select>
                     <b-form-invalid-feedback>
                       An inmate category is required
@@ -199,6 +238,9 @@
                 </b-col>
                 <b-col lg="3">
                   <b-form-group label="Court Type" label-for="court-type">
+                    <template #label>
+                      Court Type <span class="text-danger">*</span>
+                    </template>
                     <b-form-select id="court-type" name="courtSelected" v-model="$v.enrollmentForm.courtSelected.$model" :state="!$v.enrollmentForm.courtSelected.$error && null" :options="enrollmentForm.courtOptions"></b-form-select>
                     <b-form-invalid-feedback>
                       A court type is required
@@ -207,6 +249,9 @@
                 </b-col>
                 <b-col lg="6">
                   <b-form-group label="Charges Information" label-for="charges-info">
+                    <template #label>
+                      Charges Information <span class="text-danger">*</span>
+                    </template>
                     <b-form-textarea id="charges-info" name="chargesInfo" v-model="$v.enrollmentForm.chargesInfo.$model" :state="!$v.enrollmentForm.chargesInfo.$error && null" rows="3"></b-form-textarea>
                     <b-form-invalid-feedback>
                       Charges information is required
@@ -217,6 +262,9 @@
               <b-row>
                 <b-col lg="3">
                   <b-form-group label="Court State" label-for="court-state">
+                    <template #label>
+                      Court State <span class="text-danger">*</span>
+                    </template>
                     <b-form-select id="court-state" name="courtStateSelected" v-model="$v.enrollmentForm.courtStateSelected.$model" :state="!$v.enrollmentForm.courtStateSelected.$error && null" :options="enrollmentForm.courtStateOptions"></b-form-select>
                     <b-form-invalid-feedback>
                       A court state is required
@@ -225,6 +273,9 @@
                 </b-col>
                 <b-col lg="3">
                   <b-form-group label="Judgement File" label-for="judgement-file">
+                    <template #label>
+                      Judgement File <span class="text-danger">*</span>
+                    </template>
                     <b-form-file id="judgement-file" name="judgementFile" v-model="$v.enrollmentForm.judgementFile.$model" :state="!$v.enrollmentForm.judgementFile.$error && null"></b-form-file>
                     <b-form-invalid-feedback>
                       A judgement file is required
@@ -233,6 +284,9 @@
                 </b-col>
                 <b-col lg="6">
                   <b-form-group label="Judge" label-for="judge">
+                    <template #label>
+                      Judge Information <span class="text-danger">*</span>
+                    </template>
                     <b-form-input id="judge" type="text" name="judge" v-model="$v.enrollmentForm.judge.$model" :state="!$v.enrollmentForm.judge.$error && null"></b-form-input>
                     <b-form-invalid-feedback>
                       Judge information is required
@@ -243,6 +297,9 @@
               <b-row>
                 <b-col lg="3">
                   <b-form-group label="Sentence Date" label-for="sentence-date">
+                    <template #label>
+                      Sentence Date <span class="text-danger">*</span>
+                    </template>
                     <b-form-input id="sentence-date" type="date" name="sentenceDate" v-model="$v.enrollmentForm.sentenceDate.$model" :state="!$v.enrollmentForm.sentenceDate.$error && null"></b-form-input>
                     <b-form-invalid-feedback>
                       A sentence date is required
@@ -251,6 +308,9 @@
                 </b-col>
                 <b-col lg="3">
                   <b-form-group label="Sentence Start Date" label-for="sentence-start-date">
+                    <template #label>
+                      Sentence Start Date <span class="text-danger">*</span>
+                    </template>
                     <b-form-input id="sentence-start-date" type="date" name="sentenceStartDate" v-model="$v.enrollmentForm.sentenceStartDate.$model" :state="!$v.enrollmentForm.sentenceStartDate.$error && null"></b-form-input>
                     <b-form-invalid-feedback>
                       A sentence start date is required
@@ -259,6 +319,9 @@
                 </b-col>
                 <b-col lg="3">
                   <b-form-group label="Sentence End Date" label-for="sentence-end-date">
+                    <template #label>
+                      Sentence End Date <span class="text-danger">*</span>
+                    </template>
                     <b-form-input id="sentence-end-date" type="date" name="sentenceEndDate" v-model="$v.enrollmentForm.sentenceEndDate.$model" :state="!$v.enrollmentForm.sentenceEndDate.$error && null"></b-form-input>
                     <b-form-invalid-feedback>
                       A sentence end date is required
@@ -267,6 +330,9 @@
                 </b-col>
                 <b-col lg="3">
                   <b-form-group label="Sentence Duration (Months)" label-for="sentence-duration">
+                    <template #label>
+                      Sentence Duration (Months) <span class="text-danger">*</span>
+                    </template>
                     <b-form-input id="sentence-duration" type="number" name="sentenceDuration" v-model="$v.enrollmentForm.sentenceDuration.$model" :state="!$v.enrollmentForm.sentenceDuration.$error && null" min="1"></b-form-input>
                     <b-form-invalid-feedback>
                       A sentence duration is required
@@ -277,6 +343,9 @@
               <b-row>
                 <b-col lg="12">
                   <b-form-group label="Other Information" label-for="other-info">
+                    <template #label>
+                      Other Information <span class="text-danger">*</span>
+                    </template>
                     <b-form-textarea id="other-info" name="otherInfo" v-model="$v.enrollmentForm.otherInfo.$model" :state="!$v.enrollmentForm.otherInfo.$error && null"  rows="3"></b-form-textarea>
                     <b-form-invalid-feedback>
                       Other information is required
@@ -285,7 +354,7 @@
                 </b-col>
               </b-row>
             </b-tab>
-            <b-tab title="Health" class="fade-left p-4">
+            <b-tab title="3. Health" class="fade-left p-4">
               <h4 class="font-w400">Health Information</h4>
               <b-row>
                 <b-col lg="3">
@@ -295,6 +364,9 @@
                 </b-col>
                 <b-col lg="3">
                   <b-form-group label="Genotype" label-for="genotype">
+                    <template #label>
+                      Genotype <span class="text-danger">*</span>
+                    </template>
                     <b-form-select id="genotype" name="genotypeSelected" v-model="$v.enrollmentForm.genotypeSelected.$model" :state="!$v.enrollmentForm.genotypeSelected.$error && null" :options="enrollmentForm.genotypeOptions"></b-form-select>
                     <b-form-invalid-feedback>
                       A genotype is required
@@ -303,6 +375,9 @@
                 </b-col>
                 <b-col lg="3">
                   <b-form-group label="Height (ft)" label-for="height">
+                    <template #label>
+                      Height (ft) <span class="text-danger">*</span>
+                    </template>
                     <b-form-input id="height" type="number" name="height" v-model="$v.enrollmentForm.height.$model" :state="!$v.enrollmentForm.height.$error && null" min="1"></b-form-input>
                     <b-form-invalid-feedback>
                       A height is required
@@ -311,6 +386,9 @@
                 </b-col>
                 <b-col lg="3">
                   <b-form-group label="Weight (kg)" label-for="weight">
+                    <template #label>
+                      Weight (kg) <span class="text-danger">*</span>
+                    </template>
                     <b-form-input id="weight" type="number" name="weight" v-model="$v.enrollmentForm.weight.$model" :state="!$v.enrollmentForm.weight.$error && null" min="1"></b-form-input>
                     <b-form-invalid-feedback>
                       A weight is required
@@ -337,12 +415,15 @@
                 </b-col>
               </b-row>
             </b-tab>
-            <b-tab title="Biometrics" class="fade-left p-4">
+            <b-tab title="4. Biometrics" class="fade-left p-4">
               <h4 class="font-w400">Biometrics Information</h4>
+            </b-tab>
+            <b-tab title="5. Center" class="fade-left p-4">
+              <h4 class="font-w400">Custodial Center Information</h4>
             </b-tab>
             <b-tab title-item-class="ml-auto" class="p-4">
               <template #title>
-                Done <b-spinner type="grow" small></b-spinner>
+                6. Done <b-spinner type="grow" small></b-spinner>
               </template>
               <h4 class="font-w400">Finalize & Submit</h4>
               <p>Please ensure all required fields are filled before submitting</p>
