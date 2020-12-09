@@ -62,10 +62,8 @@ const state = {
   // cell block details
   cellBlockDetails: {
     cells: [],
-    inmates: [],
 
     numCells: 0,
-    numInmates: 0
   },
 
   // data details

@@ -63,15 +63,28 @@ export default {
   },
   data() {
     return {
-      zoneFields: [{key: 'sno', label: 'S/n', thStyle: 'width: 10%'}, {key: 'zone_name', sortable: true},],
-      exportFields: {'S/n': 'sno', 'Zone Name': 'zone_name'},
+      zoneFields: [
+        {key: 'sno', label: 'S/n', thStyle: 'width: 10%'},
+        {key: 'zone_name', sortable: true},
+        {key: 'states_count', label: 'Total States', sortable: true},
+        {key: 'cc_count', label: 'Total Custodial Centers', sortable: true},
+        {key: 'inmate_count', label: 'Total Inmates', sortable: true}
+      ],
+      exportFields: {
+        'S/n': 'sno',
+        'Zone Name': 'zone_name'
+      },
       zones: this.$store.getters.getZones,
       filter: null,
       filteredItems: this.zones,
       totalRows: this.$store.getters.getNumZones,
       currentPage: 1,
       perPage: 10,
-      pageOptions: [{value: 5, text: '5 per page'}, {value: 10, text: '10 per page'}, {value: 15, text: '15 per page'}],
+      pageOptions: [
+        {value: 5, text: '5 per page'},
+        {value: 10, text: '10 per page'},
+        {value: 15, text: '15 per page'}
+      ],
     }
   },
   methods: {
