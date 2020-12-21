@@ -3,5 +3,5 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/connexxtel/ncs.connexxiontelecom.com/
-    - /bin/cp -R /dist/ $DEPLOYPATH
+    - /bin/cp -R dist/* $DEPLOYPATH
 
