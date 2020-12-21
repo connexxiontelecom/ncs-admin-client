@@ -230,7 +230,7 @@ router.afterEach((to, from) => {
     store.commit('pageLoader', {mode: 'on'})
     setTimeout(() => {
       store.commit('pageLoader', {mode: 'off'})
-    }, 1000);
+    }, 4000);
   }
   // prevent routing back to app after logging out
   if (!localStorage.getItem('accessToken')) {
