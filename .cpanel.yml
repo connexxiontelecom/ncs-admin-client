@@ -3,5 +3,5 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/connexxtel/ncs.connexxiontelecom.com/
-    - /bin/cp -R /dist/css/ /dist/fonts/ /dist/img/ /dist/js/ /dist/index.html $DEPLOYPATH
+    - /bin/cp -R * $DEPLOYPATH
 
