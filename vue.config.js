@@ -3,7 +3,7 @@
  */
 
 module.exports = {
-  publicPath: '/dist/',
+  publicPath: '/',
   // Webpack configuration
   chainWebpack: config => {
     // Preserve white spacing in production build
